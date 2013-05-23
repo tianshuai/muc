@@ -129,7 +129,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   execjs
   jquery-rails (= 2.0.2)
-  mongoid
+  mongoid (~> 3.1.4)
   mongoid_auto_increment_id (= 0.6.0)
   mongoid_timestamp_define!
   rails (= 3.2.13)
