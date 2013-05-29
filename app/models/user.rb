@@ -2,8 +2,9 @@
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
+  include ActiveModel::SecurePassword
 
-  #has_secure_password
+
 
   ##关系
   #内嵌表：用户详细信息
@@ -15,7 +16,7 @@ class User
 
   before_save { |user| user.email = email.downcase }
 
-
+  has_secure_password
 
 
   ##常量
@@ -120,11 +121,8 @@ class User
                                           format: { with: VALID_EMAIL_REGEX },
                                           uniqueness: { case_sensitive: false }
 
-  validates :password_digest_confirmation, presence: true
-  validates :password_digest, presence: true, length: { minimum: 6,maximum: 18 }
-  #has_secure_password
-
-
+  validates :password_confirmation, presence: true
+  validates :password, presence: true, length: { minimum: 6,maximum: 18 }
 
 
   ##
