@@ -30,6 +30,8 @@ gem 'jquery-rails', '2.0.2'
 
 gem 'mongoid_auto_increment_id', "0.6.0"
 
+gem 'bootstrap-sass', '2.0.4'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -46,5 +48,5 @@ gem 'mongoid_auto_increment_id', "0.6.0"
 # gem 'debugger'
 #
 #mongoid自动生成日期
-gem 'mongoid_timestamp_define',:git => "git@github.com:helloqidi/mongoid_timestamp_define14.git"
+#gem 'mongoid_timestamp_define',:git => "git@github.com:helloqidi/mongoid_timestamp_define14.git"
 #gem 'mongoid_timestamp_define',:git => "https://github.com/helloqidi/mongoid_timestamp_define14.git"

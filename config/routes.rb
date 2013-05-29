@@ -1,4 +1,11 @@
 Muc::Application.routes.draw do
+
+  root to: 'home#index'
+
+  match '/about',       to: 'home#about'
+  match '/help',        to: 'home#help'
+  match '/contact',     to: 'home#contact'
+
   resources :posts
 
 

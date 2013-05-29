@@ -1,6 +1,7 @@
+# encoding: utf-8
 class Post
   include Mongoid::Document
-  #include Mongoid::Timestamps
+  include Mongoid::Timestamps
 
   ##关系
   belongs_to :user
