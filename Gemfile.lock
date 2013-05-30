@@ -31,6 +31,8 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.0.4.0)
+    bootstrap-will_paginate (0.0.6)
+      will_paginate
     bson (1.8.6)
     bson_ext (1.8.6)
       bson (~> 1.8.6)
@@ -116,6 +118,10 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    will_paginate (3.0.3)
+    will_paginate_mongoid (1.1.0)
+      mongoid (>= 2.4)
+      will_paginate (~> 3.0)
 
 PLATFORMS
   ruby
@@ -123,6 +129,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (= 2.0.4)
+  bootstrap-will_paginate (= 0.0.6)
   bson_ext
   coffee-rails (~> 3.2.2)
   execjs
@@ -133,3 +140,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.5)
   therubyracer
   uglifier (>= 1.2.3)
+  will_paginate (= 3.0.3)
+  will_paginate_mongoid

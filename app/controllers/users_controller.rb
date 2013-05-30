@@ -1,9 +1,12 @@
+# encoding: utf-8
 class UsersController < ApplicationController
+
+  before_filter :signed_in_user, only: [ :edit, :update, :edit_profile ]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.paginate(:page => params[:page], :per_page => 10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,12 +45,12 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    puts params[:user]
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created1.' }
-        format.json { render json: @user, status: :created, location: @user }
+        flash[:success] = '注册成功!'
+        sign_in @user
+        redirect_to @user
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -60,15 +63,14 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.update_attributes(params[:user])
+    flash[:success] = "更新成功!"
+    sign_in @user
+    redirect_to @user
+    else
+      render 'edit'
     end
+
   end
 
   # DELETE /users/1
@@ -82,4 +84,12 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  #修改个人资料
+  #基本信息
+  def edit_profile
+    @user = current_user
+    render 'edit'
+  end
+
 end

@@ -2,6 +2,7 @@ Muc::Application.routes.draw do
 
   root to: 'home#index'
 
+
   match '/about',       to: 'home#about'
   match '/help',        to: 'home#help'
   match '/contact',     to: 'home#contact'
@@ -10,6 +11,15 @@ Muc::Application.routes.draw do
 
 
   resources :users
+
+  match '/signup',            to: 'users#new'
+  match '/login',             to: 'users#login'
+  match '/edit_profile',      to: 'users#edit_profile'
+
+
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
 
 
   # The priority is based upon order of creation:

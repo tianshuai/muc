@@ -35,6 +35,12 @@ gem 'bootstrap-sass', '2.0.4'
 # To use ActiveModel has_secure_password
  gem 'bcrypt-ruby', '~> 3.0.0'
 
+#分页
+gem 'will_paginate', '3.0.3'
+#分页样式
+gem 'bootstrap-will_paginate', '0.0.6'
+gem 'will_paginate_mongoid'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

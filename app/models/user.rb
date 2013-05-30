@@ -4,7 +4,7 @@ class User
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
 
-
+  attr_accessible :name, :email, :password, :password_confirmation
 
   ##关系
   #内嵌表：用户详细信息
@@ -13,8 +13,12 @@ class User
 
 
 
-
+  #注册时把邮箱转换为小写字符
   before_save { |user| user.email = email.downcase }
+
+  #创建用户登录标识
+  before_save :create_remember_token
+
 
   has_secure_password
 
@@ -104,6 +108,9 @@ class User
   #是否初次登录、
   field :first_login,           type: Integer,  default: 0
 
+  #记忆权标
+  field :remember_token,        type: String
+
 
 
 
@@ -114,15 +121,18 @@ class User
 
 
   ##验证
-  validates :name,                        presence: true, length: { maximum: 6, maximum: 12 }
+  validates_presence_of :name,                    message: '不能为空'
+  validates :name,                                length: { minimum: 4, maximum: 12, message: '长度大于4个字符且小于12个字符' }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email,                       presence: true,
-                                          format: { with: VALID_EMAIL_REGEX },
-                                          uniqueness: { case_sensitive: false }
+  validates_presence_of :email,                   message: '不能为空'
+  validates :email,                               format: { with: VALID_EMAIL_REGEX,  message: '格式不正确' },
+                                                  uniqueness: { case_sensitive: false, message: '已经存在!' }
 
-  validates :password_confirmation, presence: true
-  validates :password, presence: true, length: { minimum: 6,maximum: 18 }
+  validates_presence_of :password,                message: '不能为空'
+  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' }
+  validates_presence_of :password_confirmation,   message: '不能为空'
+
 
 
   ##
@@ -136,6 +146,24 @@ class User
     return ""   
   end
 
+
+  def self.find_by_name(options={})
+    users = self.where(options)
+    if users.present?
+      users.first
+    else
+      nil
+    end
+  end
+
+
+
+private
+
+  #创建用户登录标识
+  def create_remember_token
+    self.remember_token = SecureRandom.urlsafe_base64
+  end
 
   
 end

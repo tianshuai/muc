@@ -1,4 +1,4 @@
-<h1>Listing users</h1>
+<h1>用户列表</h1>
 
 <table>
   <tr>
@@ -22,7 +22,7 @@
   <% end %>
 <%end%>
 </table>
-
+<%= will_paginate @users %>
 <br />
 
 <%= link_to 'New User', new_user_path %>
