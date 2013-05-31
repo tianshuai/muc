@@ -1,12 +1,13 @@
 # encoding: utf-8
 class UsersController < ApplicationController
 
+  #需要登录
   before_filter :signed_in_user, only: [ :edit, :update, :edit_profile ]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.paginate(:page => params[:page], :per_page => 10)
+    @users = User.paginate(:page => params[:page], :per_page => 100)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -46,15 +47,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    respond_to do |format|
-      if @user.save
-        flash[:success] = '注册成功!'
-        sign_in @user
-        redirect_to @user
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if @user.save
+      flash[:success] = '注册成功!'
+      sign_in @user
+      redirect_to @user
+    else
+      render 'new'
     end
   end
 

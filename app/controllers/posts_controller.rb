@@ -1,5 +1,9 @@
 # encoding: utf-8
 class PostsController < ApplicationController
+
+  #需要登录
+  before_filter :signed_in_user, only: [ :new, :create, :edit, :update, ]
+
   # GET /posts
   # GET /posts.json
   def index
@@ -42,15 +46,10 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(params[:post])
-
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render json: @post, status: :created, location: @post }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to @post, notice: '创建成功!'
+    else
+      render 'new'
     end
   end
 
@@ -61,7 +60,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @post, notice: '更新成功!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -9,7 +9,7 @@ class User
   ##关系
   #内嵌表：用户详细信息
   embeds_one :profile
-  has_many :posts
+  has_many :posts,            dependent: :destroy
 
 
 
@@ -20,6 +20,7 @@ class User
   before_save :create_remember_token
 
 
+  #密码自动加密
   has_secure_password
 
 
@@ -52,13 +53,16 @@ class User
     #公司
     company: 3
   }
-  #审核
+  #性别
   SEX = {
     secret: 0,
     boy: 1,
     girl: 2
 
   }
+
+  #保护字段
+  attr_protected :role_id
 
   ##属性
   field :name,                  type: String
@@ -112,6 +116,11 @@ class User
   field :remember_token,        type: String
 
 
+  ##索引
+  index({ name: 1 }, { background: true })
+  index({ email: 1 }, { unique: true, background: true })
+  index({ remember_token: 1 }, { unique: true, background: true })
+  index({ name: 1 }, { unique: true, background: true })
 
 
   ##过滤
@@ -122,7 +131,7 @@ class User
 
   ##验证
   validates_presence_of :name,                    message: '不能为空'
-  validates :name,                                length: { minimum: 4, maximum: 12, message: '长度大于4个字符且小于12个字符' }
+  validates :name,                                length: { minimum: 4, maximum: 18, message: '长度大于4个字符且小于18个字符' }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates_presence_of :email,                   message: '不能为空'
