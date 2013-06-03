@@ -4,7 +4,7 @@ class User
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
 
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation,:avatar, :avatar_cache
 
   ##关系
   #内嵌表：用户详细信息
@@ -72,7 +72,7 @@ class User
   field :password_digest,       type: String
 
   #头像
-  field :avatar,                type: Integer,  default: 0
+  field :avatar,                type: String
 
 
   #性别(默认保密)
@@ -138,9 +138,9 @@ class User
   validates :email,                               format: { with: VALID_EMAIL_REGEX,  message: '格式不正确' },
                                                   uniqueness: { case_sensitive: false, message: '已经存在!' }
 
-  validates_presence_of :password,                message: '不能为空'
-  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' }
-  validates_presence_of :password_confirmation,   message: '不能为空'
+  #validates_presence_of :password,                message: '不能为空'
+  #validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' }
+  #validates_presence_of :password_confirmation,   message: '不能为空'
 
 
 
@@ -154,18 +154,6 @@ class User
     return "女" if self.sex==SEX[:girl]
     return ""   
   end
-
-
-  def self.find_by_name(options={})
-    users = self.where(options)
-    if users.present?
-      users.first
-    else
-      nil
-    end
-  end
-
-
 
 private
 

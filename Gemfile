@@ -56,3 +56,14 @@ gem 'will_paginate_mongoid'
 #mongoid自动生成日期
 #gem 'mongoid_timestamp_define',:git => "git@github.com:helloqidi/mongoid_timestamp_define14.git"
 #gem 'mongoid_timestamp_define',:git => "https://github.com/helloqidi/mongoid_timestamp_define14.git"
+#
+#文件上传
+gem 'carrierwave'
+gem 'carrierwave-mongoid', :require => "carrierwave/mongoid"
+
+#上传大文件（只支持>mongoid3.0）
+gem 'mongoid-grid_fs'
+gem 'mime-types', '~> 1.19'
+
+#图片读取存储
+gem 'mini_magick'

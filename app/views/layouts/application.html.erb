@@ -13,6 +13,9 @@
 </head>
   <body>
     <%= render 'layouts/header' %>
+    <img src="<%=Mongoid::GridFs.get(1).data_uri%>" />
+    <%#=image_tag :src=>Mongoid::GridFs.get(1).data_uri%>
+    <%= image_tag Mongoid::GridFs.get(1).data_uri %>
     <div class="container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
