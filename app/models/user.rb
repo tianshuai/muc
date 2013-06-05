@@ -4,7 +4,8 @@ class User
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
 
-  attr_accessible :name, :email, :password, :password_confirmation,:avatar, :avatar_cache
+  auto_increment :id, seed: 1000
+  attr_accessible :name, :email, :password, :password_confirmation
 
   ##关系
   #内嵌表：用户详细信息

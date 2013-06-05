@@ -21,6 +21,9 @@ Muc::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
+  #图片路径
+  match "/asset/*path" => "assets#serve"
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

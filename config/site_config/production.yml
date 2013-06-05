@@ -1,2 +1,5 @@
-title: tianshuai
-keywords: keyword1,keyword2
+##路径
+domain: 127.0.0.1
+domain_base: http://127.0.0.1:3000
+
+domain_image: 127.0.0.1:3000/asset

@@ -28,12 +28,15 @@ gem 'therubyracer'
 
 gem 'jquery-rails', '2.0.2'
 
-gem 'mongoid_auto_increment_id', "0.6.0"
+#gem 'mongoid_auto_increment_id', "0.6.0"
 
 gem 'bootstrap-sass', '2.0.4'
 
 # To use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
+
+#可以指定module为id自增
+gem 'mongoid_auto_increment'
 
 #分页
 gem 'will_paginate', '3.0.3'
@@ -41,18 +44,6 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
 gem 'will_paginate_mongoid'
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-#
 #mongoid自动生成日期
 #gem 'mongoid_timestamp_define',:git => "git@github.com:helloqidi/mongoid_timestamp_define14.git"
 #gem 'mongoid_timestamp_define',:git => "https://github.com/helloqidi/mongoid_timestamp_define14.git"
@@ -62,7 +53,7 @@ gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => "carrierwave/mongoid"
 
 #上传大文件（只支持>mongoid3.0）
-gem 'mongoid-grid_fs'
+gem 'mongoid-grid_fs', "~> 1.8.0"
 gem 'mime-types', '~> 1.19'
 
 #图片读取存储

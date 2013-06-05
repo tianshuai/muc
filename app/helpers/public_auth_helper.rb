@@ -1,6 +1,6 @@
 # encoding: utf-8
 ##权限的helper方法
-module HelperAuth
+module PublicAuthHelper
 
   #是否普通用户
   def default?
@@ -63,6 +63,12 @@ module HelperAuth
   #跳转到：如登录页面前记录链接地址
   def store_location
     session[:return_to] = request.fullpath
+  end
+
+
+  #test
+  def test
+    puts 'tttttttttttttttttttian'
   end
 
 end
