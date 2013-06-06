@@ -17,7 +17,7 @@ class User
   #注册时把邮箱转换为小写字符
   before_save { |user| user.email = email.downcase }
 
-  #创建用户登录标识
+  #创建用户登录标识(唯一随机数)
   before_save :create_remember_token
 
 
@@ -72,10 +72,6 @@ class User
   #密码(加密)
   field :password_digest,       type: String
 
-  #头像
-  field :avatar,                type: String
-
-
   #性别(默认保密)
   field :sex,                   type: Integer,  default: SEX[:secret]
 
@@ -116,6 +112,23 @@ class User
   #记忆权标
   field :remember_token,        type: String
 
+  # 个人图片展示
+  field :img,                   type: Hash,     default: {
+                                                  'avatar'=> {
+                                                    #小图(50*50)
+                                                    's'=> '',
+                                                    #中图(100*100)
+                                                    'm'=> '', 
+                                                    #大图(180*180)
+                                                    'b'=> '', 
+                                                    #类型
+                                                    'type'=> ''
+                                                  },
+                                                  #个人页面banner
+                                                  'top_banner'=> ''
+
+                                                }
+
 
   ##索引
   index({ name: 1 }, { background: true })
@@ -139,8 +152,8 @@ class User
   validates :email,                               format: { with: VALID_EMAIL_REGEX,  message: '格式不正确' },
                                                   uniqueness: { case_sensitive: false, message: '已经存在!' }
 
+  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' }
   #validates_presence_of :password,                message: '不能为空'
-  #validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' }
   #validates_presence_of :password_confirmation,   message: '不能为空'
 
 
@@ -154,6 +167,27 @@ class User
     return "男" if self.sex==SEX[:boy] 
     return "女" if self.sex==SEX[:girl]
     return ""   
+  end
+
+
+  #取头像id
+  def avatar_id(t='s')
+    self.img['avatar'][t] || ''
+  end
+
+  #给头像赋值s
+  def avatar_s=(id)
+    self.img['avatar']['s'] = id
+  end
+
+  #给头像赋值m
+  def avatar_m=(id)
+    self.img['avatar']['m'] = id
+  end
+
+  #给头像赋值b
+  def avatar_b=(id)
+    self.img['avatar']['b'] = id
   end
 
 private

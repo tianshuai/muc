@@ -10,10 +10,15 @@
             <li><%= link_to "Users", '#' %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%=current_user.name%> <b class="caret"></b>
+                <%=raw user_avatar_tag(current_user,'s',{width: 30, height: 30})%> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "个人信息", current_user %></li>
+                <%if admin?%>
+                  <li><%= link_to "系统管理", current_user %></li>
+                <%end%>
+                <li><%= link_to "修改头像", current_user %></li>
+                <li><%= link_to "修改密码", user_edit_pwd_path %></li>
                 <li><%= link_to "设置", edit_profile_path %></li>
                 <li class="divider"></li>
                 <li>

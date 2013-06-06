@@ -4,4 +4,6 @@ class ApplicationController < ActionController::Base
 
   include PublicSessionsHelper
   include PublicAuthHelper
+  include PublicImgHelper
+  include PublicShowHelper
 end

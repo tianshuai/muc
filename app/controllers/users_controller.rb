@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
 
   #需要登录
-  before_filter :signed_in_user, only: [ :edit, :update, :edit_profile ]
+  before_filter :signed_in_user, only: [ :edit, :update, :edit_profile, :edit_pwd ]
 
   # GET /users
   # GET /users.json
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = User.find(params[:id].to_i)
   end
 
   # POST /users
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    @user = User.find(params[:id].to_i)
 
     if @user.update_attributes(params[:user])
     flash[:success] = "更新成功!"
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find(params[:id].to_i)
     @user.destroy
 
     respond_to do |format|
@@ -88,6 +88,23 @@ class UsersController < ApplicationController
   def edit_profile
     @user = current_user
     render 'edit'
+  end
+
+  #修改密码
+  def edit_pwd
+    @user = current_user
+    
+  end
+
+  #更新密码
+  def update_pwd
+    if current_user.update_attributes(params[:user])
+      flash[:success] = "更新成功!"
+      sign_in @user
+    else
+      flash[:error] = '更新失败!'
+    end 
+
   end
 
 end

@@ -1,0 +1,29 @@
+<% provide(:title, '修改密码') %>
+<!--二级导航-->
+<div class="w180 mr-20">
+	<ul class="left_menu">		
+		<li><a href="" title="个人信息" class="">个人信息</a></li>
+
+		<li><a href="" title="修改头像" class="" >修改头像</a></li>
+        <li><%=link_to '修改密码', user_edit_pwd_path%></li>
+
+	</ul>
+</div>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@user, url: user_update_pwd_path, :html=>{:method=> :put}) do |f| %>
+      <%= render 'shared/error_messages' %>
+      <%= f.label :current_password, '旧密码'%>
+      <%= f.text_field :current_password%>
+      <%= f.label :password, "新密码" %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "确认密码" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "保存", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

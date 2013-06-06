@@ -16,6 +16,9 @@ Muc::Application.routes.draw do
   match '/login',             to: 'users#login'
   match '/edit_profile',      to: 'users#edit_profile'
 
+  match '/user/edit_pwd',     to: 'users#edit_pwd'
+  match '/user/update_pwd',   to: 'users#update_pwd'
+
 
   resources :sessions, only: [:new, :create, :destroy]
   match '/signin', to: 'sessions#new'
