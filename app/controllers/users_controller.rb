@@ -85,25 +85,53 @@ class UsersController < ApplicationController
 
   #修改个人资料
   #基本信息
-  def edit_profile
+  def edit_info
+	@css_edit_info = true
     @user = current_user
-    render 'edit'
+    render 'edit_info'
+  end
+
+  #更新基本资料
+  def update_info
+	@css_edit_info = true
+	@user = current_user
+	#params.delete(params[:user][:email])
+	if @user.update_attributes(params[:user])
+	  flash[:success] = '更新成功!'
+	  sign_in @user
+	  redirect_to @user
+	else
+	  flash[:error] = '更新失败!'
+	  render 'edit_info'
+	end
   end
 
   #修改密码
   def edit_pwd
+	@css_edit_pwd = true
     @user = current_user
     
   end
 
   #更新密码
   def update_pwd
-    if current_user.update_attributes(params[:user])
-      flash[:success] = "更新成功!"
-      sign_in @user
-    else
-      flash[:error] = '更新失败!'
-    end 
+	@css_edit_pwd = true
+	@user = current_user
+	if @user.authenticate(params[:current_password])
+	  params[:user].delete :current_password
+	  if current_user.update_attributes(params[:user])
+		flash[:success] = "更新成功!"
+		sign_in @user
+        redirect_to @user
+	  else
+		flash[:error] = '更新失败!'
+		render 'edit_pwd'
+	  end 
+	else
+	  @user.errors.add(:current_user,'原密码不正确!')
+	  flash[:error] = '更新失败!'
+	  render 'edit_pwd'
+	end
 
   end
 

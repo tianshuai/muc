@@ -14,7 +14,8 @@ Muc::Application.routes.draw do
 
   match '/signup',            to: 'users#new'
   match '/login',             to: 'users#login'
-  match '/edit_profile',      to: 'users#edit_profile'
+  match '/user/edit_info',	  to: 'users#edit_info'
+  match '/user/update_info',  to: 'users#update_info'
 
   match '/user/edit_pwd',     to: 'users#edit_pwd'
   match '/user/update_pwd',   to: 'users#update_pwd'

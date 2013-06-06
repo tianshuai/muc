@@ -5,7 +5,8 @@ class User
   include ActiveModel::SecurePassword
 
   auto_increment :id, seed: 1000
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name,:email
+  attr_accessible :password, :password_confirmation, :current_password
 
   ##关系
   #内嵌表：用户详细信息
@@ -152,8 +153,9 @@ class User
   validates :email,                               format: { with: VALID_EMAIL_REGEX,  message: '格式不正确' },
                                                   uniqueness: { case_sensitive: false, message: '已经存在!' }
 
-  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' }
-  #validates_presence_of :password,                message: '不能为空'
+  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' },
+												  unless: lambda {|u| u.password.nil? }
+  validates_presence_of :password,                message: '不能为空', unless: lambda {|u| u.password.nil? }
   #validates_presence_of :password_confirmation,   message: '不能为空'
 
 

@@ -16,4 +16,14 @@ module PublicShowHelper
 	File.join(domain_image,asset_id)
   end
 
+  ##
+  # 定义某些元素的class是否是active  或　current
+  def css_active?(css)
+	"active" if css
+  end
+
+  def css_current?(css)
+	"current" if css
+  end
+
 end
