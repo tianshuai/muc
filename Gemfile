@@ -48,9 +48,6 @@ gem 'will_paginate_mongoid'
 #gem 'mongoid_timestamp_define',:git => "git@github.com:helloqidi/mongoid_timestamp_define14.git"
 #gem 'mongoid_timestamp_define',:git => "https://github.com/helloqidi/mongoid_timestamp_define14.git"
 #
-#文件上传
-gem 'carrierwave'
-gem 'carrierwave-mongoid', :require => "carrierwave/mongoid"
 
 #上传大文件（只支持>mongoid3.0）
 gem 'mongoid-grid_fs', "~> 1.8.0"
