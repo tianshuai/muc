@@ -17,12 +17,13 @@
     <%else%>
        <td>用户不存在</td>     
     <%end%>
-    <td><%=post.created_at.strftime("%H")%></td>
+    <td><%=post.created_at.strftime("%Y-%m-%d") if post.created_at.present?%></td>
     <td><%= link_to '显示', post %></td>
     <td><%= link_to '编辑', edit_post_path(post) %></td>
     <td><%= link_to '删除', post, method: :delete, data: { confirm: '确定删除?' } %></td>
   </tr>
 <% end %>
+<%=will_paginate @posts if @posts.present?%>
 </table>
 
 <br />

@@ -3,8 +3,19 @@ class Post
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  #ＩＤ自增
+  auto_increment :id, seed: 100
+
   ##关系
   belongs_to :user
+
+
+  ##验证
+  validates_presence_of :title
+  validates :title,                               length: { minimum: 2, maximum: 50 }
+
+  validates :content,                             length: { maximum: 50000 }
+  validates_presence_of :user_id
 
   ##常量
   #状态
@@ -16,7 +27,7 @@ class Post
   }
 
   #是否发布状态
-  PUBLISHED={
+  PUBLISH={
     no: 0,
     yes: 1
   }
@@ -31,8 +42,10 @@ class Post
   #状态
   field :state,               type: Integer,  default: STATE[:ok]
   #是否发布
-  field :published,           type: Integer,  default: PUBLISHED[:yes]
+  field :publish,             type: Integer,  default: PUBLISH[:yes]
 
+  #查看数量
+  field :view_count,    	  type: Integer,  default: 0
 
   ##索引
   index({ title: 1 }, { background: true })
@@ -43,16 +56,10 @@ class Post
   #过滤
   
   #已发布的
-  scope :is_publish,          where(published: PUBLISHED[:yes])
+  scope :published,        -> { where(publish: PUBLISH[:yes]) }
   #正常显示的
-  scope :normal,              where(state: STATE[:ok])
+  scope :normal,           -> { where(state: STATE[:ok]) }
 
 
-  ##验证
-  validates_presence_of :title,                   message: '不能为空'
-  validates :title,                               length: { minimum: 2, maximum: 50, message: '长度大于4个字符且小于50个字符' }
-
-  validates :content,                             length: { maximum: 50000, message: '长度大于5万个字符' }
-  validates_presence_of :user_id,                 message: '不能为空'
   
 end

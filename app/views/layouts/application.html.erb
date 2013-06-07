@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title><%=page_title(yield(:title))%></title>
   <%= yield :style %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%#= javascript_include_tag "jquery-ui-1.7.2.min" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
@@ -13,18 +12,28 @@
   <![endif]-->
 </head>
   <body>
+
+  <section id="doc">
     <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-      <%if current_user.present?%>
-        <%#=raw avatar(current_user,'m')%>
-      <%end%>
-      <%#=asset_path('51aff8a088eb602bfb000001')%>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+
+    <div id="bd" class="">
+      <!--消息提醒-->
+      <%= render partial: 'shared/flash',locals: { flash: flash }%>
+
+      <%= yield :sub_navigation%>
+
+
+        <%= yield %>
+
+
+    </div>
+
+    <%= render 'layouts/footer' %>
+  </section>
+
+
+
+      <%#= debug(params) if Rails.env.development? %>
 
 
 		<%= yield :scripts %>

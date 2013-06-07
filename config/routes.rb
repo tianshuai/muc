@@ -2,6 +2,20 @@ Muc::Application.routes.draw do
 
   root to: 'home#index'
 
+  #后台路由设置
+  namespace :admin do |admin|
+    resources :users do
+      #match '/index', to: 'home#index'
+    end
+
+    resources :home do
+      match '/',  to: 'home#index'
+    end
+
+
+  end
+  #后台路由END
+
 
   match '/about',       to: 'home#about'
   match '/help',        to: 'home#help'

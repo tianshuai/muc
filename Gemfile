@@ -58,3 +58,5 @@ gem 'mime-types', '~> 1.19'
 
 #图片读取存储
 gem 'mini_magick'
+
+

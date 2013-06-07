@@ -4,6 +4,7 @@ class User
   include Mongoid::Timestamps
   include ActiveModel::SecurePassword
 
+  #ＩＤ自增
   auto_increment :id, seed: 1000
   attr_accessible :name,:email
   attr_accessible :password, :password_confirmation, :current_password
@@ -12,6 +13,7 @@ class User
   #内嵌表：用户详细信息
   embeds_one :profile
   has_many :posts,            dependent: :destroy
+  has_many :arts
 
 
 
@@ -21,10 +23,26 @@ class User
   #创建用户登录标识(唯一随机数)
   before_save :create_remember_token
 
+  #保护字段
+  attr_protected :role_id
 
   #密码自动加密
   has_secure_password
 
+
+  ##验证
+  validates_presence_of :name,                    message: '不能为空'
+  validates :name,                                length: { minimum: 4, maximum: 18, message: '长度大于4个字符且小于18个字符' }
+
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates_presence_of :email,                   message: '不能为空'
+  validates :email,                               format: { with: VALID_EMAIL_REGEX,  message: '格式不正确' },
+                                                  uniqueness: { case_sensitive: false, message: '已经存在!' }
+
+  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' },
+												  unless: lambda {|u| u.password.nil? }
+  validates_presence_of :password,                message: '不能为空', unless: lambda {|u| u.password.nil? }
+  #validates_presence_of :password_confirmation,   message: '不能为空'
 
   ##常量
   #角色
@@ -63,8 +81,6 @@ class User
 
   }
 
-  #保护字段
-  attr_protected :role_id
 
   ##属性
   field :name,                  type: String
@@ -139,25 +155,10 @@ class User
 
 
   ##过滤
-  #
+  #用户排序
+  scope :order,       -> { desc(:_id) }
   #学生
-  scope :students,              where(type: TYPE[:student])
-
-
-  ##验证
-  validates_presence_of :name,                    message: '不能为空'
-  validates :name,                                length: { minimum: 4, maximum: 18, message: '长度大于4个字符且小于18个字符' }
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates_presence_of :email,                   message: '不能为空'
-  validates :email,                               format: { with: VALID_EMAIL_REGEX,  message: '格式不正确' },
-                                                  uniqueness: { case_sensitive: false, message: '已经存在!' }
-
-  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' },
-												  unless: lambda {|u| u.password.nil? }
-  validates_presence_of :password,                message: '不能为空', unless: lambda {|u| u.password.nil? }
-  #validates_presence_of :password_confirmation,   message: '不能为空'
-
+  scope :students,    -> { where(type: TYPE[:student]) }
 
 
   ##

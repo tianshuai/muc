@@ -26,4 +26,20 @@ module PublicShowHelper
 	"current" if css
   end
 
+  #自动跳转(可直接在action中调用此方法)
+  def auto_redirect(arg={})
+     sec = arg[:sec] || 3
+     url = arg[:url] || '/'
+     msg = arg[:msg] || ''
+     msg += " Redirect to '#{url}' after #{sec} sec"
+     eval("render :text=>\"<meta http-equiv='refresh' content='#{sec}; url=#{url}'>#{msg}\"")
+  end
+
+  # 网站时间显示格式
+  # Time.now.to_i可转换时间为integer
+  #
+  def format_time(integer)
+    Time.at(integer).strftime("%Y-%m-%d %H:%M:%S")
+  end
+
 end
