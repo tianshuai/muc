@@ -1,0 +1,56 @@
+<%=provide(:title, '用户列表')%>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+      <%= render 'admin/base/left_bar'%>
+    </div>
+	
+    <div class="span10">
+      <!--Body content-->
+      <div class="world_box clearfix">
+          <%= render "admin/users/tool_bar"%>
+          <span class="blank10"></span>
+          <div class="sub_operation clearfix">
+             <div class="left_operation">
+                选择：
+                <a href="#" id="select_all">全选 </a>
+                ｜
+                <a href="#" id="select_un">反选 </a>
+                ｜
+                <a href="#" id="select_cancel">取消 </a>
+              </div>
+                  <div class="clearfix">
+                    <div class="operate_box clearfix">
+                        <%=link_to('审核通过', '#', :class=>'select_post')%>
+                      <%=link_to('禁用', '#', :class=>"select_post")%>
+                    </div>
+                  </div>
+          </div>
+          <span class="blank10"></span>
+          <table class="admin-box">
+            <thead>
+              <tr>
+                <th></th>
+                <th>用户</th>
+                <th>作品</th>
+                <th>专辑</th>
+                <th>数量</th>
+                <th>注册时间/IP</th>
+                <th>管理</th>
+              </tr>
+            </thead>
+            <tbody >
+              <%@users.each do |b|%>
+                <%= render partial: "admin/users/item", :locals => { :b => b } %>
+              <%end%>
+            </tbody>
+          </table>
+          <%= will_paginate @users if @users.present? %>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+

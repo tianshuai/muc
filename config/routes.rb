@@ -5,7 +5,7 @@ Muc::Application.routes.draw do
   #后台路由设置
   namespace :admin do |admin|
     resources :users do
-      #match '/index', to: 'home#index'
+
     end
 
     resources :home do
