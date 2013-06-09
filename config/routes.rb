@@ -13,6 +13,19 @@ Muc::Application.routes.draw do
       match '/',  to: 'home#index'
     end
 
+    resources :posts do
+      #match '/',  to: 'home#index'
+    end
+
+    resources :arts do
+      #match '/',  to: 'home#index'
+    end
+
+    resources :categories do
+	  collection do
+		post :ajax_set_state
+	  end
+    end
 
   end
   #后台路由END

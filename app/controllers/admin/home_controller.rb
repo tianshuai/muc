@@ -1,4 +1,5 @@
-class Admin::HomeController < ApplicationController
+# encoding: utf-8
+class Admin::HomeController < Admin::Common
 
 
   #后台首页

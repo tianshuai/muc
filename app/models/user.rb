@@ -122,6 +122,8 @@ class User
   field :role_id,               type: Integer,  default: ROLE_ID[:user]
   #类别
   field :type,                  type: Integer,  default: TYPE[:student]
+  #状态
+  field :state,					type: Integer,	default: STATE[:ok]
 
   #是否初次登录、
   field :first_login,           type: Integer,  default: 0

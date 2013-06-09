@@ -1,16 +1,24 @@
-  <div>
-	<ul class="nav nav-list">
-	  <li class="nav-header">基本信息</li>
-	  <li class="<%=css_active?(@css_admin_base)%>"><a href="#">系统信息</a></li>
-	  <li><a href="#">Library</a></li>
-	  <li class="nav-header">作品管理</li>
-	  <li class=""><a href="#">Home</a></li>
-	  <li><a href="#">Library</a></li>
-	  <li class="nav-header">院系管理</li>
-	  <li class=""><a href="#">Home</a></li>
-	  <li><a href="#">Library</a></li>
-	  <li class="nav-header">会员管理</li>
-	  <li class="<%=css_active?(@css_admin_user)%>"><a href="#">用户列表</a></li>
-	  <li><a href="#">Library</a></li>
-	</ul>
-  </div> 
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+	  <div>
+	    <ul class="nav nav-list">
+		  <li class="nav-header">基本信息</li>
+		  <li class="<%=css_active?(@css_admin_base)%>"><%=link_to '基本信息', admin_home_index_path %></li>
+		  <li><a href="#">Library</a></li>
+		  <li class="nav-header"> 新闻管理</li>
+		  <li class="<%=css_active?(@css_admin_news)%>"><%=link_to '新闻列表', admin_home_index_path %></li>
+		  <li class="<%=css_active?(@css_admin_cate)%>"><%=link_to '分类管理', admin_categories_path %></li>
+		  <li class="nav-header">作品管理</li>
+		  <li class=""><a href="#">Home</a></li>
+		  <li><a href="#">Library</a></li>
+		  <li class="nav-header">院系管理</li>
+		  <li class=""><a href="#">Home</a></li>
+		  <li><a href="#">Library</a></li>
+		  <li class="nav-header">会员管理</li>
+		  <li class="<%=css_active?(@css_admin_user)%>"><%=link_to '用户列表', admin_users_path %></li>
+		  <li><a href="#">Library</a></li>
+		</ul>
+	  </div> 
+    </div>
+

@@ -6,7 +6,7 @@
     <div class="span10">
       <!--Body content-->
 
-          <%= render "admin/users/tool_bar"%>
+          <%= render "admin/categories/tool_bar"%>
           <span class="blank10"></span>
           <div class="sub_operation clearfix">
              <div class="left_operation">
@@ -19,6 +19,7 @@
               </div>
                   <div class="clearfix">
                     <div class="operate_box clearfix">
+                        <%=link_to('+新建', '#', :class=>'select_post')%>
                         <%=link_to('审核通过', '#', :class=>'select_post')%>
                       <%=link_to('禁用', '#', :class=>"select_post")%>
                     </div>
@@ -30,19 +31,21 @@
               <tr>
                 <th></th>
                 <th>ID</th>
-                <th>用户</th>
-                <th>注册时间</th>
+                <th>名称</th>
+                <th>标识</th>
+                <th>类型</th>
+                <th>排序</th>
                 <th>状态</th>
                 <th>管理</th>
               </tr>
             </thead>
             <tbody >
-              <%@users.each do |b|%>
-                <%= render partial: "admin/users/item", :locals => { :b => b } %>
+              <%@categories.each do |b|%>
+                <%= render partial: "admin/categories/item", :locals => { :b => b } %>
               <%end%>
             </tbody>
           </table>
-          <%= will_paginate @users if @users.present? %>
+          <%= will_paginate @categories if @categories.present? %>
         </div>
     </div>
 

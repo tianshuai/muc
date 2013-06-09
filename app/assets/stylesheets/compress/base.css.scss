@@ -29,20 +29,20 @@ a:hover,a:active{text-decoration:underline}
 .btn{float:right;width:32px;height:30px}
 .btn input{float:left;background:none;cursor:pointer;width:32px;height:30px;border:0;text-indent:-9999px;overflow:hidden}
 /*------------导航------------*/
-.nav{width:980px;height:40px;margin:-40px auto 0;background:#555;font:bold 14px/40px Microsoft YaHei;position:relative}
-.nav li{float:left;height:40px;margin:0 2px 0 0}
-.nav a:link,.nav a:visited{color:#fff;float:left;padding:0 18px;height:40px}
-.nav a:hover,.nav a:active,.nav li.on a:link,.nav li.on a:visited{text-decoration:none;background:#feffff;color:#333}
+.nav_diy{width:980px;height:40px;margin:-40px auto 0;background:#555;font:bold 14px/40px Microsoft YaHei;position:relative}
+.nav_diy li{float:left;height:40px;margin:0 2px 0 0}
+.nav_diy a:link,.nav_diy a:visited{color:#fff;float:left;padding:0 18px;height:40px;padding-top:10px;}
+.nav_diy a:hover,.nav_diy a:active,.nav_diy li.on a:link,.nav_diy li.on a:visited{text-decoration:none;background:#feffff;color:#333}
 /*------------主体------------*/
-.main{width:980px;margin:0 auto;padding:20px 0 0;background:#fff;overflow:hidden;zoom:1}
+.main{width:980px;margin:0 auto;padding:20px 0 0;background:#fff;overflow:hidden;zoom:1;margin-left:-20px;}
 /*------flash------*/
-.flash{height:320px;width:980px;position:relative;overflow:hidden;margin:0 0 30px}
+.flash_diy{height:320px;width:980px;position:relative;overflow:hidden;margin:0 0 30px}
 .ul_flash{position:relative;width:980px;height:320px;overflow:hidden;background: image_url('loading.gif') no-repeat center center}
 .ul_flash li{position:absolute;left:0;top:0;opacity:0;filter:alpha(opacity=0)}
 .ul_flash img{width:980px;height:320px}
-.prev,.next{position:absolute;width:18px;height:27px;overflow:hidden;cursor:pointer;top:147px;z-index:100000}
-.prev{left:19px;background: image_url('prev.png')}
-.next{right:19px;background: image_url('next.png')}
+.prev_diy,.next_diy{position:absolute;width:18px;height:27px;overflow:hidden;cursor:pointer;top:147px;z-index:100000}
+.prev_diy{left:19px;background: image_url('prev.png')}
+.next_diy{right:19px;background: image_url('next.png')}
 .num{position:absolute;bottom:14px;height:11px;z-index:100000}
 .num li{cursor:pointer;width:15px;height:11px;text-indent:-9999px;overflow:hidden;background: image_url('num.png') no-repeat 0 0;_background-image: image_url('num.gif');float:left}
 .num li.on{background-position:-15px 0}
@@ -153,33 +153,6 @@ ul.ul_work{overflow:hidden;zoom:1;margin:0 0 0 -20px;padding:10px 0;color:#999}
 
 
 
-
-
-
-
-
-/* font-size */
-.ft10 {font-size:85%;} /* for setting 10px */
-.ft11 {font-size:93%;} /* for setting 11px */
-.ft12 {font-size:100%;} /* for setting 12px */
-.ft13 {font-size:108%;} /* for setting 13px */
-.ft14 {font-size:116%;} /* for setting 14px */
-.ft15 {font-size:123.1%;} /* for setting 15px */
-.ft16 {font-size:131%;} /* for setting 16px */
-.ft17 {font-size:138.5%;} /* for setting 17px */
-.ft18 {font-size:146.5%;} /* for setting 18px */
-.ft19 {font-size:153.9%;} /* for setting 19px */
-.ft20 {font-size:161.6%;} /* for setting 20px */
-.ft21 {font-size:167%;} /* for setting 21px */
-.ft22 {font-size:174%;} /* for setting 22px */
-.ft23 {font-size:182%;} /* for setting 23px */
-.ft24 {font-size:189%;} /* for setting 24px */
-.ft25 {font-size:197%;} /* for setting 25px */
-.ft26 {font-size:215%;} /* for setting 26px */
-
-/* float */
-.fl{float:left;display:inline;}
-.fr{float:right;display:inline;} 
 
 /* margin padding */
 .m-0{margin:0;}

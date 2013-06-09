@@ -1,0 +1,13 @@
+<% content_for :scripts do %>
+	<%= javascript_include_tag 'nicEdit/nicEdit.js' %>
+
+	<script type="text/javascript">
+		var area1;
+		area1 = new nicEditor({fullPanel : true}).panelInstance('myArea1',{hasPanel : true});
+	</script>
+<%end%>
+<h1>New post</h1>
+<textarea id="myArea1"></textarea>
+<%= render 'form' %>
+
+<%= link_to 'Back', posts_path %>

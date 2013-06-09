@@ -79,6 +79,16 @@ class Category
   index({ count: 1 }, { background: true })
 
 
+
+  #类型
+  def type_str
+	case type
+	when 1 then '新闻'
+	when 2 then '作品'
+	else
+	end
+  end
+
   #私有方法
   private
   

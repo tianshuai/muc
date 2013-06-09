@@ -17,8 +17,8 @@ $(function(){
 		var auto_num = $(".ul_flash img").length;
 		//获取图片高度
 		//插入数字番号列表，并为首个列表单元添加样式
-		$(".flash").append("<ul class='num'></ul>");
-		$(".flash").append("<div class='prev'></div>").append("<div class='next'></div>");
+		$(".flash_diy").append("<ul class='num'></ul>");
+		$(".flash_diy").append("<div class='prev_diy'></div>").append("<div class='next_diy'></div>");
 		for(auto_i=1;auto_i<=auto_num;auto_i++)
 		{
 			$(".num").append("<li>"+auto_i+"</li>");
@@ -60,12 +60,12 @@ $(function(){
 		},function(){
 			auto_replay();
 		});
-		$(".flash").hover(function(){
+		$(".flash_diy").hover(function(){
 			auto_stop();
 		},function(){
 			auto_replay();
 		});
-		$(".prev").click(function(){
+		$(".prev_diy").click(function(){
 			if ( !$(".ul_flash").is(":animated") )
 			{
 				if ( prev == 0 )
@@ -84,7 +84,7 @@ $(function(){
 				play(play_num);
 			}
 		})
-		$(".next").click(function(){
+		$(".next_diy").click(function(){
 			if ( !$(".ul_flash").is(":animated") )
 			{
 				if ( prev == 1 )
