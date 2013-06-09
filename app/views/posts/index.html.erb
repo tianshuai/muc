@@ -1,31 +1,41 @@
 <%=provide(:title, '新闻列表')%>
-<h1>新闻列表</h1>
 
-<table>
-  <tr>
-    <th>标题</th>
-    <th>内容</th>
-    <th>创建时间</th>
-
-  </tr>
-
-<% @posts.each do |post| %>
-  <tr>
-    <td><%= post.content %></td>
-    <%if post.user.present?%>
-      <td><%= post.user.name  %></td>
-    <%else%>
-       <td>用户不存在</td>     
-    <%end%>
-    <td><%=post.created_at.strftime("%Y-%m-%d") if post.created_at.present?%></td>
-    <td><%= link_to '显示', post %></td>
-    <td><%= link_to '编辑', edit_post_path(post) %></td>
-    <td><%= link_to '删除', post, method: :delete, data: { confirm: '确定删除?' } %></td>
-  </tr>
-<% end %>
-<%=will_paginate @posts if @posts.present?%>
-</table>
-
-<br />
-
-<%= link_to '发布新闻', new_post_path %>
+	<!--主体 start{-->
+	<div class="main">
+        <!--内容 start{-->
+        <div class="wid">
+            <!--当前位置 start{-->
+            <div class="weizhi">当前位置：<a href="">首页</a> > <a href="">新闻</a> > 新闻动态</div>
+            <!--}当前位置 end-->
+            <!--主体内容 start{-->
+            <div class="left">
+            	<ul class="ul_menu">
+                	<li class="on"><a href="">新闻动态</a></li>
+                	<li><a href="">媒体报道</a></li>
+                	<li><a href="">展览活动</a></li>
+                	<li><a href="">美院校刊</a></li>
+                	<li><a href="">招聘信息</a></li>
+                </ul>
+            </div>
+            <div class="right">
+            	<h2 class="tit">新闻动态</h2>
+                <ul class="list">
+                  <%if @posts.present?%>
+                    <% @posts.each do |post| %>
+                      <li><h3><%=link_to(post.title, post ) %></h3><%=post.created_at.strftime("%Y.%m.%d")%></li>
+                    <%end%>
+                  <%else%>
+                    <li><h3><a href="#">无内容!</a></h3></li>
+                  <%end%>
+                </ul>
+                <!--分页 start{-->
+                <div class="page">
+                  <%=will_paginate @posts if @posts.present?%>
+                </div>
+                <!--}分页 end-->
+            </div>
+            <!--}主体内容 end-->
+        </div>
+        <!--}内容 end-->
+    </div>
+	<!--}主体 end-->

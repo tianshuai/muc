@@ -4,7 +4,11 @@ class Art
   include Mongoid::Document
   include Mongoid::Timestamps
   
+  #ＩＤ自增
+  auto_increment :id, seed: 1
+
   ##关系
+  has_many :assets,            dependent: :destroy,  as: :relateable
   belongs_to :user
 
   ##常量
@@ -38,7 +42,7 @@ class Art
   #field :category_id,					type: Integer
 
   #图片id
-  field :asset_id,						type: Integer
+  #field :asset_id,						type: Integer
 
   #附件的数量
   field :asset_count,   				type: Integer,  default: 1
@@ -71,8 +75,7 @@ class Art
 
   ##索引
   index({ title: 1 }, { background: true })
-  index({ created_at: -1 }, { background: true })
-
-
+  index({ created_at: 1 }, { background: true })
+  index({ view_count: 1 }, { background: true })
 
 end

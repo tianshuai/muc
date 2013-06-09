@@ -1,4 +1,4 @@
-
+<!--
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -40,4 +40,31 @@
     </div>
   </div>
 </header>
+-->
+
+	<!--头部 start{-->
+	<div class="header">
+    	<div class="hm">
+          <div class="logo"><%= link_to(image_tag('logo.png')+"中央民族大学美术学院", domain_base ) %></a></div>
+            <form action="" method="get" class="search">
+                <fieldset>
+                    <legend>搜索表单</legend>
+                    <div class="ipt"><input name="" type="text" value="关键字" /></div>
+                    <div class="btn"><input name="" type="button" value="搜索" /></div>
+                </fieldset>
+            </form>
+            </div>
+    </div>
+	<!--}头部 end-->
+	<!--导航 start{-->
+	<ul class="nav">
+      <li class="<%= css_on?(@css_index_header) %>"><%= link_to '首页', root_path %></li>
+      <li class="<%= css_on?(@css_summary_header) %>"><%= link_to '学院概况', '#' %></li>
+      <li class="<%= css_on?(@css_post_header) %>"><%= link_to '学院新闻', posts_path %></li>
+      <li class="<%= css_on?(@css_teach_header) %>"><%= link_to '艺术教学', '#' %></li>
+      <li class="<%= css_on?(@css_book_header) %>"><%= link_to '学院丛书', '#' %></li>
+      <li class="<%= css_on?(@css_ciosing_header) %>"><%= link_to '招生详情', '#' %></li>
+      <li class="<%= css_on?(@css_student_header) %>"><%= link_to '学生工作', '#' %></li>
+    </ul>
+	<!--}导航 end-->
 

@@ -1,6 +1,13 @@
 # encoding: utf-8
 class HomeController < ApplicationController
 
+  #导航链接样式
+  before_filter :signed_in_user do
+    @css_index_header = true
+  end
+
+
+
   #首页
   def index
 

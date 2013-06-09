@@ -26,6 +26,10 @@ module PublicShowHelper
 	"current" if css
   end
 
+  def css_on?(css)
+    "on" if css
+  end
+
   #自动跳转(可直接在action中调用此方法)
   def auto_redirect(arg={})
      sec = arg[:sec] || 3
@@ -33,6 +37,17 @@ module PublicShowHelper
      msg = arg[:msg] || ''
      msg += " Redirect to '#{url}' after #{sec} sec"
      eval("render :text=>\"<meta http-equiv='refresh' content='#{sec}; url=#{url}'>#{msg}\"")
+  end
+
+  #创建多级目录
+  def mkdirs(path)
+    if(!File.directory?(path))
+        if(!mkdirs(File.dirname(path)))
+            return false;
+        end
+        Dir.mkdir(path)
+    end
+    return true
   end
 
   # 网站时间显示格式

@@ -5,7 +5,7 @@ class User
   include ActiveModel::SecurePassword
 
   #ＩＤ自增
-  auto_increment :id, seed: 1000
+  auto_increment :id, seed: 10000
   attr_accessible :name,:email
   attr_accessible :password, :password_confirmation, :current_password
 
@@ -13,7 +13,7 @@ class User
   #内嵌表：用户详细信息
   embeds_one :profile
   has_many :posts,            dependent: :destroy
-  has_many :arts
+  has_many :arts,            dependent: :destroy
 
 
 

@@ -4,10 +4,14 @@ class Asset
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  #ＩＤ自增
+  auto_increment :id, seed: 1
+
+  #同时删除mongodb中存储的图片
+  before_destroy :delete_for_fsfile
 
   #关联
-  belongs_to :art
-  belongs_to :post, 		class_name: "Item",			foreign_key: "relate_id"
+  belongs_to :relateable,   polymorphic: true
 
   ##常量
   #附件类型
@@ -29,7 +33,7 @@ class Asset
 
   ##属性
   #关联id，可以定期执行任务，把关联id为空的垃圾删除！！！
-  field :relate_id,          		type: Integer
+  #field :relateable_id,          		type: Integer
 
   field :original_url,      		type: String
   field :original_file,     		type: String
@@ -69,15 +73,14 @@ class Asset
   #索引
   #关联id
   index({ related_id: 1 }, { background: true })
+  index({ relateable_type: 1 }, { background: true })
+  index({ relateable_id: 1 }, { background: true })
+
 
   #过滤
   scope :recent,    		desc(:created_at)
   scope :order_b,			asc(:order)
  
-
-
-  #同时删除mongodb中存储的图片
-  before_destroy :delete_for_fsfile
 
   #删除asset,同时删除fs文件
   def destroy_with_fs

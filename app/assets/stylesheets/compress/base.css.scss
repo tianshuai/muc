@@ -1,0 +1,318 @@
+﻿/*
+ * 全站公用样式,兼容IE6,7,8,9,Chrome,Firefox
+ * ==========================================================================================================
+ * @ psd to html ,2013
+ * @ Author: Haumy Gu,辜清明
+ * @ Official Website: http://www.mycssweb.com; Taobao Shop: http://divcss.taobao.com; QQ: 15524261
+ * ==========================================================================================================
+*/
+/*-----------------------------全局样式-------------------------------------*/
+dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0}
+h1,h2,h3,h4,h5,h6{font:normal 14px/18px Microsoft YaHei}
+ul{list-style:none}
+legend{display:none}
+fieldset,img{border:none}
+em,cite,i{font-style:normal}
+body{font:12px/18px simsun;position:relative;margin:0 auto;color:#000;background: image_url('bg.gif');padding:0 0 60px;min-width:980px}
+a{color:#000;text-decoration:none}
+a:hover,a:active{text-decoration:underline}
+/*-----------------------------首页-------------------------------------*/
+/*------------头部------------*/
+.header{height:187px;background: image_url('header.gif') no-repeat center top}
+.hm{width:980px;margin:0 auto;height:187px;position:relative}
+.logo{margin:44px 0 0 15px;width:338px;height:67px;float:left}
+.logo a{display:block;width:338px;height:67px;text-indent:-9999px;overflow:hidden;position:relative}
+.logo img{position:absolute;left:0;top:0;width:338px;height:67px}
+.search{width:227px;height:30px;position:absolute;top:92px;right:0;background: image_url('search.gif');overflow:hidden}
+.ipt{float:left;width:195px;height:30px}
+.ipt input{background:none;border:0;padding:5px 0 5px 6px;width:189px;height:20px;line-height:20px;color:#555}
+.btn{float:right;width:32px;height:30px}
+.btn input{float:left;background:none;cursor:pointer;width:32px;height:30px;border:0;text-indent:-9999px;overflow:hidden}
+/*------------导航------------*/
+.nav{width:980px;height:40px;margin:-40px auto 0;background:#555;font:bold 14px/40px Microsoft YaHei;position:relative}
+.nav li{float:left;height:40px;margin:0 2px 0 0}
+.nav a:link,.nav a:visited{color:#fff;float:left;padding:0 18px;height:40px}
+.nav a:hover,.nav a:active,.nav li.on a:link,.nav li.on a:visited{text-decoration:none;background:#feffff;color:#333}
+/*------------主体------------*/
+.main{width:980px;margin:0 auto;padding:20px 0 0;background:#fff;overflow:hidden;zoom:1}
+/*------flash------*/
+.flash{height:320px;width:980px;position:relative;overflow:hidden;margin:0 0 30px}
+.ul_flash{position:relative;width:980px;height:320px;overflow:hidden;background: image_url('loading.gif') no-repeat center center}
+.ul_flash li{position:absolute;left:0;top:0;opacity:0;filter:alpha(opacity=0)}
+.ul_flash img{width:980px;height:320px}
+.prev,.next{position:absolute;width:18px;height:27px;overflow:hidden;cursor:pointer;top:147px;z-index:100000}
+.prev{left:19px;background: image_url('prev.png')}
+.next{right:19px;background: image_url('next.png')}
+.num{position:absolute;bottom:14px;height:11px;z-index:100000}
+.num li{cursor:pointer;width:15px;height:11px;text-indent:-9999px;overflow:hidden;background: image_url('num.png') no-repeat 0 0;_background-image: image_url('num.gif');float:left}
+.num li.on{background-position:-15px 0}
+/*------内容------*/
+.wid{padding:0 20px 10px;overflow:hidden;zoom:1;position:relative}
+.title{background: image_url('title.gif') repeat-x;height:35px;font:bold 16px/35px Microsoft YaHei;color:#fff;text-indent:12px}
+.more{float:right;padding:0 10px 0 0;line-height:35px;margin:-35px 0 0}
+.more a{color:#fff}
+/*学院新闻*/
+.news{float:left;width:620px;height:431px}
+.ul_news{padding:14px 2px 17px;color:#999}
+.ul_news li{height:74px;}
+.ul_news h3{display:inline;margin:0 22px 0 0}
+.ul_news h3 a:hover,.ul_news h3 a:active{color:#d2003d;text-decoration:none}
+.ul_news em{font-family:Arial;color:#666}
+.ul_news p{clear:both;padding:6px 0 0}
+/*最新活动*/
+.play{float:right;width:300px;height:431px}
+.ul_play{padding:20px 0 0}
+.ul_play li{height:172px}
+.ul_play img{width:300px;height:125px;margin:0 0 10px}
+.ul_play h3 a:link,.ul_play h3 a:visited{font:12px/18px simsun;color:#666}
+.ul_play h3 a:hover,.ul_play h3 a:active{color:#d2003d;text-decoration:none}
+/*学院丛书*/
+.books{clear:both;height:285px;margin:-5px 0 0 \9}
+.ul_books{padding:20px 0 10px;margin:0 0 0 -20px;overflow:hidden;zoom:1;color:#999}
+.ul_books li{float:left;margin:0 0 0 20px;display:inline;width:133px;padding:0 0 0 167px;height:200px}
+.ul_books em{float:left;margin:0 0 0 -167px;display:inline}
+.ul_books img{width:150px;height:200px}
+.ul_books h3{margin:-3px 0 7px}
+.ul_books h3 a:hover,.ul_news h3 a:active{color:#d2003d;text-decoration:none}
+.readmore{width:100px;height:30px;margin:15px 0 0}
+.readmore a:link,.readmore a:visited{display:block;width:100px;height:30px;background: image_url('readmore.gif');text-indent:-9999px;overflow:hidden}
+.readmore a:hover,.readmore a:active{background-position:0 -30px}
+/*学院新作*/
+.works{clear:both;height:390px}
+.ul_works{margin:0 0 0 -20px;padding:20px 0 0;overflow:hidden;zoom:1}
+.ul_works li{float:left;margin:0 0 0 20px;display:inline;height:162px;width:172px}
+.ul_works img{width:172px;height:120px;margin:0 0 8px}
+.ul_works h3 a:link,.ul_works h3 a:visited{font:12px/18px simsun;color:#666}
+.ul_works h3 a:hover,.ul_works h3 a:active{color:#d2003d;text-decoration:none}
+/*------------底部------------*/
+.footer{background:#fff;width:940px;padding:0 20px;margin:0 auto}
+.fm{border-top:#ddd 1px solid;color:#999;padding:13px 0 52px}
+/*-----------------------------内页-------------------------------------*/
+/*------------当前位置------------*/
+.weizhi{border-bottom:#ddd 1px solid;height:26px;color:#999;margin:0 0 20px}
+.weizhi a:link,.weizhi a:visited{color:#999}
+.weizhi a:hover,.weizhi a:active{color:#d2003d}
+/*------------左右结构------------*/
+.left{width:172px;position:absolute;height:100%;float:left;*margin:0 0 0 -192px;display:inline}
+.right{width:748px;margin:0 0 0 192px}
+/*------------左侧目录------------*/
+.ul_menu{font:bold 14px/33px Microsoft YaHei}
+.ul_menu li{border-bottom:#e6e6e6 1px solid;height:33px;line-height:33px}
+.ul_menu a:link,.ul_menu a:visited{display:block;height:33px;color:#666;width:100%;text-indent:12px}
+.ul_menu a:hover,.ul_menu a:active{background-color:#f2f0f0;text-decoration:none;color:#d2003d}
+.ul_menu li.on a:link,.ul_menu li.on a:visited{color:#d2003d;background-image: image_url('menu.gif');background-repeat:no-repeat;background-position:left center}
+/*------------标题------------*/
+.tit{font-size:16px;font-weight:bold;color:#222;line-height:35px}
+/*------------新闻动态------------*/
+.list{color:#999;padding:5px 0}
+.list li{height:22px;line-height:22px}
+.list h3{display:inline;font:normal 12px/22px simsun;margin:0 31px 0 0}
+.list h3 a:link,.list h3 a:visited{color:#666}
+.list h3 a:hover,.list h3 a:active{color:#d2003d;text-decoration:none}
+/*------------分页------------*/
+.page{text-align:right;height:22px;padding:20px 0;font-family:Arial;font-size:14px}
+.page a:link,.page a:visited{display:inline-block;height:20px;border:#ddd 1px solid;color:#666;padding:0 7px;line-height:20px}
+.page a:hover,.page a:active,.page a.on:link,.page a.on:visited{border:#d2003d 1px solid;text-decoration:none}
+/*------------新闻最终页------------*/
+.name{font-size:21px;font-weight:bold;color:#222;line-height:31px;padding:7px 0 0}
+.date{padding:0 0 18px;color:#999;border-bottom:#ddd 1px solid}
+.content{color:#666;padding:10px 0;line-height:22px;overflow:hidden;zoom:1}
+.content p{margin:0 0 20px}
+/*------------院系介绍------------*/
+.table{width:100%;background:#ddd;margin:0 0 20px}
+.table td{background:#fff;height:33px;color:#666;padding:0 20px}
+.table td.on{color:#d2003d}
+.table td.hover{background:#f2f0f0}
+.tab_div{display:none}
+.show{display:block}
+.tab td{text-align:center;font-size:14px;cursor:pointer;font-family:Microsoft YaHei}
+.table a{color:#666}
+/*------------现任领导------------*/
+.ul_lead{margin:0 0 0 -20px;overflow:hidden;zoom:1;line-height:20px;color:#666;padding:10px 0}
+.ul_lead li{float:left;width:172px;margin:0 0 10px 20px;display:inline}
+.ul_lead img{margin:0 0 5px}
+.ul_lead h3 a:link,.ul_lead h3 a:visited{color:#666;font-size:12px;font-family:simsun}
+.ul_lead h3 a:hover,.ul_lead h3 a:active{color:#d2003d;text-decoration:none}
+/*------------师资队伍------------*/
+.ul_tech{overflow:hidden;zoom:1;font:normal 14px/33px Microsoft YaHei;color:#666}
+.ul_tech li{float:left;margin:0 10px 8px 0;border:#ddd 1px solid;width:100px;height:35px;text-align:center;cursor:pointer}
+.ul_tech li.on{color:#d2003d}
+.ul_tech li.hover{background:#f2f0f0}
+.zm{font:bold 21px/25px Arial;color:#222}
+.ul_teacher{overflow:hidden;zoom:1;padding:3px 0 8px;line-height:20px}
+.ul_teacher li{margin:0 18px 3px 0;float:left}
+.ul_teacher a{color:#666}
+/*------------老师最终页------------*/
+.content h3{font:bold 12px/22px simsun}
+.content ul{margin:0 0 20px}
+ul.ul_work{overflow:hidden;zoom:1;margin:0 0 0 -20px;padding:10px 0;color:#999}
+.ul_work li{float:left;width:364px;margin:0 0 0 20px;display:inline;height:362px}
+.ul_work h3 a:link,.ul_work h3 a:visited{color:#666;font-family:simsun;font-weight:normal}
+.ul_work h3 a:hover,.ul_work h3 a:active{color:#d2003d;text-decoration:none}
+.ul_work img{margin:0 0 6px}
+
+
+
+
+
+
+
+
+/* font-size */
+.ft10 {font-size:85%;} /* for setting 10px */
+.ft11 {font-size:93%;} /* for setting 11px */
+.ft12 {font-size:100%;} /* for setting 12px */
+.ft13 {font-size:108%;} /* for setting 13px */
+.ft14 {font-size:116%;} /* for setting 14px */
+.ft15 {font-size:123.1%;} /* for setting 15px */
+.ft16 {font-size:131%;} /* for setting 16px */
+.ft17 {font-size:138.5%;} /* for setting 17px */
+.ft18 {font-size:146.5%;} /* for setting 18px */
+.ft19 {font-size:153.9%;} /* for setting 19px */
+.ft20 {font-size:161.6%;} /* for setting 20px */
+.ft21 {font-size:167%;} /* for setting 21px */
+.ft22 {font-size:174%;} /* for setting 22px */
+.ft23 {font-size:182%;} /* for setting 23px */
+.ft24 {font-size:189%;} /* for setting 24px */
+.ft25 {font-size:197%;} /* for setting 25px */
+.ft26 {font-size:215%;} /* for setting 26px */
+
+/* float */
+.fl{float:left;display:inline;}
+.fr{float:right;display:inline;} 
+
+/* margin padding */
+.m-0{margin:0;}
+.m-5{margin:5px;}
+.m-10{margin:10px;}
+.m-15{margin:15px;}
+.m-20{margin:20px;}
+.mt-5{margin-top:5px;}
+.mb-5{margin-bottom:5px;}
+.ml-5{margin-left:5px;}
+.mr-5{margin-right:5px;}
+.mt-10{margin-top:10px;}
+.mb-10{margin-bottom:10px;}
+.ml-10{margin-left:10px;}
+.mr-10{margin-right:10px;}
+.mt-15{margin-top:15px;}
+.mb-15{margin-bottom:15px;}
+.ml-15{margin-left:15px;}
+.mr-15{margin-right:15px;}
+.mt-20{margin-top:20px;}
+.mt-50{margin-top:50px;}
+.mb-20{margin-bottom:20px;}
+.ml-19{margin-left:19px;}
+.ml-20{margin-left:20px;}
+.mr-20{margin-right:20px;}
+.mt-30{margin-top:30px;}
+.mb-30{margin-bottom:30px;}
+.ml-30{margin-left:30px;}
+.ml-40{margin-left:40px;}
+.ml-50{margin-left:50px;}
+.mr-30{margin-right:30px;}
+.ml-90{margin-left:90px;}
+.ml-93{margin-left:93px;}
+.p-0{padding:0;}
+.pt-0{padding-top:0;}
+.pr-0{padding-top:0;}
+.pb-0{padding-top:0;}
+.pl-0{padding-top:0;}
+.p-5{padding:5px;}
+.p-10{padding:10px;}
+.p-15{padding:15px;}
+.p-20{padding:20px;}
+.pt-5{padding-top:5px;}
+.pb-5{padding-bottom:5px;}
+.pl-5{padding-left:5px;}
+.pr-5{padding-right:5px;}
+.pt-10{padding-top:10px;}
+.pb-10{padding-bottom:10px;}
+.pl-10{padding-left:10px;}
+.pr-10{padding-right:10px;}
+.pt-15{padding-top:15px;}
+.pb-15{padding-bottom:15px;}
+.pl-15{padding-left:15px;}
+.pr-15{padding-right:15px;}
+.pt-20{padding-top:20px;}
+.pb-20{padding-bottom:20px;}
+.pl-20{padding-left:20px;}
+.pl-30{padding-left:30px;}
+.pl-40{padding-left:40px;}
+.pl-50{padding-left:50px;}
+.pr-20{padding-right:20px;}
+
+/* vertical align */
+.va-t{vertical-align:top;}
+.va-b{vertical-align:bottom;}
+.va-m{vertical-align:middle;}
+.ta-c{text-align:center;}
+.ta-l{text-align:left}
+.ta-r{text-align:right}
+.ti-2{text-indent:2em;}
+
+/* blank */
+.blank5, .blank10, .blank15, .blank20, .blank25, .blank30, .blank50, .blank100{clear:both;display:block;overflow:hidden;}
+.blank5{height:5px;}
+.blank10{height:10px;}
+.blank15{height:15px;}
+.blank20{height:20px;}
+.blank25{height:25px;}
+.blank30{height:30px;}
+.blank50{height:50px;}
+.blank100{height:100px;}
+
+/* hidden */
+.hidden{display:none;}
+.hide-textindent { text-indent: -999em; display: block; overflow: hidden; text-decoration: none;}
+.opacify-box .hide-textindent{display:inline-block;}
+.opacify-box a{float:left;display:inline-block;margin:0 3px 0 0;}
+.opacify-box a.my-talk{margin-right:0;}
+.hidden_visible{visibility:hidden;}
+
+/* strong */
+.strong{font-weight:bold;}
+
+/* text underline*/
+.underline{text-decoration:underline;}
+.orange {color:#F35500;}
+
+/*系统管理*/
+.guide-box .inp-tags{border:1px solid #ccc;padding:4px;}
+.top_tools{background-color:#efefef;padding:5px;border-bottom:1px solid #ccc;}
+.top_tools a.active{background-color:#ee0000;}
+.top_tools a.tip{color:#222;line-height:25px;}
+.top_tools a.tip:hover{color:#ee0000;}
+.sub_operation a{color:#000;}
+.left_operation{float:left;display:inline;margin-right:20px;width:180px;padding-top:5px;}
+.left_operation a:hover{color:#cc0000;text-decoration:underline;background:none;}
+
+.form-box a.btn-medium {color:#fff;}
+input.btn-medium {border: 0 none;cursor: pointer;}
+.btn-medium {background-color: #000000;cursor: pointer;color: #fff;display: inline-block; height: 25px;line-height: 25px;text-align: center;vertical-align: middle;padding:0 10px;}
+.btn-medium:hover {background-color: #333;}
+
+.operate_box{float:left;display:inline;margin-right:10px;border:1px solid #ccc;border-radius:3px;}
+.operate_box a{display:inline-block;width:75px;height:27px;line-height:27px;text-align:center;background:url(/images/operate_bg.gif) repeat-x;float:left;}
+.operate_box a:hover{background:#000;color:#fff;text-decoration:none;}
+
+/* 14.table
+---------------------------------------------------------------------- */
+table.admin-box {width:100%;}
+table.admin-box  thead{background-color:#333;color:#fff; }
+table.admin-box  .wb6{border-left:1px solid #ddd;}
+table.admin-box  thead th{padding:10px;font-weight:normal;	}
+table.admin-box  tr td{vertical-align:middle;padding:10px;background-color:#f6f6f6;}
+table.admin-box  p{line-height:24px;}
+table.admin-box a{color:gray;}
+table.admin-box a:hover{color:#ee0000;}
+table.admin-box .user_unaudited p{line-height:20px;}
+table.admin-box a.red{color:#ee0000;}
+
+
+.form-box a {color:#666;}
+
+.clearfix:after{ content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+//.clearfix {display: inline-table; +display:inline-block;}
+/* Hides from IE-mac */
+* html .clearfix {height: 1%;}.clearfix {display: block;}
