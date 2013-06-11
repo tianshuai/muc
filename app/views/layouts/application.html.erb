@@ -26,12 +26,14 @@
     <%= render 'layouts/header' %>
 
     <div id="bd">
-      <!--消息提醒-->
-      <%= render partial: 'shared/flash',locals: { flash: flash }%>
 
       <%= yield :sub_navigation%>
 
 	  <div class="container">
+	  <div class="main">
+      <!--消息提醒-->
+      <%= render partial: 'shared/flash',locals: { flash: flash }%>
+	  </div>
         <%= yield %>
 	  </div>
 

@@ -1,7 +1,7 @@
 <%= form_for([:admin,@category]) do |f| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= @category.errors.count %>处错误提示: </h2>
 
       <ul>
       <% @category.errors.full_messages.each do |msg| %>
@@ -12,26 +12,40 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name, '名称：' %><br />
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.label :content, '描述' %><br />
+    <%= f.text_area :content, size: '100*100' %>
   </div>
   <div class="field">
-    <%= f.label :mark %><br />
+    <%= f.label :mark, '标识' %><br />
     <%= f.number_field :mark %>
   </div>
   <div class="field">
-    <%= f.label :type %><br />
-    <%= f.number_field :type %>
+    <%= f.label :order, '排序' %><br />
+    <%= f.number_field :order %>
   </div>
   <div class="field">
-    <%= f.label :state %><br />
-    <%= f.number_field :state %>
+    <%= f.label :type, '类型' %><br />
+    <%= f.radio_button :type, 1 %>新闻&nbsp;
+    <%= f.radio_button :type, 2 %>作品&nbsp;
+    <%= f.radio_button :type, 3 %>其它
   </div>
+  <div class="field">
+    <%= f.label :stick, '是否推荐' %><br />
+    <%= f.radio_button :stick, 0 %>否&nbsp;
+    <%= f.radio_button :stick, 1 %>是
+  </div>
+  <div class="field">
+    <%= f.label :state, '状态' %><br />
+    <%= f.radio_button :state, 0 %>关闭&nbsp;
+    <%= f.radio_button :state, 1 %>开启
+  </div>
+  <span blank20></span>
   <div class="actions">
     <%= f.submit %>
+	<%=link_to '返回', admin_categories_path %>
   </div>
 <% end %>

@@ -57,4 +57,32 @@ module PublicShowHelper
     Time.at(integer).strftime("%Y-%m-%d %H:%M:%S")
   end
 
+
+	#大图沦换排序
+	def load_block_order(mark,limit=8)
+	  block_space = BlockSpace.find_by_name(mark: mark)
+	  if block_space.present?
+		blocks = block_space.blocks.published.order_b.page(1).per(limit)
+	  else
+		blocks = []
+	  end
+	end
+
+	#加载静态页
+	def load_page(position_tag,limit=20)
+	  page_position = PagePosition.where(:position=>position_tag,:state=>1).first
+	  if page_position.present?
+		ads = page_position.info_pages.published.order_b.page(1).per(limit)
+	  else
+		ads = []
+	  end
+	end
+
+	#加载区块儿内容
+	def free_block(tag_id)
+	  block = FreeBlock.find(tag_id)
+	  return block.content if block.present?
+	  return ''
+	end
+
 end

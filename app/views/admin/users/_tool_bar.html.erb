@@ -1,7 +1,8 @@
 <div class="top_tools clearfix">
-  <%=link_to '全部','#',:class=>"btn-medium mr-5 fl #{css_active?(@css_sand_box_list)}"%>
+  <%=link_to '全部','#',:class=>"btn-medium mr-5 fl #{css_active?(@css_user_list)}"%>
   <%#=link_to '删除',Admin.url(:sandboxes,:destroy), :class=>"btn-medium mr-5 select_post"%>
 
+  <!--
   <%form_tag '',:class=>"form-box fr",:method=>:get do%>
     <p align="right" class="fl mr-10">
       <%=text_field_tag :search,:class=>"t-inp small-inp"%>
@@ -11,4 +12,18 @@
     <%=submit_tag "搜索",:class=>"btn-medium btn-mt0 fl"%>
   </p>
 <% end %>
+-->
+<!--
+  <form class="form-box fr">
+	<p align="right" class="fl mr-10">
+		<input type="text" name="aa" class="t-inp small-inp" />
+		<div class="search_select fl mr-10">
+			<select>
+				<option>=请选择条件=</option>
+			</select>
+		</div>
+		<input type="submit" value="搜索" class="btn-medium btn-mt0 fl" />
+	</p>
+  </form>
+-->
 </div>

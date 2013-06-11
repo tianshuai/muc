@@ -1,6 +1,7 @@
 # encoding: utf-8
 class Admin::Common < ApplicationController
 
-  @admin_controller = true
-	puts 'bbbbbbbbbb'
+  #需要登录
+  before_filter :authenticate_admin
+
 end

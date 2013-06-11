@@ -21,7 +21,9 @@ class Asset
 	#新闻图片
 	post: 5,
 	#编辑器图片
-	editer: 10
+	editer: 10,
+	#栏目图片
+	block: 11
   }
   
   #处理状态
@@ -63,7 +65,7 @@ class Asset
   field :thumb_small_width
 
   #用于存储图片类型,默认是jpg
-  field :img_type,					type: String,		default: "jpg"
+  field :format_type,				type: String
   #图片描述信息
   field :desc,   					type: String
 

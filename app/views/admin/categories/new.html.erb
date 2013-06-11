@@ -1,6 +1,16 @@
+<%=provide(:title, '新建分类')%>
+<div class="main">
+	<%=render 'admin/base/left_bar'%>
+    <div class="span10">
+      <!--Body content-->
 
-<h1>New post</h1>
+	  <%= render "admin/categories/tool_bar"%>
 
-<%= render 'form' %>
+	  <span class="blank10"></span>
+	  <%= render 'form' %>
+  </div>
+</div>
 
-<%= link_to 'Back', admin_posts_path %>
+
+
+

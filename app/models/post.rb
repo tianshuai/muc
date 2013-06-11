@@ -17,7 +17,8 @@ class Post
   validates :title,                               length: { minimum: 2, maximum: 50 }
 
   validates :content,                             length: { maximum: 50000 }
-  validates_presence_of :user_id
+  validates_presence_of :user_id,				  message: '请选择创建人'
+  validates_presence_of :category_id,			  message: '请选择分类'
 
   ##常量
   #状态
@@ -42,6 +43,13 @@ class Post
     #学生工作
   }
 
+  #推荐
+  STICK = {
+	#未推荐
+	no: 0,
+	yes: 1
+	}
+
 
   ##属性
   field :title,               type: String
@@ -58,6 +66,8 @@ class Post
 
   #查看数量
   field :view_count,    	  type: Integer,  default: 0
+  #推荐
+  field :stick,				  type: Integer,  default: STICK[:no]
 
   ##索引
   index({ title: 1 }, { background: true })
@@ -74,7 +84,18 @@ class Post
   scope :normal,            -> { where(state: STATE[:ok]) }
   #是新闻
   scope :news,              -> { where(type: TYPE[:news]) }
+  #推荐的
+  scope :sticked,			-> { where(stick: STICK[:yes]) }
 
 
+  #类型说明
+  def type_str
+	case self.type
+	when 1 then '新闻'
+	when 2 then '招生'
+	else
+	  '未定义'
+	end
+  end
   
 end

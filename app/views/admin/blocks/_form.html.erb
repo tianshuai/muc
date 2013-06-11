@@ -1,0 +1,51 @@
+<%= form_for([:admin,@block], :html => { :multipart => true }) do |f| %>
+  <% if @block.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @block.errors.count %>处错误提示: </h2>
+
+      <ul>
+      <% @block.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :block_space_id, '所属栏目：' %><br />
+	<%=f.select :block_space_id, options: BlockSpace.block_space_name_options %>
+	<!--ajax显示栏目位尺寸-->
+	<span id="ads_show_size"></span>
+</div>
+  <div class="field">
+    <%= f.label :title, '标题：' %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :url, '链接地址：' %><br />
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+	<label>url地址：</label>
+	<input type="file" name="asset_id" />
+  </div>
+  <div class="field">
+    <%= f.label :content, '内容' %><br />
+    <%= f.text_area :content, size: '100*100' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :order, '排序：' %><br />
+    <%= f.number_field :order %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state, '是否发布' %><br />
+    <%= f.radio_button :state, 0 %>否&nbsp;
+    <%= f.radio_button :state, 1 %>是
+  </div>
+  <span blank20></span>
+  <div class="actions">
+    <%= f.submit %>
+	<%=link_to '返回', admin_blocks_path %>
+  </div>
+<% end %>

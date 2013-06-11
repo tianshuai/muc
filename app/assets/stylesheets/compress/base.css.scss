@@ -29,12 +29,14 @@ a:hover,a:active{text-decoration:underline}
 .btn{float:right;width:32px;height:30px}
 .btn input{float:left;background:none;cursor:pointer;width:32px;height:30px;border:0;text-indent:-9999px;overflow:hidden}
 /*------------导航------------*/
-.nav_diy{width:980px;height:40px;margin:-40px auto 0;background:#555;font:bold 14px/40px Microsoft YaHei;position:relative}
+.nav_diy_box{width:980px;height:40px;margin:-40px auto 0;background:#555;}
+.nav_diy{width:780px;height:40px;margin:-40px 0 0;background:#555;font:bold 14px/40px Microsoft YaHei;position:relative}
+//.nav_diy{width:980px;height:40px;margin:-40px auto 0;background:#555;font:bold 14px/40px Microsoft YaHei;position:relative}
 .nav_diy li{float:left;height:40px;margin:0 2px 0 0}
 .nav_diy a:link,.nav_diy a:visited{color:#fff;float:left;padding:0 18px;height:40px;padding-top:10px;}
 .nav_diy a:hover,.nav_diy a:active,.nav_diy li.on a:link,.nav_diy li.on a:visited{text-decoration:none;background:#feffff;color:#333}
 /*------------主体------------*/
-.main{width:980px;margin:0 auto;padding:20px 0 0;background:#fff;overflow:hidden;zoom:1;margin-left:-20px;}
+.main{width:980px;margin:0 auto;padding:10px 0 0;background:#fff;overflow:hidden;zoom:1;margin-left:-20px;}
 /*------flash------*/
 .flash_diy{height:320px;width:980px;position:relative;overflow:hidden;margin:0 0 30px}
 .ul_flash{position:relative;width:980px;height:320px;overflow:hidden;background: image_url('loading.gif') no-repeat center center}
@@ -250,6 +252,13 @@ ul.ul_work{overflow:hidden;zoom:1;margin:0 0 0 -20px;padding:10px 0;color:#999}
 .underline{text-decoration:underline;}
 .orange {color:#F35500;}
 
+/* float */
+.fl{float:left;display:inline;}
+.fr{float:right;display:inline;} 
+
+/*  鼠标手 */
+.pointer {cursor:pointer;}
+
 /*系统管理*/
 .guide-box .inp-tags{border:1px solid #ccc;padding:4px;}
 .top_tools{background-color:#efefef;padding:5px;border-bottom:1px solid #ccc;}
@@ -260,10 +269,7 @@ ul.ul_work{overflow:hidden;zoom:1;margin:0 0 0 -20px;padding:10px 0;color:#999}
 .left_operation{float:left;display:inline;margin-right:20px;width:180px;padding-top:5px;}
 .left_operation a:hover{color:#cc0000;text-decoration:underline;background:none;}
 
-.form-box a.btn-medium {color:#fff;}
-input.btn-medium {border: 0 none;cursor: pointer;}
-.btn-medium {background-color: #000000;cursor: pointer;color: #fff;display: inline-block; height: 25px;line-height: 25px;text-align: center;vertical-align: middle;padding:0 10px;}
-.btn-medium:hover {background-color: #333;}
+
 
 .operate_box{float:left;display:inline;margin-right:10px;border:1px solid #ccc;border-radius:3px;}
 .operate_box a{display:inline-block;width:75px;height:27px;line-height:27px;text-align:center;background:url(/images/operate_bg.gif) repeat-x;float:left;}
@@ -289,3 +295,28 @@ table.admin-box a.red{color:#ee0000;}
 //.clearfix {display: inline-table; +display:inline-block;}
 /* Hides from IE-mac */
 * html .clearfix {height: 1%;}.clearfix {display: block;}
+
+/* 选择分类样式 */
+.share_category a{display:inline-block;background-color:#444;color:#fff;margin-right:10px;height:26px;line-height:26px;text-align:center;padding:0 5px;font-size:12px;margin-bottom:5px;}
+.share_category a.current, .share_category a:hover{background:#ee0000;}
+
+
+.search_select .down{height:23px;line-height:23px;} 
+.form-box .s-inp{border:0;vertical-align:middle;cursor: pointer;}
+.form-box .r-inp{width:auto;border:0;padding:0;vertical-align:middle;}
+.form-box .c-inp{width:auto;border:0;padding:0;vertical-align:middle;}
+.form-box .f-inp{z-index:9;position:relative;}
+.form-box .b-inp{border:0;vertical-align:middle;}
+.form-box .t-inp{background-color: #FFFFFF;border-color: #CDCDCD;border-style: solid;border-width: 1px;display: inline-block;font-size: 14px;padding: 5px 4px;vertical-align: middle;width: 310px;}
+.form-box textarea{resize:vertical;border-color:#CDCDCD;border-style:solid;border-width:1px;padding:4px;vertical-align:top;background-color:#fff;display:inline-block;}
+.form-box span{vertical-align:middle;}
+.form-box input.small-inp{width:150px;padding: 3px 4px;}
+.form-box input.medium-inp{width:300px;padding: 5px 4px;}
+.form-box input.large-inp{width:400px;}
+.form-box select{border-style: solid;  border-width: 1px; border-color: #CDCDCD; margin-right:5px;padding:3px;vertical-align:middle;}
+.form-box a.btn-medium {color:#fff;}
+input.btn-medium {border: 0 none;cursor: pointer;}
+.btn-medium {background-color: #000000;cursor: pointer;color: #fff;display: inline-block; height: 25px;line-height: 25px;text-align: center;vertical-align: middle;padding:0 10px;}
+.btn-medium:hover {background-color: #333;}
+
+

@@ -65,6 +65,13 @@ module PublicAuthHelper
     session[:return_to] = request.fullpath
   end
 
+  #管理员权限
+  def authenticate_admin
+    unless admin_system?
+      flash[:notice] ="您没有访问权限!"
+      redirect_to domain_base
+	end
+  end
 
   #test
   def test

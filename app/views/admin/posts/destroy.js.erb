@@ -1,3 +1,5 @@
-<%@dis_ids.split(',').each do |id|%>
-  $("#content_<%=id%>").remove();
+<%if @success%>
+	$('#post_<%=params[:id]%>').remove();
+<%else%>
+	alert('<%=@notice%>');
 <%end%>

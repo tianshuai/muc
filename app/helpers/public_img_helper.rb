@@ -27,4 +27,44 @@ module PublicImgHelper
     end
   end
 
+  #获取附件表图片(原图)
+  def asset_o_tag(asset,options={})
+    if asset.present?
+	  url = asset_path(asset.original_file)
+	  img = image_tag(url,options)
+	else
+	  img = image_tag(default_avatar(t),options)
+    end
+  end
+
+  #获取附件表图片(大图)
+  def asset_b_tag(asset,options={})
+    if asset.present?
+	  url = asset_path(asset.thumb_big)
+	  img = image_tag(url,options)
+	else
+	  img = image_tag(default_avatar(t),options)
+    end
+  end
+
+  #获取附件表图片(中图)
+  def asset_m_tag(asset,options={})
+    if asset.present?
+	  url = asset_path(asset.thumb_middle)
+	  img = image_tag(url,options)
+	else
+	  img = image_tag(default_avatar(t),options)
+    end
+  end
+
+  #获取附件表图片(小图)
+  def asset_s_tag(asset,options={})
+    if asset.present?
+	  url = asset_path(asset.thumb_small)
+	  img = image_tag(url,options)
+	else
+	  img = image_tag(default_avatar(t),options)
+    end
+  end
+
 end

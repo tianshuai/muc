@@ -5,6 +5,7 @@ class Admin::CategoriesController < Admin::Common
   #分类列表
   def index
     @css_admin_cate = true
+	@css_category_list = true
     @categories = Category.paginate(:page => params[:page], :per_page => 10)
     render 'list'
   end
@@ -20,7 +21,7 @@ class Admin::CategoriesController < Admin::Common
   end
 
   def edit
-    @categories = Category.find(params[:id].to_i)
+    @category = Category.find(params[:id].to_i)
   end
 
 
@@ -38,8 +39,8 @@ class Admin::CategoriesController < Admin::Common
     @category = Category.find(params[:id].to_i)
 
     respond_to do |format|
-      if @category.update_attributes(params[:post])
-        format.html { redirect_to @category, notice: '更新成功!' }
+      if @category.update_attributes(params[:category])
+        format.html { redirect_to admin_categories_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -63,6 +64,21 @@ class Admin::CategoriesController < Admin::Common
     respond_to do |format|
       format.html
       format.js { render :destroy }
+    end
+  end
+
+  #批量删除
+  def destroy_more
+	arr = params[:ids]
+	arr.split(',').each do |id|
+      category = Category.find(id.to_i)
+	  if category.present?
+	    category.destroy
+	  end
+	end
+    respond_to do |f|
+      f.html
+      f.js { render :destroy_more }
     end
   end
 

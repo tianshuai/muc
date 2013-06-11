@@ -3,3 +3,7 @@ domain: 127.0.0.1
 domain_base: http://127.0.0.1:3000
 
 domain_image: http://127.0.0.1:3000/asset
+
+
+#设置图片支持的格式
+verify_img_type: ["jpg", "jpeg", "pjpeg", "png","x-png"]

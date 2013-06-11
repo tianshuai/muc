@@ -12,12 +12,17 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+	redirect_to {action :list}
+  end
+
+  #新闻分类
+  def list
+	#mark = params[:mark]
+	#@category = Category.category_arr(1)
+	#@a = Category.find_by_name(mark: mark)
+
     @posts = Post.paginate(:page => params[:page], :per_page => 10)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
   end
 
   # GET /posts/1

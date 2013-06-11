@@ -1,46 +1,3 @@
-<!--
-<header class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "MUC", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-
-          <% if signed_in? %>
-            <li><%= link_to "Users", '#' %></li>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%=raw user_avatar_tag(current_user,'s',{width: 30, height: 30})%> <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "个人设置", user_edit_info_path %></li>
-                <%if admin?%>
-                  <li><%= link_to "系统管理", admin_home_index_path %></li>
-                <%end%>
-                <li><%= link_to "修改头像", current_user %></li>
-                <li><%= link_to "修改密码", user_edit_pwd_path %></li>
-                <li><%= link_to "设置", user_edit_info_path %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "注销", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "注册", signup_path %></li>
-            <li><%= link_to "登录", signin_path %></li>
-          <% end %>
-        </ul>
-      </nav>
-            <ul class="nav">
-			  <li><%= link_to "首页", root_path %></li>
-			  <li><%= link_to "新闻", posts_path %></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
-    </div>
-  </div>
-</header>
--->
 
 	<!--头部 start{-->
 	<div class="header">
@@ -57,6 +14,7 @@
     </div>
 	<!--}头部 end-->
 	<!--导航 start{-->
+	<div class="nav_diy_box">
 	<ul class="nav_diy">
       <li class="<%= css_on?(@css_index_header) %>"><%= link_to '首页', root_path %></li>
       <li class="<%= css_on?(@css_summary_header) %>"><%= link_to '学院概况', '#' %></li>
@@ -66,5 +24,36 @@
       <li class="<%= css_on?(@css_ciosing_header) %>"><%= link_to '招生详情', '#' %></li>
       <li class="<%= css_on?(@css_student_header) %>"><%= link_to '学生工作', '#' %></li>
     </ul>
+
+        <ul class="nav pull-right" style="margin:-35px 10px 0 0;">
+
+          <% if signed_in? %>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%#=raw user_avatar_tag(current_user,'s',{width: 30, height: 30})%><%=current_user.name%> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "个人设置", user_edit_info_path %></li>
+                <%if admin_system?%>
+                  <li><%= link_to "系统管理", admin_home_index_path %></li>
+                <%end%>
+                <!--<li><%= link_to "修改头像", current_user %></li>-->
+                <li><%= link_to "修改密码", user_edit_pwd_path %></li>
+                <li><%= link_to "设置", user_edit_info_path %></li>
+                <li class="divider"></li>
+                <li>
+                  <%= link_to "注销", signout_path, method: "delete" %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+			<!--
+            <li><%= link_to "注册", signup_path %></li>
+            <li><%= link_to "登录", signin_path %></li>
+			-->
+          <% end %>
+        </ul>
+
+	</div>
 	<!--}导航 end-->
 

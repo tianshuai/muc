@@ -14,6 +14,8 @@ class User
   embeds_one :profile
   has_many :posts,            dependent: :destroy
   has_many :arts,            dependent: :destroy
+  has_many :blocks
+  has_many :block_spaces
 
 
 
@@ -158,7 +160,7 @@ class User
 
   ##过滤
   #用户排序
-  scope :order,       -> { desc(:_id) }
+  scope :recent,      -> { desc(:_id) }
   #学生
   scope :students,    -> { where(type: TYPE[:student]) }
 
@@ -174,6 +176,26 @@ class User
     return ""   
   end
 
+  #类型
+  def type_str
+	case self.type
+    when 1 then '学生'
+	when 2 then '老师'
+	when 3 then '公司'
+	else
+
+	end
+  end
+
+  #权限说明
+  def role_str
+	case self.role_id
+	when 1 then '普通用户'
+	when 2 then '编辑'
+	when 7 then '管理员'
+	when 8 then '系统管理员'
+    end
+  end
 
   #取头像id
   def avatar_id(t='s')

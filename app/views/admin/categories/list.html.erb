@@ -1,27 +1,23 @@
 <%=provide(:title, '分类列表')%>
-  <span class="blank10"></span>
-
+<div class="main">
 	<%=render 'admin/base/left_bar'%>
-	
     <div class="span10">
       <!--Body content-->
-
           <%= render "admin/categories/tool_bar"%>
           <span class="blank10"></span>
           <div class="sub_operation clearfix">
              <div class="left_operation">
                 选择：
-                <a href="#" id="select_all">全选 </a>
+                <a id="select_all" class="pointer">全选 </a>
                 ｜
-                <a href="#" id="select_un">反选 </a>
+                <a id="select_un" class="pointer">反选 </a>
                 ｜
-                <a href="#" id="select_cancel">取消 </a>
+                <a id="select_cancel" class="pointer">取消 </a>
               </div>
                   <div class="clearfix">
                     <div class="operate_box clearfix">
-                        <%=link_to('+新建', new_admin_category_path, class: 'select_post')%>
-                        <%=link_to('审核通过', '#', :class=>'select_post')%>
-                      <%=link_to('禁用', '#', :class=>"select_post")%>
+                      <%=link_to('+新建', new_admin_category_path )%>
+                      <%=link_to('批量删除', {action: 'destroy_more',format: 'js'}, :class=>"select_post")%>
                     </div>
                   </div>
           </div>
@@ -47,8 +43,7 @@
           </table>
           <%= will_paginate @categories if @categories.present? %>
         </div>
-    </div>
-
+      </div>
     </div>
   </div>
-
+</div>

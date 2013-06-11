@@ -6,7 +6,10 @@ Muc::Application.routes.draw do
   #后台路由设置
   namespace :admin do |admin|
     resources :users do
-
+	  collection do
+		post :ajax_set_state
+		post :ajax_set_role
+	  end
     end
 
     resources :home do
@@ -14,7 +17,27 @@ Muc::Application.routes.draw do
     end
 
     resources :posts do
-      #match '/',  to: 'home#index'
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+		post :ajax_set_publish
+		post :ajax_set_stick
+	  end
+    end
+
+    resources :blocks do
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+		post :ajax_set_stick
+	  end
+    end
+
+    resources :block_spaces do
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+	  end
     end
 
     resources :arts do
@@ -24,6 +47,7 @@ Muc::Application.routes.draw do
     resources :categories do
 	  collection do
 		post :ajax_set_state
+		post :destroy_more
 	  end
     end
 
@@ -35,7 +59,8 @@ Muc::Application.routes.draw do
   match '/help',        to: 'home#help'
   match '/contact',     to: 'home#contact'
 
-  resources :posts
+  match '/posts',		to: 'posts#index' 
+  match '/posts/:mark',		to: 'posts#list'
 
 
   resources :users

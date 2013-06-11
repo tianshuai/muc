@@ -53,4 +53,16 @@ $(function(){
 			$(this).siblings().removeClass("on").end().addClass("on");
 			$("body .tab_div").hide().eq($(this).index()).show();
 		})
+
+
+
+    /* 此类为hash链接 */
+    $('a.ajax-hash').live('click',function(){
+        var hash = this.hash && this.hash.substr(1);
+        if (hash != ""){
+            eval(hash + '.call(this);');
+        }
+        return false;
+    });
+
 })

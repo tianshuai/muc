@@ -1,5 +1,5 @@
 <div class="top_tools clearfix">
-  <%=link_to '全部','#',:class=>"btn-medium mr-5 fl #{css_active?(@css_sand_box_list)}"%>
+  <%=link_to '全部', admin_categories_path,:class=>"btn-medium mr-5 fl #{css_active?(@css_category_list)}"%>
   <%#=link_to '+新建', {action: 'new'}, class: "btn-medium mr-5 select_post"%>
 
   <%form_tag '',:class=>"form-box fr",:method=>:get do%>

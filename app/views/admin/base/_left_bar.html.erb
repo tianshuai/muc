@@ -5,19 +5,19 @@
 	    <ul class="nav nav-list">
 		  <li class="nav-header">基本信息</li>
 		  <li class="<%=css_active?(@css_admin_base)%>"><%=link_to '基本信息', admin_home_index_path %></li>
-		  <li><a href="#">Library</a></li>
+		  <li class="nav-header"> 栏目管理</li>
+		  <li class="<%=css_active?(@css_admin_block)%>"><%=link_to '栏目列表', admin_blocks_path %></li>
+		  <li class="nav-header"> 栏目位管理</li>
+		  <li class="<%=css_active?(@css_admin_block_space)%>"><%=link_to '栏目位列表', admin_block_spaces_path %></li>
 		  <li class="nav-header"> 新闻管理</li>
-		  <li class="<%=css_active?(@css_admin_news)%>"><%=link_to '新闻列表', admin_home_index_path %></li>
+		  <li class="<%=css_active?(@css_admin_news)%>"><%=link_to '新闻列表', admin_posts_path %></li>
 		  <li class="<%=css_active?(@css_admin_cate)%>"><%=link_to '分类管理', admin_categories_path %></li>
 		  <li class="nav-header">作品管理</li>
 		  <li class=""><a href="#">Home</a></li>
-		  <li><a href="#">Library</a></li>
 		  <li class="nav-header">院系管理</li>
 		  <li class=""><a href="#">Home</a></li>
-		  <li><a href="#">Library</a></li>
 		  <li class="nav-header">会员管理</li>
 		  <li class="<%=css_active?(@css_admin_user)%>"><%=link_to '用户列表', admin_users_path %></li>
-		  <li><a href="#">Library</a></li>
 		</ul>
 	  </div> 
     </div>

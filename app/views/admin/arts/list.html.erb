@@ -1,11 +1,8 @@
 <%=provide(:title, '后台首页')%>
-  <span class="blank10"></span>
-
+<div class="main">
 	<%=render 'admin/base/left_bar'%>
-	
     <div class="span10">
       <!--Body content-->
-
           <%= render "admin/categories/tool_bar"%>
           <span class="blank10"></span>
           <div class="sub_operation clearfix">
@@ -17,13 +14,13 @@
                 ｜
                 <a href="#" id="select_cancel">取消 </a>
               </div>
-                  <div class="clearfix">
-                    <div class="operate_box clearfix">
-                        <%=link_to('+新建', '#', :class=>'select_post')%>
-                        <%=link_to('审核通过', '#', :class=>'select_post')%>
-                      <%=link_to('禁用', '#', :class=>"select_post")%>
-                    </div>
-                  </div>
+			  <div class="clearfix">
+				<div class="operate_box clearfix">
+					<%=link_to('+新建', '#', :class=>'select_post')%>
+					<%=link_to('审核通过', '#', :class=>'select_post')%>
+				  <%=link_to('禁用', '#', :class=>"select_post")%>
+				</div>
+			  </div>
           </div>
           <span class="blank10"></span>
           <table class="admin-box">
@@ -51,4 +48,4 @@
 
     </div>
   </div>
-
+</div>

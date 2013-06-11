@@ -61,9 +61,11 @@ class Category
   scope :news,               -> { where(type: TYPE[:news]) }
 
   #正常
-  scope :start,              -> { where(state: STATE[:ok]) }             
+  scope :normal,             -> { where(state: STATE[:ok]) }             
   #推荐的分类
-  scope :is_stick,           -> { where(stick: STICK[:ok]) }    
+  scope :is_stick,           -> { where(stick: STICK[:ok]) }
+  #排序
+  scope :order_b,			 -> { asc(:order) }
 
   
   validates_presence_of :name,                message: "请输入名称"
@@ -87,6 +89,17 @@ class Category
 	when 2 then '作品'
 	else
 	end
+  end
+
+  #分类列表数组(type:1,新闻类；2.未定义)
+  def self.category_arr(type=1)
+	return self.normal.news.order_b if type==1
+	return self.normal.order_b if type==2
+	return []
+  end
+
+  def self.cate_type(mark)
+	
   end
 
   #私有方法
