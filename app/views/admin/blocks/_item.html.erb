@@ -3,8 +3,8 @@
     <td><%=b.id%></td>
 	<td><%= truncate(b.title, length: 10) %></td>
 	<td>
-		<%if b.assets.present?%>
-			<%=asset_s_tag(b.assets.first,{ width: 100, height: 60 }) %>
+		<%if b.asset.present?%>
+			<%=asset_s_tag(b.asset,{ width: 100, height: 60 }) %>
 		<%else%>
 			无图片
 		<%end%>

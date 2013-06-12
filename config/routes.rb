@@ -55,15 +55,28 @@ Muc::Application.routes.draw do
   #后台路由END
 
 
-  match '/about',       to: 'home#about'
-  match '/help',        to: 'home#help'
-  match '/contact',     to: 'home#contact'
+  match 'about',       to: 'home#about'
+  match 'help',        to: 'home#help'
+  match 'contact',     to: 'home#contact'
 
-  match '/posts',		to: 'posts#index' 
-  match '/posts/:mark',		to: 'posts#list'
+  #学院新闻
+  resources :posts,				except: :show
+  get 'posts',					to: 'posts#index' 
+  get 'posts/:mark',			to: 'posts#list'
+  get 'post/news/:mark/:id',	to: 'posts#show'
+
+  #学院概述
+  get 'introduce',				to: 'introduces#index',		as: 'introduces'
+  get 'introduce/faculties',	to: 'introduces#faculties'
+  get 'introduce/leader',		to: 'introduces#leader'
+
+  #艺术教学
+  get 'teach/index',			to: 'teaches#index',		as: 'teaches'
+  get 'teach/teacher',			to: 'teaches#teacher'
 
 
-  resources :users
+  #用户路由
+  resources :users,			only: [:index, :new, :create, :show] 
 
   match '/signup',            to: 'users#new'
   match '/login',             to: 'users#login'

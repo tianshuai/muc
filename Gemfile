@@ -56,4 +56,10 @@ gem 'mime-types', '~> 1.19'
 #图片读取存储
 gem 'mini_magick'
 
+#禁用烦人的 assets 请求日志
+group :development do
+  gem 'quiet_assets', git: 'git@github.com:AgilionApps/quiet_assets.git', tag: 'v0.1.0'
+end
+
+#gem 'thin'
 

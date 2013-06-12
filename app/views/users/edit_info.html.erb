@@ -1,29 +1,28 @@
 <% provide(:title, '修改 基本资料') %>
-<!--二级导航-->
-
-<div class="row-fluid">
+<div class="main">
+	<!--二级导航-->
+	<div class="row-fluid">
 	<%=render 'left_navigation'%>
 
-	<div class="row">
-	  <div class="span6 offset3">
-		<%= form_for(@user, url: user_update_info_path, html: {:method=>:put}) do |f| %>
-		  <%= render 'shared/error_messages' %>
+		<div class="row">
+		  <div class="span6 offset3">
+			<%= form_for(@user, url: user_update_info_path, html: {:method=>:put}) do |f| %>
+			  <%= render 'shared/error_messages' %>
 
-		  <%= f.label :email, '邮箱' %>
-		  <%= f.text_field :email, disabled: true %>
-		  <%= f.label :name, '用户名' %>
-		  <%= f.text_field :name %>
+			  <%= f.label :email, '邮箱' %>
+			  <%= f.text_field :email, disabled: true %>
+			  <%= f.label :name, '用户名' %>
+			  <%= f.text_field :name %>
 
-		  <%= f.label :sex, ' 性别' %>
-		  <%= f.radio_button :sex, 0 %>保密&nbsp;
-		  <%= f.radio_button :sex, 1 %>男&nbsp;
-		  <%= f.radio_button :sex, 2 %>女
-		  <br />
-		  <%= f.submit "保存", class: "btn btn-large btn-primary" %>
-		<% end %>
+			  <%= f.label :sex, ' 性别' %>
+			  <%= f.radio_button :sex, 0 %>保密&nbsp;
+			  <%= f.radio_button :sex, 1 %>男&nbsp;
+			  <%= f.radio_button :sex, 2 %>女
+			  <br />
+			  <%= f.submit "保存", class: "btn btn-large btn-primary" %>
+			<% end %>
 
-	  </div>
-	</div>
-
-
-</div><!--/row-->
+		  </div>
+		</div>
+	</div><!--/row-->
+</div>

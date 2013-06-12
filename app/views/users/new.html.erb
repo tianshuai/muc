@@ -1,24 +1,24 @@
 <% provide(:title, '注册') %>
-<h1>注册</h1>
 
-<div class="row">
+<div class="main">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
+      <%= f.label :name, '用户名' %>
       <%= f.text_field :name %>
 
-      <%= f.label :email %>
+      <%= f.label :email, '邮箱' %>
       <%= f.text_field :email %>
 
-      <%= f.label :password %>
+      <%= f.label :password, '密码' %>
       <%= f.password_field :password %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "确认密码" %>
       <%= f.password_field :password_confirmation %>
 
       <%= f.submit "注册", class: "btn btn-large btn-primary" %>
     <% end %>
+    <p>已有账户? <%= link_to "现在登录!", signin_path %></p>
   </div>
 </div>

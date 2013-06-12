@@ -4,10 +4,17 @@
         <!--flash start{-->
         <div class="flash_diy">
         	<ul class="ul_flash">
-            	<li><a href=""><%=image_tag '1.jpg'%></a></li>
-            	<li><a href=""><%=image_tag '2.jpg'%></a></li>
-            	<li><a href=""><%=image_tag '3.jpg'%></a></li>
-            	<li><a href=""><%=image_tag '4.jpg'%></a></li>
+			  <!--980*320-->
+			  <% slide = load_block_order('index_banner_slide',8) %>
+				<% slide.each do |s| %>
+				  <% if s.asset.present? %>
+					<% if s.url.present? %>
+					  <li><%=link_to asset_o_tag(s.asset, alt: s.title, width: 980, height: 320), s.url, title: s.title, target: "_blank" %></li>
+					<%else%>
+					  <li><%=link_to asset_o_tag(s.asset, alt: s.title, width: 980, height: 320), 'javascript:void(0);', title: s.title %></li>
+					<%end%>
+				  <%end%>
+				<%end%>
             </ul>
         </div>
         <!--}flash end-->
@@ -16,33 +23,18 @@
             <!--学院新闻 start{-->
             <div class="news">
             	<h2 class="title">学院新闻</h2>
-                <div class="more"><a href="">更多</a></div>
+                <div class="more"><%= link_to '更多',posts_path %></div>
                 <ul class="ul_news">
+				<% if @posts.present? %>
+					<% @posts.each do |post| %>
                 	<li>
-                    	<h3><a href="">美术学院2012年学院奖提名展开幕</a></h3>
-                        <em>2012.10.29</em>
-                        <p>是一所专门培养少数民族高级美术专业人才为主的教学基地。1959年随着我国建设和各民族地区发展的需要，当时的中央民族学院决定建立艺术系美术学院2009年学院奖提名展于2009年10月15日我校...</p>
+                    	<h3><%= link_to truncate(post.title, length: 40), '' %></h3>
+                        <em><%= post.created_at.strftime("%Y.%m.%d") %></em>
+                        <p><%= truncate(post.content, length: 80) %></p>
                     </li>
-                	<li>
-                    	<h3><a href="">百名将帅书画展</a></h3>
-                        <em>2012.10.29</em>
-                        <p>是一所专门培养少数民族高级美术专业人才为主的教学基地。1959年随着我国建设和各民族地区发展的需要，当时的中央民族学院决定建立艺术系美术学院2009年学院奖提名展于2009年10月15日我校...</p>
-                    </li>
-                	<li>
-                    	<h3><a href="">北京2009俄罗斯当代油画家作品展</a></h3>
-                        <em>2012.10.29</em>
-                        <p>是一所专门培养少数民族高级美术专业人才为主的教学基地。1959年随着我国建设和各民族地区发展的需要，当时的中央民族学院决定建立艺术系美术学院2009年学院奖提名展于2009年10月15日我校...</p>
-                    </li>
-                	<li>
-                    	<h3><a href="">百名将帅书画展</a></h3>
-                        <em>2012.10.29</em>
-                        <p>是一所专门培养少数民族高级美术专业人才为主的教学基地。1959年随着我国建设和各民族地区发展的需要，当时的中央民族学院决定建立艺术系美术学院2009年学院奖提名展于2009年10月15日我校...</p>
-                    </li>
-                	<li>
-                    	<h3><a href="">美术学院2012年学院奖提名展开幕</a></h3>
-                        <em>2012.10.29</em>
-                        <p>是一所专门培养少数民族高级美术专业人才为主的教学基地。1959年随着我国建设和各民族地区发展的需要，当时的中央民族学院决定建立艺术系美术学院2009年学院奖提名展于2009年10月15日我校...</p>
-                    </li>
+					<%end%>
+				<%end%>
+
                 </ul>
             </div>
             <!--}学院新闻 end-->
@@ -51,8 +43,17 @@
             	<h2 class="title">最新活动</h2>
                 <div class="more"><a href="">更多</a></div>
                 <ul class="ul_play">
-                	<li><h3><a href=""><img src="images/5.jpg" />中央民族大学美术学院成立50周年师生作品展</a></h3></li>
-                	<li><h3><a href=""><img src="images/6.jpg" />中央民族大学美术学院成立50周年师生作品展</a></h3></li>
+				  <!--300*125-->
+				  <% slide = load_block_order('index_banner_slide',8) %>
+					<% slide.each do |s| %>
+					  <% if s.asset.present? %>
+						<% if s.url.present? %>
+						  <li><h3><%=link_to asset_o_tag(s.asset, alt: s.title, width: 980, height: 320)+truncate(s.title, length: 20), s.url, title: s.title, target: "_blank" %></h3></li>
+						<%else%>
+						  <li><h3><%=link_to asset_o_tag(s.asset, alt: s.title, width: 980, height: 320)+truncate(s.title, length: 20), 'javascript:void(0);', title: s.title %></h3></li>
+						<%end%>
+					  <%end%>
+					<%end%>
                 </ul>
             </div>
             <!--}最新活动 end-->
@@ -62,19 +63,19 @@
                 <div class="more"><a href="">更多</a></div>
                 <ul class="ul_books">
                 	<li>
-                    	<em><a href=""><img src="images/11.jpg" /></a></em>
+                    	<em><a href=""><%=image_tag '11.jpg'%></a></em>
                         <h3><a href="">中国民族美术</a></h3>
                         <p>唐卡的艺术特色,谈民族建筑保护的整体策略与发展思路,西域思路主题美术创作与国家少数民族形象塑造关系初探…</p>
                         <div class="readmore"><a href="">Read More</a></div>
                     </li>
                 	<li>
-                    	<em><a href=""><img src="images/12.jpg" /></a></em>
+                    	<em><a href=""><%=image_tag '12.jpg'%></a></em>
                         <h3><a href="">中国民族美术</a></h3>
                         <p>唐卡的艺术特色,谈民族建筑保护的整体策略与发展思路,西域思路主题美术创作与国家少数民族形象塑造关系初探…</p>
                         <div class="readmore"><a href="">Read More</a></div>
                     </li>
                 	<li>
-                    	<em><a href=""><img src="images/11.jpg" /></a></em>
+                    	<em><a href=""><%=image_tag '11.jpg'%></a></em>
                         <h3><a href="">中国民族美术</a></h3>
                         <p>唐卡的艺术特色,谈民族建筑保护的整体策略与发展思路,西域思路主题美术创作与国家少数民族形象塑造关系初探…</p>
                         <div class="readmore"><a href="">Read More</a></div>
@@ -87,16 +88,16 @@
             	<h2 class="title">学院新作</h2>
                 <div class="more"><a href="">更多</a></div>
                 <ul class="ul_works">
-                	<li><h3><a href=""><img src="images/7.jpg" />《出青海》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/8.jpg" />《凤凰岭》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/9.jpg" />《青海一方》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/10.jpg" />《香格里拉》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/7.jpg" />《出青海》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/8.jpg" />《凤凰岭》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/9.jpg" />《青海一方》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/10.jpg" />《香格里拉》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/7.jpg" />《凤凰岭》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><img src="images/8.jpg" />《青海一方》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '7.jpg'%>《出青海》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '8.jpg'%>《凤凰岭》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '9.jpg'%>《青海一方》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '10.jpg'%>《香格里拉》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '10.jpg'%>《出青海》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '10.jpg'%>《凤凰岭》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '10.jpg'%>《青海一方》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '10.jpg'%>《香格里拉》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '10.jpg'%>《凤凰岭》 陈逸青</a></h3></li>
+                	<li><h3><a href=""><%=image_tag '10.jpg'%>《青海一方》 陈逸青</a></h3></li>
                 </ul>
             </div>
             <!--}学院新作 end-->

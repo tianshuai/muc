@@ -7,7 +7,7 @@ class Block
   auto_increment :id
 
   ##关系
-  has_many :assets,         dependent: :destroy,  as: :relateable
+  has_one :asset,			dependent: :destroy,  as: :relateable
   belongs_to :block_space
   belongs_to :user
 

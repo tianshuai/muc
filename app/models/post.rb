@@ -78,6 +78,8 @@ class Post
   ##
   #过滤
   
+  #最新的
+  scope :recent,			-> { desc(:_d) }
   #已发布的
   scope :published,         -> { where(publish: PUBLISH[:yes]) }
   #正常显示的
@@ -95,6 +97,18 @@ class Post
 	when 2 then '招生'
 	else
 	  '未定义'
+	end
+  end
+
+  #地址（不同分类下的内容走不同地址）
+  def view_url
+	if self.category.present?
+	  case type
+	  when 1 then	sprintf(CONF['news_url'], self.category.mark, self.id)
+	  when 2 then	''
+	  end
+	else
+	  CONF['domain_base']
 	end
   end
   

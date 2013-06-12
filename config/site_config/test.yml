@@ -2,7 +2,11 @@
 domain: 127.0.0.1
 domain_base: http://127.0.0.1:3000
 
-domain_image: 127.0.0.1:3000/asset
+domain_image: http://127.0.0.1:3000/asset
+
+#新闻最终页
+news_url: http://127.0.0.1:3000/post/news/%s/%s
+
 
 #设置图片支持的格式
 verify_img_type: ["jpg", "jpeg", "pjpeg", "png","x-png"]

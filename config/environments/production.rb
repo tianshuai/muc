@@ -9,7 +9,8 @@ Muc::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  #静态文件由站在rails前边的web server来处理
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -19,6 +20,8 @@ Muc::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
+  #加载不压缩的ｊｓ，ｃｓｓ
+  #config.assets.precompile += ['admin.js', 'admin.css']
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
@@ -28,7 +31,8 @@ Muc::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  #由于本地测试错误，先为false
+  config.force_ssl = false
 
   # See everything in the log (default is :info)
   # config.log_level = :debug

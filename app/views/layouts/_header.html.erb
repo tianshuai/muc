@@ -17,9 +17,9 @@
 	<div class="nav_diy_box">
 	<ul class="nav_diy">
       <li class="<%= css_on?(@css_index_header) %>"><%= link_to '首页', root_path %></li>
-      <li class="<%= css_on?(@css_summary_header) %>"><%= link_to '学院概况', '#' %></li>
+      <li class="<%= css_on?(@css_introduce_header) %>"><%= link_to '学院概况', introduces_path %></li>
       <li class="<%= css_on?(@css_post_header) %>"><%= link_to '学院新闻', posts_path %></li>
-      <li class="<%= css_on?(@css_teach_header) %>"><%= link_to '艺术教学', '#' %></li>
+      <li class="<%= css_on?(@css_teach_header) %>"><%= link_to '艺术教学', teaches_path %></li>
       <li class="<%= css_on?(@css_book_header) %>"><%= link_to '学院丛书', '#' %></li>
       <li class="<%= css_on?(@css_ciosing_header) %>"><%= link_to '招生详情', '#' %></li>
       <li class="<%= css_on?(@css_student_header) %>"><%= link_to '学生工作', '#' %></li>
@@ -37,9 +37,6 @@
                 <%if admin_system?%>
                   <li><%= link_to "系统管理", admin_home_index_path %></li>
                 <%end%>
-                <!--<li><%= link_to "修改头像", current_user %></li>-->
-                <li><%= link_to "修改密码", user_edit_pwd_path %></li>
-                <li><%= link_to "设置", user_edit_info_path %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "注销", signout_path, method: "delete" %>

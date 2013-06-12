@@ -1,3 +1,10 @@
+GIT
+  remote: git@github.com:AgilionApps/quiet_assets.git
+  revision: a63a7292f82f385b2d453edcb293ef1661f5960d
+  tag: v0.1.0
+  specs:
+    quiet_assets (0.0.1)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -146,6 +153,7 @@ DEPENDENCIES
   mongoid (~> 3.1.4)
   mongoid-grid_fs (~> 1.8.0)
   mongoid_auto_increment
+  quiet_assets!
   rails (= 3.2.13)
   sass-rails (~> 3.2.5)
   therubyracer

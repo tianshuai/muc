@@ -18,7 +18,6 @@ class User
   has_many :block_spaces
 
 
-
   #注册时把邮箱转换为小写字符
   before_save { |user| user.email = email.downcase }
 
@@ -30,21 +29,6 @@ class User
 
   #密码自动加密
   has_secure_password
-
-
-  ##验证
-  validates_presence_of :name,                    message: '不能为空'
-  validates :name,                                length: { minimum: 4, maximum: 18, message: '长度大于4个字符且小于18个字符' }
-
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates_presence_of :email,                   message: '不能为空'
-  validates :email,                               format: { with: VALID_EMAIL_REGEX,  message: '格式不正确' },
-                                                  uniqueness: { case_sensitive: false, message: '已经存在!' }
-
-  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' },
-												  unless: lambda {|u| u.password.nil? }
-  validates_presence_of :password,                message: '不能为空', unless: lambda {|u| u.password.nil? }
-  #validates_presence_of :password_confirmation,   message: '不能为空'
 
   ##常量
   #角色
@@ -80,8 +64,24 @@ class User
     secret: 0,
     boy: 1,
     girl: 2
-
   }
+  #验证邮箱格式
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  ##验证
+  validates_presence_of :name,                    message: '不能为空'
+  validates :name,                                length: { minimum: 4, maximum: 18, message: '长度大于4个字符且小于18个字符' }
+  validates_uniqueness_of :name,				　message: '用户名已存在'
+
+
+  validates_presence_of :email,                   message: '不能为空'
+  validates :email,                               format: { with: VALID_EMAIL_REGEX,  message: '格式不正确' },
+                                                  uniqueness: { case_sensitive: false, message: '已经存在!' }
+
+  validates :password,                            length: { minimum: 6,maximum: 18, message: '长度大于6个字符且小于18个字符' },
+												  unless: lambda {|u| u.password.nil? }
+  validates_presence_of :password,                message: '不能为空', unless: lambda {|u| u.password.nil? }
+  #validates_presence_of :password_confirmation,   message: '不能为空'
 
 
   ##属性
@@ -152,7 +152,7 @@ class User
 
 
   ##索引
-  index({ name: 1 }, { background: true })
+  index({ name: 1 }, { unique: true, background: true })
   index({ email: 1 }, { unique: true, background: true })
   index({ remember_token: 1 }, { unique: true, background: true })
   index({ name: 1 }, { unique: true, background: true })

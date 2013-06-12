@@ -60,6 +60,9 @@ module Muc
     # Enable the asset pipeline
     config.assets.enabled = true
 
+	#禁用烦人的 assets 请求日志(不起作用，先注掉)
+	#config.assets.logger = false
+
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
   end

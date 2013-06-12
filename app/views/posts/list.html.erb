@@ -8,16 +8,16 @@
             <%=render 'shared/path'%>
             <!--}当前位置 end-->
             <!--主体内容 start{-->
-			<%=render 'left_bar', type: (params[:type] || 0).to_i%>
+			<%=render 'left_bar', categories: @categories %>
             <div class="right">
-            	<h2 class="tit">新闻动态</h2>
+            	<h2 class="tit"><%=@current_cate.present? ? @current_cate.name : '学院新闻'%></h2>
                 <ul class="list">
                   <%if @posts.present?%>
                     <% @posts.each do |post| %>
-                      <li><h3><%=link_to(post.title, '' ) %></h3><%=post.created_at.strftime("%Y.%m.%d")%></li>
+                      <li><h3><%=link_to(post.title, post.view_url ) %></h3><%=post.created_at.strftime("%Y.%m.%d")%></li>
                     <%end%>
                   <%else%>
-                    <li><h3><a href="#">无内容!</a></h3></li>
+                    <li><h3>无内容!</h3></li>
                   <%end%>
                 </ul>
                 <!--分页 start{-->

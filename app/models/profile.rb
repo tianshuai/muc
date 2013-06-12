@@ -10,8 +10,7 @@ class Profile
 
   ##属性
   field :realname,    :type=>String
-  #性别
-  field :sex,         :type=>String,:default=>SEX[:default]
+
   field :id_card,        :type=>String
 
   field :im_qq,       :type=>String

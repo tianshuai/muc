@@ -1,7 +1,8 @@
-	<div class="left">
-		<ul class="ul_menu">
-			<%Category.news.normal.order_b.each do |c|%>
-				<li class="<%='on' if c.id==type%>"><%=link_to c.name, '' %></li>	
-			<%end%>
-		</ul>
-	</div>
+<%type = params[:mark] || ''%>	
+<div class="left">
+	<ul class="ul_menu">
+		<% categories.each do |c| %>
+			<li class="<%='on' if c.mark==type%>"><%=link_to c.name, {action: 'list', mark: c.mark} %></li>	
+		<%end%>
+	</ul>
+</div>

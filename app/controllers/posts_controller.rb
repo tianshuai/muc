@@ -12,16 +12,25 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-	redirect_to {action :list}
+	redirect_to action: 'list', mark: 'all'
   end
 
   #新闻分类
   def list
-	#mark = params[:mark]
-	#@category = Category.category_arr(1)
-	#@a = Category.find_by_name(mark: mark)
+	mark = params[:mark]
+	@categories = Category.category_arr(1)
 
-    @posts = Post.paginate(:page => params[:page], :per_page => 10)
+	if mark == 'all'
+	  @current_cate = []
+	  @posts = Post.paginate(:page => params[:page], :per_page => 10)
+	else
+	  @current_cate = Category.find_by(mark: mark)
+	  if @current_cate.blank?
+	    flash[:error] = "分类不存在!"
+		return redirect_to root_path
+	  end
+	  @posts = @current_cate.posts.paginate(page: params[:page], per_page: 10) 
+	end
 
   end
 
@@ -29,7 +38,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id].to_i)
-
+	@categories = Category.category_arr(1)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @post }

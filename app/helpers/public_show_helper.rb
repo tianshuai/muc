@@ -60,9 +60,9 @@ module PublicShowHelper
 
 	#大图沦换排序
 	def load_block_order(mark,limit=8)
-	  block_space = BlockSpace.find_by_name(mark: mark)
+	  block_space = BlockSpace.find_by(mark: mark)
 	  if block_space.present?
-		blocks = block_space.blocks.published.order_b.page(1).per(limit)
+		blocks = block_space.blocks.published.order_b.paginate(page: 1, per_page: limit)
 	  else
 		blocks = []
 	  end
