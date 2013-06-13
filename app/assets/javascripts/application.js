@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree ./compress
+//= require admin/admin_base
 

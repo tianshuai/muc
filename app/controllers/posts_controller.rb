@@ -2,10 +2,10 @@
 class PostsController < ApplicationController
 
   #需要登录
-  before_filter :signed_in_user, only: [ :new, :create, :edit, :update, ]
+  #before_filter :signed_in_user, only: [ :new, :create, :edit, :update, ]
 
   #导航链接样式
-  before_filter :signed_in_user do
+  before_filter do
     @css_post_header = true
   end
 

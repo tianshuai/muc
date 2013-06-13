@@ -36,14 +36,14 @@ class Admin::BlocksController < Admin::Common
         #上传
         result = ImageUnit::Upload.save_asset(file_temp,file_format.split('/').last)
 		if result[:result]
-		  @block.assets.create({
+		  @block.build_asset({
 			original_file: result[:file_o_id],
 			thumb_small: result[:file_s_id],
 			filename: file_name,
 			size: result[:size],
 			format_type: file_format,
 			asset_type: 11
-		  })
+		  }).save
 		end
       end
       redirect_to admin_blocks_path, notice: '创建成功!'
@@ -58,6 +58,26 @@ class Admin::BlocksController < Admin::Common
 
     respond_to do |format|
       if @block.update_attributes(params[:block])
+        if params[:asset_id]
+          #获得文件/格式
+          file = params[:asset_id]
+          file_temp = file.tempfile
+          file_format = file.content_type
+          file_name = file.original_filename
+          #上传
+          result = ImageUnit::Upload.save_asset(file_temp,file_format.split('/').last)
+          if result[:result]
+            @block.asset.destroy
+            @block.build_asset({
+              original_file: result[:file_o_id],
+              thumb_small: result[:file_s_id],
+              filename: file_name,
+              size: result[:size],
+              format_type: file_format,
+              asset_type: 11
+            }).save
+          end
+        end
         format.html { redirect_to admin_blocks_path, notice: '更新成功!' }
         format.json { head :no_content }
       else

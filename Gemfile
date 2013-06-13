@@ -61,5 +61,5 @@ group :development do
   gem 'quiet_assets', git: 'git@github.com:AgilionApps/quiet_assets.git', tag: 'v0.1.0'
 end
 
-#gem 'thin'
+gem 'thin'
 
