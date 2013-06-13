@@ -7,14 +7,14 @@ class Category
   #ＩＤ自增
   auto_increment :id, seed: 1
 
-  #stuff类型,灵感、媒体（文字）
+  #类型
   TYPE = {
     #新闻
     news: 1,
     #作品
     art: 2,
-    #未定义
-    no_way: 3
+    #丛书
+    book: 3
   }
 
   #状态
@@ -58,14 +58,18 @@ class Category
 
 
   #新闻类
-  scope :news,               -> { where(type: TYPE[:news]) }
+  scope :news,                -> { where(type: TYPE[:news]) }
+  #作品
+  scope :arts,                -> { where(type: TYPE[:art]) }
+  #书籍
+  scope :books,               -> { where(type: TYPE[:book]) }
 
   #正常
-  scope :normal,             -> { where(state: STATE[:ok]) }             
-  #推荐的分类
-  scope :is_stick,           -> { where(stick: STICK[:ok]) }
+  scope :normal,              -> { where(state: STATE[:ok]) }             
+  #推荐
+  scope :is_stick,            -> { where(stick: STICK[:ok]) }
   #排序
-  scope :order_b,			 -> { asc(:order) }
+  scope :order_b,			  -> { asc(:order) }
 
   
   validates_presence_of :name,                message: "请输入名称"
@@ -87,20 +91,20 @@ class Category
 	case type
 	when 1 then '新闻'
 	when 2 then '作品'
+    when 3 then '书籍'
 	else
 	end
   end
 
-  #分类列表数组(type:1,新闻类；2.未定义)
+  #分类列表数组(type:1,新闻类；2.作品;3.书籍)
   def self.category_arr(type=1)
-	return self.normal.news.order_b if type==1
-	return self.normal.order_b if type==2
+	return self.news.normal.order_b if type==1
+	return self.arts.normal.order_b if type==2
+    return self.books.normal.order_b if type==3
 	return []
   end
 
-  def self.cate_type(mark)
-	
-  end
+
 
   #私有方法
   private

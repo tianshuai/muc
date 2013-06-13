@@ -1,28 +1,23 @@
 # encoding: utf-8
-class Admin::ArtsController < Admin::Common
+class Admin::BooksController < Admin::Common
 
 
   #分类列表
   def index
-    @css_admin_art = true
+    @css_admin_book = true
     @css_list_all = true
-    @posts = Post.arts.paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.books.paginate(:page => params[:page], :per_page => 10)
     render 'list'
   end
 
-  #新的分类
+  #新的书籍
   def new
-    @css_admin_art = true
+    @css_admin_book = true
     @post = Post.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @post }
-    end
   end
 
   def edit
-    @css_admin_art = true
+    @css_admin_book = true
     @post = Post.find(params[:id].to_i)
   end
 
@@ -32,10 +27,10 @@ class Admin::ArtsController < Admin::Common
 	@post.user_id = current_user.id
     respond_to do |f|
       if @post.save
-        f.html { redirect_to admin_arts_path, notice: '创建成功!' }
+        f.html { redirect_to admin_books_path, notice: '创建成功!' }
         f.json { head :no_content }
       else
-        @css_admin_art = true
+        @css_admin_book = true
         flash[:error] = '创建失败!'
         f.html { render action: 'new' }
         f.json { render json: @post.errors, status: :unprocessable_entity }
@@ -46,14 +41,13 @@ class Admin::ArtsController < Admin::Common
 
   def update
     @post = Post.find(params[:id].to_i)
-
     respond_to do |format|
       if @post.update_attributes(params[:post])
-        format.html { redirect_to admin_arts_path, notice: '更新成功!' }
+        format.html { redirect_to admin_books_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
-        @css_admin_art = true
-        flash[:error] = '更新失败'
+        @css_admin_book = true
+        flash[:error] = '更新失败!'
         format.html { render action: "edit" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

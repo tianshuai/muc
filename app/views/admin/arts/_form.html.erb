@@ -1,7 +1,12 @@
-<%= form_for(@post) do |f| %>
+<% if @post.new_record? %>
+  <%action = 'create'%>
+<%else%>
+  <%action = 'update'%>
+<%end%>
+<%= form_for([:admin,@post], url: { controller: 'arts', action: action }) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= @post.errors.count %>处错误提示: </h2>
 
       <ul>
       <% @post.errors.full_messages.each do |msg| %>
@@ -10,28 +15,38 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.hidden_field :type, value: 2 %>
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title, '标题：' %><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content, :id=>'myArea11' %>
+    <%= f.label :content, '内容' %><br />
+    <%= f.text_area :content, size: '100*100' %>
+  </div>
+  <span class="blank10"></span>
+  <div class="row-nopos block-category clearfix">
+     <!--引用分类-->
+     <%=render partial: "shared/share_category",:locals => { :current_category_id=>@post.category_id, :type=>2} %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
+    <%= f.label :stick, '推荐' %><br />
+    <%= f.radio_button :stick, 0 %>否&nbsp;
+    <%= f.radio_button :stick, 1 %>是
   </div>
   <div class="field">
-    <%= f.label :type %><br />
-    <%= f.number_field :type %>
+    <%= f.label :publish, '是否发布' %><br />
+    <%= f.radio_button :publish, 0 %>否&nbsp;
+    <%= f.radio_button :publish, 1 %>是
   </div>
   <div class="field">
-    <%= f.label :state %><br />
-    <%= f.number_field :state %>
+    <%= f.label :state, '状态' %><br />
+    <%= f.radio_button :state, 0 %>禁用&nbsp;
+    <%= f.radio_button :state, 1 %>正常
   </div>
+  <span blank20></span>
   <div class="actions">
     <%= f.submit %>
+	<%=link_to '返回', admin_arts_path %>
   </div>
 <% end %>

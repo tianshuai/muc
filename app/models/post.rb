@@ -38,9 +38,11 @@ class Post
   #类型
   TYPE={
     #新闻
-    news: 1
-    #招生详情
-    #学生工作
+    news: 1,
+    #学院丛书
+    art: 2,
+    #作品
+    book: 3
   }
 
   #推荐
@@ -74,6 +76,7 @@ class Post
   index({ created_at: 1 }, { background: true })
   index({ view_count: 1 }, { background: true })
   index({ category_id: 1 }, { background: true })
+  index({ type: 1 }, { background: true })
 
   ##
   #过滤
@@ -86,6 +89,10 @@ class Post
   scope :normal,            -> { where(state: STATE[:ok]) }
   #是新闻
   scope :news,              -> { where(type: TYPE[:news]) }
+  #是丛书
+  scope :books,             -> { where(type: TYPE[:book]) }
+  #是作品
+  scope :arts,              -> { where(type: TYPE[:art]) }
   #推荐的
   scope :sticked,			-> { where(stick: STICK[:yes]) }
 
@@ -105,7 +112,8 @@ class Post
 	if self.category.present?
 	  case type
 	  when 1 then	sprintf(CONF['news_url'], self.category.mark, self.id)
-	  when 2 then	''
+	  when 2 then	sprintf(CONF['books_url'], self.category.mark, self.id)
+	  when 3 then	sprintf(CONF['arts_url'], self.category.mark, self.id)
 	  end
 	else
 	  CONF['domain_base']

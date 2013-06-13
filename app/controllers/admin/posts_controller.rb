@@ -6,7 +6,7 @@ class Admin::PostsController < Admin::Common
   def index
     @css_admin_news = true
     @css_admin_post_list = true
-    @posts = Post.paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.news.paginate(:page => params[:page], :per_page => 10)
     render 'list'
   end
 

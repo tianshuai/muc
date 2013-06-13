@@ -5,6 +5,12 @@ Muc::Application.routes.draw do
 
   #后台路由设置
   namespace :admin do |admin|
+    #首页
+    resources :home do
+      match '/',  to: 'home#index'
+    end
+
+    #用户
     resources :users do
 	  collection do
 		post :ajax_set_state
@@ -12,10 +18,7 @@ Muc::Application.routes.draw do
 	  end
     end
 
-    resources :home do
-      match '/',  to: 'home#index'
-    end
-
+    #新闻
     resources :posts do
 	  collection do
 		post :ajax_set_state
@@ -25,6 +28,27 @@ Muc::Application.routes.draw do
 	  end
     end
 
+    #作品
+    resources :arts do
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+		post :ajax_set_publish
+		post :ajax_set_stick
+	  end
+    end
+
+    #书籍
+    resources :books do
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+		post :ajax_set_publish
+		post :ajax_set_stick
+	  end
+    end
+
+    #栏目
     resources :blocks do
 	  collection do
 		post :ajax_set_state
@@ -33,6 +57,7 @@ Muc::Application.routes.draw do
 	  end
     end
 
+    #栏目位
     resources :block_spaces do
 	  collection do
 		post :ajax_set_state
@@ -40,14 +65,14 @@ Muc::Application.routes.draw do
 	  end
     end
 
-    resources :arts do
-      #match '/',  to: 'home#index'
-    end
-
+    #分类
     resources :categories do
 	  collection do
 		post :ajax_set_state
 		post :destroy_more
+        get :news
+        get :arts
+        get :books
 	  end
     end
 
@@ -66,23 +91,34 @@ Muc::Application.routes.draw do
   get 'post/news/:mark/:id',	to: 'posts#show'
 
   #学院概述
-  get 'introduce',				to: 'introduces#index',		as: 'introduces'
+  get 'introduce',				to: 'introduces#index',		  as: 'introduces'
   get 'introduce/faculties',	to: 'introduces#faculties'
   get 'introduce/leader',		to: 'introduces#leader'
 
   #艺术教学
-  get 'teach/index',			to: 'teaches#index',		as: 'teaches'
+  get 'teach/index',			to: 'teaches#index',		  as: 'teaches'
   get 'teach/teacher',			to: 'teaches#teacher'
+  get 'teach/arts',             to: 'teaches#arts'
+  #学院丛书
+  get 'book/index',             to: 'books#index',            as: 'books'
+  get 'books/list',             to: 'books#list'
 
+  #招生详情
+  get 'enrollment/index',       to: 'enrollments#index',       as: 'enrollments'
+  
+  #学生工作
+  get 'student_serve/index',    to: 'student_servies#index',  as: 'student_servies'
 
   #用户路由
   resources :users,			only: [:index, :new, :create, :show] 
 
+  #用户注册登录
   match '/signup',            to: 'users#new'
   match '/login',             to: 'users#login'
   match '/user/edit_info',	  to: 'users#edit_info'
   match '/user/update_info',  to: 'users#update_info'
 
+  #个人资料设置
   match '/user/edit_pwd',     to: 'users#edit_pwd'
   match '/user/update_pwd',   to: 'users#update_pwd'
 

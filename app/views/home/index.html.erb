@@ -60,45 +60,32 @@
             <!--学院丛书 start{-->
             <div class="books">
             	<h2 class="title">学院丛书</h2>
-                <div class="more"><a href="">更多</a></div>
-                <ul class="ul_books">
-                	<li>
-                    	<em><a href=""><%=image_tag '11.jpg'%></a></em>
-                        <h3><a href="">中国民族美术</a></h3>
-                        <p>唐卡的艺术特色,谈民族建筑保护的整体策略与发展思路,西域思路主题美术创作与国家少数民族形象塑造关系初探…</p>
-                        <div class="readmore"><a href="">Read More</a></div>
-                    </li>
-                	<li>
-                    	<em><a href=""><%=image_tag '12.jpg'%></a></em>
-                        <h3><a href="">中国民族美术</a></h3>
-                        <p>唐卡的艺术特色,谈民族建筑保护的整体策略与发展思路,西域思路主题美术创作与国家少数民族形象塑造关系初探…</p>
-                        <div class="readmore"><a href="">Read More</a></div>
-                    </li>
-                	<li>
-                    	<em><a href=""><%=image_tag '11.jpg'%></a></em>
-                        <h3><a href="">中国民族美术</a></h3>
-                        <p>唐卡的艺术特色,谈民族建筑保护的整体策略与发展思路,西域思路主题美术创作与国家少数民族形象塑造关系初探…</p>
-                        <div class="readmore"><a href="">Read More</a></div>
-                    </li>
-                </ul>
+                <div class="more"><%= link_to '更多', books_path %></div>
+                <% if @books.present? %>
+                  <ul class="ul_books">
+                    <% @books.each do |b| %>
+                      <li>
+                          <em><a href=""><%=image_tag '11.jpg'%></a></em>
+                          <h3><%= link_to b.title, b.view_url, target: '_blank' %></h3>
+                          <p><%= truncate(b.content, length: 55) %></p>
+                          <div class="readmore"><a href="">Read More</a></div>
+                      </li>
+                    <%end%>
+                  </ul>
+                <%end%>
             </div>
             <!--}学院丛书 end-->
             <!--学院新作 start{-->
             <div class="works">
             	<h2 class="title">学院新作</h2>
-                <div class="more"><a href="">更多</a></div>
-                <ul class="ul_works">
-                	<li><h3><a href=""><%=image_tag '7.jpg'%>《出青海》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '8.jpg'%>《凤凰岭》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '9.jpg'%>《青海一方》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '10.jpg'%>《香格里拉》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '10.jpg'%>《出青海》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '10.jpg'%>《凤凰岭》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '10.jpg'%>《青海一方》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '10.jpg'%>《香格里拉》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '10.jpg'%>《凤凰岭》 陈逸青</a></h3></li>
-                	<li><h3><a href=""><%=image_tag '10.jpg'%>《青海一方》 陈逸青</a></h3></li>
-                </ul>
+                <div class="more"><%= link_to '更多', teach_arts_path %></div>
+                <% if @arts.present? %>
+                  <ul class="ul_works">
+                    <% @arts.each do |d| %>
+                      <li><h3><%= link_to "#{image_tag('7.jpg')}#{truncate(d.title, length: 10)}&nbsp; #{d.user.name if d.user.present?}".html_safe, '#' %></h3></li>
+                    <%end%>
+                  </ul>
+                <%end%>
             </div>
             <!--}学院新作 end-->
         </div>

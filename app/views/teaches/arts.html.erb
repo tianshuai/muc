@@ -1,0 +1,29 @@
+<%provide(:title, '学院作品')%>
+	<!--主体 start{-->
+	<div class="main">
+
+        <!--内容 start{-->
+        <div class="wid">
+
+            <!--学院作品 start{-->
+            <div class="works">
+            	<h2 class="title">学院作品</h2>
+                <div class="more"><a href=""></a></div>
+				<% if @arts.present? %>
+                <ul class="ul_works">
+					<% @arts.each do |b| %>
+						<li><h3><a href=""><%=image_tag '7.jpg'%><%=b.title%> <%=b.user.name if b.user.present?%></a></h3></li>
+					<%end%>
+                </ul>
+				<%end%>
+            </div>
+			<!--分页 start{-->
+			<div class="page">
+			  <%=will_paginate @arts if @arts.present?%>
+			</div>
+			<!--}分页 end-->
+            <!--}学院作品 end-->
+        </div>
+        <!--}内容 end-->
+    </div>
+	<!--}主体 end-->

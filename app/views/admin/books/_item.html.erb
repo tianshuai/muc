@@ -30,7 +30,7 @@
         <%=link_to "禁用",{ action: 'ajax_set_state', id: b.id, type: 0 }, remote: true, method: :post%> |
       <%end%>
 	</span>
-	<%=link_to "编辑", edit_admin_art_path(b)%>
+    <%=link_to "编辑", edit_admin_book_path(b) %>
     <%=link_to "删除", { action: 'destroy', id: b.id }, data: { confirm: "确认执行此操作?" }, remote: true, method: :delete %>
   </td>
 </tr>

@@ -1,4 +1,9 @@
-<%= form_for([:admin,@post]) do |f| %>
+<% if @post.new_record? %>
+  <%action = 'create'%>
+<%else%>
+  <%action = 'update'%>
+<%end%>
+<%= form_for([:admin,@post], url: { controller: 'books', action: action } ) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= @post.errors.count %>处错误提示: </h2>
@@ -10,7 +15,7 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.hidden_field :type, value: 3 %>
   <div class="field">
     <%= f.label :title, '标题：' %><br />
     <%= f.text_field :title %>
@@ -22,8 +27,9 @@
   <span class="blank10"></span>
   <div class="row-nopos block-category clearfix">
      <!--引用分类-->
-     <%=render partial: "shared/share_category",:locals => { :current_category_id=>@post.category_id, :type=>1} %>
+     <%=render partial: "shared/share_category",:locals => { :current_category_id=>@post.category_id, :type=>3} %>
   </div>
+
   <div class="field">
     <%= f.label :stick, '推荐' %><br />
     <%= f.radio_button :stick, 0 %>否&nbsp;
@@ -42,6 +48,6 @@
   <span blank20></span>
   <div class="actions">
     <%= f.submit %>
-	<%=link_to '返回', admin_posts_path %>
+	<%=link_to '返回', admin_books_path %>
   </div>
 <% end %>

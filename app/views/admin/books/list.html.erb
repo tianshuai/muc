@@ -3,7 +3,7 @@
 	<%=render 'admin/base/left_bar'%>
     <div class="span10">
       <!--Body content-->
-          <%= render "admin/arts/tool_bar"%>
+          <%= render "admin/books/tool_bar"%>
           <span class="blank10"></span>
           <div class="sub_operation clearfix">
              <div class="left_operation">
@@ -16,6 +16,7 @@
               </div>
 			  <div class="clearfix">
 				<div class="operate_box clearfix">
+					<%=link_to('+新建', new_admin_book_path )%>
 					<%=link_to('批量删除', {action: 'destroy_more', format: 'js'}, class: "select_post")%>
 				</div>
 			  </div>
@@ -38,7 +39,7 @@
             </thead>
             <tbody >
               <%@posts.each do |b|%>
-                <%= render partial: "admin/arts/item", :locals => { :b => b } %>
+                <%= render partial: "admin/books/item", :locals => { :b => b } %>
               <%end%>
             </tbody>
           </table>

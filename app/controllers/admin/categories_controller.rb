@@ -10,6 +10,31 @@ class Admin::CategoriesController < Admin::Common
     render 'list'
   end
 
+  #分类列表(news)
+  def news
+    @css_admin_cate = true
+	@css_news_list = true
+    @categories = Category.news.paginate(:page => params[:page], :per_page => 10)
+    render 'list'
+  end
+
+
+  #分类列表(arts)
+  def arts
+    @css_admin_cate = true
+	@css_art_list = true
+    @categories = Category.arts.paginate(:page => params[:page], :per_page => 10)
+    render 'list'
+  end
+
+  #分类列表(books)
+  def books
+    @css_admin_cate = true
+	@css_book_list = true
+    @categories = Category.books.paginate(:page => params[:page], :per_page => 10)
+    render 'list'
+  end
+
   #新的分类
   def new
     @category = Category.new

@@ -1,8 +1,5 @@
 <div class="top_tools clearfix">
-  <%=link_to '全部', { action: :index }, class: "btn-medium mr-5 fl #{css_active?(@css_category_list)}"%>
-  <%=link_to '新闻', { action: :news }, class: "btn-medium mr-5 fl #{css_active?(@css_news_list)}"%>
-  <%=link_to '作品', { action: :arts }, class: "btn-medium mr-5 fl #{css_active?(@css_art_list)}"%>
-  <%=link_to '书籍', { action: :books }, class: "btn-medium mr-5 fl #{css_active?(@css_book_list)}"%>
+  <%=link_to '全部',admin_books_path, class: "btn-medium mr-5 fl #{css_active?(@css_list_all)}"%>
 
   <%form_tag '',:class=>"form-box fr",:method=>:get do%>
     <p align="right" class="fl mr-10">

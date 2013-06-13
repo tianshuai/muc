@@ -22,20 +22,19 @@ class PostsController < ApplicationController
 
 	if mark == 'all'
 	  @current_cate = []
-	  @posts = Post.paginate(:page => params[:page], :per_page => 10)
+	  @posts = Post.news.published.normal.paginate(:page => params[:page], per_page: 10)
 	else
 	  @current_cate = Category.find_by(mark: mark)
 	  if @current_cate.blank?
 	    flash[:error] = "分类不存在!"
 		return redirect_to root_path
 	  end
-	  @posts = @current_cate.posts.paginate(page: params[:page], per_page: 10) 
+	  @posts = @current_cate.posts.published.normal.paginate(page: params[:page], per_page: 10) 
 	end
 
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
+  #新闻展示页
   def show
     @post = Post.find(params[:id].to_i)
 	@categories = Category.category_arr(1)
