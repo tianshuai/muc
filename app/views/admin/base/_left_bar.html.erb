@@ -18,6 +18,10 @@
 		  <li class="<%=css_active?(@css_admin_book)%>"><%=link_to '书籍列表', admin_books_path %></li>
 		  <li class="nav-header">院系管理</li>
 		  <li class=""><a href="#">Home</a></li>
+		  <li class="nav-header">静态页分类</li>
+		  <li class="<%=css_active?(@css_admin_static_type)%>"><%=link_to '静态页分类', admin_static_types_path %></li>
+		  <li class="nav-header"> 静态页管理</li>
+		  <li class="<%=css_active?(@css_admin_static)%>"><%=link_to '静态页管理', admin_statics_path %></li>
 		  <li class="nav-header">会员管理</li>
 		  <li class="<%=css_active?(@css_admin_user)%>"><%=link_to '用户列表', admin_users_path %></li>
 		</ul>

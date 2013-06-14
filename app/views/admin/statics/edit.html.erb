@@ -1,9 +1,9 @@
-<%=provide(:title, '编辑新闻')%>
+<%=provide(:title, '编辑静态页')%>
 <% content_for :scripts do %>
     <%= javascript_include_tag "kindeditor-4.1.7/kindeditor" %>
     <script style="text/javascript">
       var item_id = <%= params[:id] || '' %>;
-      var type = 'Post';
+      var type = 'Static';
       var options = {
         width: '800px',
         height: '500px',
@@ -39,7 +39,7 @@
     <div class="span10">
       <!--Body content-->
 
-	  <%= render "admin/posts/tool_bar"%>
+	  <%= render "admin/statics/tool_bar"%>
 
 	  <span class="blank10"></span>
 	  <%= render 'form' %>

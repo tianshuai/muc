@@ -28,9 +28,9 @@
 				<% if @posts.present? %>
 					<% @posts.each do |post| %>
                 	<li>
-                    	<h3><%= link_to truncate(post.title, length: 40), '' %></h3>
+                    	<h3><%= link_to truncate(post.title, length: 40), post.view_url, target: "_blank" %></h3>
                         <em><%= post.created_at.strftime("%Y.%m.%d") %></em>
-                        <p><%= truncate(post.content, length: 80) %></p>
+                        <p><%= raw truncate(post.content, length: 80) %></p>
                     </li>
 					<%end%>
 				<%end%>

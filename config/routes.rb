@@ -76,6 +76,31 @@ Muc::Application.routes.draw do
 	  end
     end
 
+    #静态页
+    resources :statics do
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+		post :ajax_set_publish
+		post :ajax_set_stick
+        get :introduce
+        get :enrollment
+        get :student_serve
+		get :ajax_change_type
+	  end
+    end
+
+    #静态页分页
+    resources :static_types do
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+        get :introduce
+        get :enrollment
+        get :student_serve
+	  end
+    end
+
   end
   #后台路由END
 
