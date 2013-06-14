@@ -1,8 +1,12 @@
 # encoding: utf-8
 class Admin::BlocksController < Admin::Common
 
-  def index
+  #左侧导航样式
+  before_filter do
     @css_admin_block = true
+  end
+
+  def index
 	@css_block_list = true
     @blocks = Block.recent.paginate(:page => params[:page], :per_page => 10)
     render 'list'
@@ -41,8 +45,7 @@ class Admin::BlocksController < Admin::Common
 			thumb_small: result[:file_s_id],
 			filename: file_name,
 			size: result[:size],
-			format_type: file_format,
-			asset_type: 11
+			format_type: file_format
 		  }).save
 		end
       end
@@ -73,8 +76,7 @@ class Admin::BlocksController < Admin::Common
               thumb_small: result[:file_s_id],
               filename: file_name,
               size: result[:size],
-              format_type: file_format,
-              asset_type: 11
+              format_type: file_format
             }).save
           end
         end

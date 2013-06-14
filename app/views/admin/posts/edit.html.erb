@@ -1,6 +1,22 @@
 <%=provide(:title, '编辑新闻')%>
 <% content_for :scripts do %>
-	<script style="text/javascript">
+    <%= javascript_include_tag "kindeditor-4.1.7/kindeditor" %>
+    <script style="text/javascript">
+      var item_id = <%= params[:id] || '' %>;
+      var type = 'Post';
+      var options = {
+        width: '800px',
+        height: '500px',
+        uploadJson: '/upload/editor?item_id='+item_id+'&type='+type,
+        afterUpload : function(url) {
+          var asset_id = url.substring(url.lastIndexOf('/')+1);
+          alert(asset_id);
+        }
+      };
+      KindEditor.ready(function(K) {
+        window.editor = K.create('#kind_editor', options)
+      });
+
     //添加删除分类
     function add_and_drop_category()
     {

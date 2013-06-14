@@ -53,16 +53,12 @@
 </html>
 
   <%= yield :scripts %>
-
   <script type="text/javascript">
     <!--
     $(function(){
-  
-      //lgk.initial();//在lgk.js中
-
-  
+      //初始化
+      muc.initial();
       <%=yield :jquery %>
-   
   });
   //-->
   </script>

@@ -1,8 +1,12 @@
 # encoding: utf-8
 class Admin::BlockSpacesController < Admin::Common
 
-  def index
+  #左侧导航样式
+  before_filter do
     @css_admin_block_space = true
+  end
+
+  def index
 	@css_block_space_list = true
     @block_spaces = BlockSpace.recent.paginate(:page => params[:page], :per_page => 10)
     render 'list'

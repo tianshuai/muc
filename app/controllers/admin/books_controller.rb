@@ -1,10 +1,13 @@
 # encoding: utf-8
 class Admin::BooksController < Admin::Common
 
+  #左侧导航样式
+  before_filter do
+    @css_admin_book = true
+  end
 
   #分类列表
   def index
-    @css_admin_book = true
     @css_list_all = true
     @posts = Post.books.paginate(:page => params[:page], :per_page => 10)
     render 'list'
@@ -12,12 +15,10 @@ class Admin::BooksController < Admin::Common
 
   #新的书籍
   def new
-    @css_admin_book = true
     @post = Post.new
   end
 
   def edit
-    @css_admin_book = true
     @post = Post.find(params[:id].to_i)
   end
 
@@ -30,7 +31,6 @@ class Admin::BooksController < Admin::Common
         f.html { redirect_to admin_books_path, notice: '创建成功!' }
         f.json { head :no_content }
       else
-        @css_admin_book = true
         flash[:error] = '创建失败!'
         f.html { render action: 'new' }
         f.json { render json: @post.errors, status: :unprocessable_entity }
@@ -46,7 +46,6 @@ class Admin::BooksController < Admin::Common
         format.html { redirect_to admin_books_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
-        @css_admin_book = true
         flash[:error] = '更新失败!'
         format.html { render action: "edit" }
         format.json { render json: @post.errors, status: :unprocessable_entity }

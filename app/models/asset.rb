@@ -14,17 +14,6 @@ class Asset
   belongs_to :relateable,   polymorphic: true
 
   ##常量
-  #附件类型
-  ASSET_TYPE = {
-	#作品
-  	art: 1,
-	#新闻图片
-	post: 5,
-	#编辑器图片
-	editer: 10,
-	#栏目图片
-	block: 11
-  }
   
   #处理状态
   STATE={
@@ -45,8 +34,6 @@ class Asset
   field :type,						type: Integer,		default: 1
   #状态
   field :state,						type: Integer,		default: STATE[:ok]
-  #附件类型
-  field :asset_type,        		type: Integer,		default: ASSET_TYPE[:art]
 
   field :size,              		type: Integer,		default: 0
 
@@ -74,7 +61,6 @@ class Asset
 
   #索引
   #关联id
-  index({ related_id: 1 }, { background: true })
   index({ relateable_type: 1 }, { background: true })
   index({ relateable_id: 1 }, { background: true })
 

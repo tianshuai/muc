@@ -1,8 +1,12 @@
 # encoding: utf-8
 class Admin::UsersController < Admin::Common
 
-  def index
+  #左侧导航样式
+  before_filter do
     @css_admin_user = true
+  end
+
+  def index
 	@css_user_list = true
     @users = User.recent.paginate(:page => params[:page], :per_page => 10)
     render 'list'

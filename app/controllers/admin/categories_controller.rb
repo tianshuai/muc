@@ -1,10 +1,13 @@
 # encoding: utf-8
 class Admin::CategoriesController < Admin::Common
 
+  #左侧导航样式
+  before_filter do
+    @css_admin_cate = true
+  end
 
   #分类列表
   def index
-    @css_admin_cate = true
 	@css_category_list = true
     @categories = Category.paginate(:page => params[:page], :per_page => 10)
     render 'list'
@@ -12,7 +15,6 @@ class Admin::CategoriesController < Admin::Common
 
   #分类列表(news)
   def news
-    @css_admin_cate = true
 	@css_news_list = true
     @categories = Category.news.paginate(:page => params[:page], :per_page => 10)
     render 'list'
@@ -21,7 +23,6 @@ class Admin::CategoriesController < Admin::Common
 
   #分类列表(arts)
   def arts
-    @css_admin_cate = true
 	@css_art_list = true
     @categories = Category.arts.paginate(:page => params[:page], :per_page => 10)
     render 'list'
@@ -29,7 +30,6 @@ class Admin::CategoriesController < Admin::Common
 
   #分类列表(books)
   def books
-    @css_admin_cate = true
 	@css_book_list = true
     @categories = Category.books.paginate(:page => params[:page], :per_page => 10)
     render 'list'

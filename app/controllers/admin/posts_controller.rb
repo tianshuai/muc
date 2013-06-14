@@ -1,10 +1,13 @@
 # encoding: utf-8
 class Admin::PostsController < Admin::Common
 
+  #左侧导航样式
+  before_filter do
+    @css_admin_news = true
+  end
 
   #分类列表
   def index
-    @css_admin_news = true
     @css_admin_post_list = true
     @posts = Post.news.paginate(:page => params[:page], :per_page => 10)
     render 'list'
@@ -29,8 +32,18 @@ class Admin::PostsController < Admin::Common
     @post = Post.new(params[:post])
 	@post.user_id = current_user.id
     if @post.save
+      if params[:asset_ids]
+        p '1111111'
+        p params[:asset_ids]
+        params[:asset_ids].split(',').each do |id|
+          asset = Asset.find(id)
+          asset.update_attributes(relateable_id: @post.id, relateable_type: @post.class.to_s) if asset.present?
+          p @post.class.to_s
+        end
+      end
       redirect_to action: 'index', notice: '创建成功!'
     else
+      flash[:error] = '创建失败!'
       render 'new'
     end
   end

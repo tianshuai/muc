@@ -12,4 +12,4 @@ arts_url: http://127.0.0.1:3000/teach/%s/%s
 books_url: http://127.0.0.1:3000/book/%s/%s
 
 #设置图片支持的格式
-verify_img_type: ["jpg", "jpeg", "pjpeg", "png","x-png"]
+verify_img_type: ["jpg","jpeg","pjpeg","png","x-png","gif"]

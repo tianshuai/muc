@@ -10,19 +10,19 @@
       </ul>
     </div>
   <% end %>
-
+  <input type="hidden" name="asset_ids" id="editor_ids" />
   <div class="field">
     <%= f.label :title, '标题：' %><br />
     <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :content, '内容' %><br />
-    <%= f.text_area :content, size: '100*100' %>
   </div>
   <span class="blank10"></span>
   <div class="row-nopos block-category clearfix">
      <!--引用分类-->
      <%=render partial: "shared/share_category",:locals => { :current_category_id=>@post.category_id, :type=>1} %>
+  </div>
+  <div class="field">
+    <%= f.label :content, '内容' %><br />
+    <%= f.text_area :content, id: 'kind_editor' %>
   </div>
   <div class="field">
     <%= f.label :stick, '推荐' %><br />

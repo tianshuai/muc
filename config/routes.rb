@@ -113,22 +113,25 @@ Muc::Application.routes.draw do
   resources :users,			only: [:index, :new, :create, :show] 
 
   #用户注册登录
-  match '/signup',            to: 'users#new'
-  match '/login',             to: 'users#login'
-  match '/user/edit_info',	  to: 'users#edit_info'
-  match '/user/update_info',  to: 'users#update_info'
+  match 'signup',            to: 'users#new'
+  match 'login',             to: 'users#login'
+  match 'user/edit_info',	  to: 'users#edit_info'
+  match 'user/update_info',  to: 'users#update_info'
 
   #个人资料设置
-  match '/user/edit_pwd',     to: 'users#edit_pwd'
-  match '/user/update_pwd',   to: 'users#update_pwd'
+  match 'user/edit_pwd',     to: 'users#edit_pwd'
+  match 'user/update_pwd',   to: 'users#update_pwd'
 
 
   resources :sessions, only: [:new, :create, :destroy]
-  match '/signin', to: 'sessions#new'
-  match '/signout', to: 'sessions#destroy', via: :delete
+  match 'signin', to: 'sessions#new'
+  match 'signout', to: 'sessions#destroy', via: :delete
+
+  #上传路径
+  match 'upload/editor'  => 'upload#editor'
 
   #图片路径
-  match "/asset/*path" => "assets#serve"
+  match "asset/*path" => "assets#serve"
 
 
   # The priority is based upon order of creation:
