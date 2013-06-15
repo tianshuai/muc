@@ -9,20 +9,23 @@ Muc::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  #静态文件由站在rails前边的web server来处理
-  config.serve_static_assets = true
+  #静态文件由前端服务器来处理(nginx)
+  config.serve_static_assets = true   #如果让前端服务器处理需要设置false
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
+  config.assets.compile = false #  false表示rails不会即时编译asset 
 
   # Generate digests for assets URLs
-  config.assets.digest = true
+  config.assets.digest = true   #生产环境中，上传图片显示（默认值为true） 
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( compress/base.css.scss compress/custom.css.scss )
+  # 排除 Compass 的 partials （文件名是下划线开头的，比如 _shared.css.sass） 
+  config.assets.precompile += [ Proc.new {|path| File.basename(path) =~ /^[^_].*\.\w+$/} ]
+
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 

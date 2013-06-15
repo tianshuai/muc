@@ -8,9 +8,10 @@
 
 ##启动前准备工作
   *生产环境数据名为：muc
+  *给mongodb创建索引：rake db:mongoid:create_indexes
 　*初次使用可以导入数据库模版，包括已经创建好的分类和栏目位信息(该站点下所有的二级分类均从数据库读取)，模版位于db目录下……
 　*如发布到生产环境需要压缩js、css、img文件，命令：rake assets:precompile,  反之，清理压缩后的命令:rake assets:clean
-
+  *需要更改生产环境下的配置文件路径: /config/site_config/production.yml
 
  *如发布生产环境，静态文件如果由前端服务器处理（如：nginx），需要更改/config/environments/production.rb :   config.serve_static_assets = false
 

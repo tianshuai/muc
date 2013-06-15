@@ -7,9 +7,9 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield :style %>
-
+  <!--压缩后已引用进来-->
   <!--[if IE 6]>
-    <%= javascript_include_tag "ie6png" %>
+    <%#= javascript_include_tag "compress/ie6png" %>
     <script>
         DD_belatedPNG.fix('img,a,form,div');
     </script>

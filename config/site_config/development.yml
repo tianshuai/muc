@@ -10,14 +10,7 @@ news_url: http://127.0.0.1:3000/post/news/%s/%s
 arts_url: http://127.0.0.1:3000/teach/%s/%s
 #书籍最终页
 books_url: http://127.0.0.1:3000/book/%s/%s
-# 艺术教学最终页
-education_url: http://127.0.0.1:3000/education/%s/%s
-# 学院概况最终页
-introduce_url: http://127.0.0.1:3000/introduce/%s/%s
-# 招生详情最终页
-enrollment_url: http://127.0.0.1:3000/enrollment/%s/%s
-# 学生工作最终页
-student_serve_url: http://127.0.0.1:3000/student_serve/%s/%s
+
 
 #设置图片支持的格式
 verify_img_type: ["jpg","jpeg","pjpeg","png","x-png","gif"]

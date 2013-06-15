@@ -6,6 +6,10 @@ require "action_mailer/railtie"
 require "active_resource/railtie"  
 require "rails/test_unit/railtie"
 
+#这个修改导致处理assets pipeine的sprockets没有被加载
+#因此解决方法是在后面追加一句
+require 'sprockets/railtie' 
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))

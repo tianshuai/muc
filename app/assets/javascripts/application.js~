@@ -13,7 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require jquery.taconite
 //= require_tree ./compress
-//= require admin/admin_base
 
