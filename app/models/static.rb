@@ -43,8 +43,10 @@ class Static
     enrollment: 2,
     #学生工作
     student_serve: 3,
-	#未定义
-	other: 4
+	#艺术教学
+	teach: 4,
+	#other
+	other: 5
   }
 
   #推荐
@@ -95,6 +97,8 @@ class Static
   scope :enrollment,			-> { where(type: TYPE[:enrollment]) }
   #学生服务
   scope :student_serve,         -> { where(type: TYPE[:student_serve]) }
+  #艺术教学
+  scope :teach,					-> { where(type: TYPE[:teach]) }
   #推荐的
   scope :sticked,				-> { where(stick: STICK[:yes]) }
 
@@ -102,20 +106,22 @@ class Static
   #类型说明
   def type_str
 	case type
-	when 1 then '学院概述'
+	when 1 then '学院概况'
 	when 2 then '招生详情'
     when 3 then '学生工作'
+	when 4 then '艺术教学'
 	else
 	end
   end
 
   #地址（不同分类下的内容走不同地址）
   def view_url
-	if self.category.present?
+	if self.static_type.present?
 	  case type
-	  when 1 then	sprintf(CONF['news_url'], self.category.mark, self.id)
-	  when 2 then	sprintf(CONF['books_url'], self.category.mark, self.id)
-	  when 3 then	sprintf(CONF['arts_url'], self.category.mark, self.id)
+	  when 1 then	sprintf(CONF['introduce_url'], self.static_type.mark, self.id)
+	  when 2 then	sprintf(CONF['enrollment_url'], self.static_type.mark, self.id)
+	  when 3 then	sprintf(CONF['student_serve_url'], self.static_type.mark, self.id)
+	  when 4 then	sprintf(CONF['education_url'], self.static_type.mark, self.id)
 	  end
 	else
 	  CONF['domain_base']

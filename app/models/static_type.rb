@@ -15,8 +15,10 @@ class StaticType
     enrollment: 2,
     #学生工作
     student_serve: 3,
-	#未定义
-	other: 4
+	# 艺术教学
+	teach: 4,
+	#other
+	other: 5
   }
 
   #状态
@@ -63,13 +65,15 @@ class StaticType
   scope :enrollment,			-> { where(type: TYPE[:enrollment]) }
   #学生服务
   scope :student_serve,         -> { where(type: TYPE[:student_serve]) }
+  #艺术教学
+  scope :teach,					-> { where(type: TYPE[:teach]) }
 
   #正常
-  scope :normal,              -> { where(state: STATE[:ok]) }             
+  scope :normal,				-> { where(state: STATE[:ok]) }             
   #推荐
-  scope :is_stick,            -> { where(stick: STICK[:ok]) }
+  scope :is_stick,				-> { where(stick: STICK[:ok]) }
   #排序
-  scope :order_b,			  -> { asc(:order) }
+  scope :order_b,				-> { asc(:order) }
 
   
   validates_presence_of :name,                message: "请输入名称"
@@ -89,9 +93,10 @@ class StaticType
   #类型
   def type_str
 	case type
-	when 1 then '学院概述'
+	when 1 then '学院概况'
 	when 2 then '招生详情'
     when 3 then '学生工作'
+	when 4 then '艺术教学'
 	else
 	end
   end
@@ -101,6 +106,7 @@ class StaticType
 	return self.introduce.normal.order_b if type==1
 	return self.enrollment.normal.order_b if type==2
     return self.student_serve.normal.order_b if type==3
+    return self.teach.normal.order_b if type==4
 	return []
   end
 

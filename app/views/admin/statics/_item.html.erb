@@ -3,7 +3,7 @@
     <td><%=b.id%></td>
 	<td><%= link_to truncate(b.title, length: 10), b.view_url, target: '_blank' %></td>
 	<td><%=b.type_str%></td>
-	<td><%=b.category.name if b.category.present?%></td>
+	<td><%=b.static_type.name if b.static_type.present?%></td>
     <td class="show_state_<%=b.id%>"><%=b.state==0 ? '禁用' : '正常'%></td>
 	<td class="show_publish_<%=b.id%>"><%=b.publish==0 ? '否' : '是' %></td>
 	<td class="show_stick_<%=b.id%>"><%=b.stick==0 ? '否' : '是'%></td>

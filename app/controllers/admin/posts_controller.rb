@@ -33,12 +33,9 @@ class Admin::PostsController < Admin::Common
 	@post.user_id = current_user.id
     if @post.save
       if params[:asset_ids]
-        p '1111111'
-        p params[:asset_ids]
         params[:asset_ids].split(',').each do |id|
-          asset = Asset.find(id)
+          asset = Asset.find(id.to_i)
           asset.update_attributes(relateable_id: @post.id, relateable_type: @post.class.to_s) if asset.present?
-          p @post.class.to_s
         end
       end
       redirect_to action: 'index', notice: '创建成功!'

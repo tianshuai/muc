@@ -87,6 +87,7 @@ Muc::Application.routes.draw do
         get :enrollment
         get :student_serve
 		get :ajax_change_type
+        get :teach
 	  end
     end
 
@@ -98,6 +99,7 @@ Muc::Application.routes.draw do
         get :introduce
         get :enrollment
         get :student_serve
+        get :teach
 	  end
     end
 

@@ -13,10 +13,17 @@ class Admin::StaticTypesController < Admin::Common
     render 'list'
   end
 
-  #静态分类(学院概述)
+  #静态分类(学院概况)
   def introduce
 	@css_introduce_list = true
     @static_types = StaticType.introduce.paginate(:page => params[:page], :per_page => 10)
+    render 'list'
+  end
+
+  #静态分类(艺术教学)
+  def teach
+	@css_teach_list = true
+    @static_types = StaticType.teach.paginate(:page => params[:page], :per_page => 10)
     render 'list'
   end
 

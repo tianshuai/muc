@@ -20,6 +20,12 @@ class Admin::StaticsController < Admin::Common
     render 'list'
   end
 
+  #分类列表(艺术教学)
+  def teach
+	@css_teach_list = true
+    @statics = Static.teach.paginate(:page => params[:page], :per_page => 10)
+    render 'list'
+  end
 
   #分类列表(招生详情)
   def enrollment
@@ -55,12 +61,9 @@ class Admin::StaticsController < Admin::Common
 	@static.user_id = current_user.id
     if @static.save
       if params[:asset_ids]
-        p '1111111'
-        p params[:asset_ids]
         params[:asset_ids].split(',').each do |id|
-          asset = Asset.find(id)
+          asset = Asset.find(id.to_i)
           asset.update_attributes(relateable_id: @static.id, relateable_type: @static.class.to_s) if asset.present?
-          p @static.class.to_s
         end
       end
       redirect_to action: 'index', notice: '创建成功!'
@@ -76,6 +79,12 @@ class Admin::StaticsController < Admin::Common
 
     respond_to do |format|
       if @static.update_attributes(params[:static])
+		  if params[:asset_ids]
+			params[:asset_ids].split(',').each do |id|
+			  asset = Asset.find(id.to_i)
+			  asset.update_attributes(relateable_id: @static.id, relateable_type: @static.class.to_s) if asset.present?
+			end
+		  end
         format.html { redirect_to admin_statics_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
@@ -173,15 +182,11 @@ class Admin::StaticsController < Admin::Common
 
   #ajax切换分类
   def ajax_change_type
-	id = (params[:id] || 0).to_i
-	if id == 0
-	  @static = Static.new
-	else
-	  @static = Static.find(id)
-	end
-	@type = params[:type] || 1
+	@category = (params[:category] || 0).to_i
+
+	@type = (params[:type] || 1).to_i
 	respond_to do |f|
-	f.xml { render :ajax_change_type }
+	f.xml { render :ajax_change_type, layout: false }
 	end
   end
 

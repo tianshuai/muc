@@ -16,10 +16,9 @@
         width: '800px',
         height: '500px',
         uploadJson: '/upload/editor?item_id='+item_id+'&type='+type,
-        afterUpload : function(url) {
-          var asset_id = url.substring(url.lastIndexOf('/')+1);
+        afterUpload : function(url,data) {
           //把编辑器上传的图片ｉｄ传给editor_ids,用于关联该新闻对象
-          muc.record_asset_ids(asset_id,'#editor_ids');
+          muc.record_asset_ids(data.asset_id,'#editor_ids');
         }
       };
       KindEditor.ready(function(K) {
