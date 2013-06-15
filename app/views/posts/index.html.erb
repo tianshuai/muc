@@ -1,33 +1,3 @@
 <%=provide(:title, '新闻列表')%>
 
-	<!--主体 start{-->
-	<div class="main">
-        <!--内容 start{-->
-        <div class="wid">
-            <!--当前位置 start{-->
-            <%=render 'shared/path'%>
-            <!--}当前位置 end-->
-            <!--主体内容 start{-->
-			<%=render 'left_bar', type: (params[:type] || 0).to_i%>
-            <div class="right">
-            	<h2 class="tit">新闻动态</h2>
-                <ul class="list">
-                  <%if @posts.present?%>
-                    <% @posts.each do |post| %>
-                      <li><h3><%=link_to(post.title, post ) %></h3><%=post.created_at.strftime("%Y.%m.%d")%></li>
-                    <%end%>
-                  <%else%>
-                    <li><h3><a href="#">无内容!</a></h3></li>
-                  <%end%>
-                </ul>
-                <!--分页 start{-->
-                <div class="page">
-                  <%=will_paginate @posts if @posts.present?%>
-                </div>
-                <!--}分页 end-->
-            </div>
-            <!--}主体内容 end-->
-        </div>
-        <!--}内容 end-->
-    </div>
-	<!--}主体 end-->
+
