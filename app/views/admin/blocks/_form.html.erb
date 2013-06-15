@@ -11,11 +11,9 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :block_space_id, '所属栏目：' %><br />
+    <%= f.label :block_space_id, '所属位置：' %><br />
 	<%=f.select :block_space_id, options: BlockSpace.block_space_name_options %>
-	<!--ajax显示栏目位尺寸-->
-	<span id="ads_show_size"></span>
-</div>
+  </div>
   <div class="field">
     <%= f.label :title, '标题：' %><br />
     <%= f.text_field :title %>

@@ -1,10 +1,9 @@
 <tr id="static_<%=b.id%>" class="user_unaudited">
     <td><label><span class="btn-medium">选中</span><%=check_box_tag "content[ids][]", b.id %></label></td>
-    <td><%= b.id %></td>
-    <td><%= b.mark %></td>
-	<td><%= truncate(b.short_title, length: 10)%></td>
-	<td><%= link_to truncate(b.title, length: 10), 'javascript:void(0);' %></td>
-	<td><%=b.position.name if b.position.present?%></td>
+    <td><%=b.id%></td>
+	<td><%= link_to truncate(b.title, length: 10), b.view_url, target: '_blank' %></td>
+	<td><%=b.type_str%></td>
+	<td><%=b.static_type.name if b.static_type.present?%></td>
     <td class="show_state_<%=b.id%>"><%=b.state==0 ? '禁用' : '正常'%></td>
 	<td class="show_publish_<%=b.id%>"><%=b.publish==0 ? '否' : '是' %></td>
 	<td class="show_stick_<%=b.id%>"><%=b.stick==0 ? '否' : '是'%></td>

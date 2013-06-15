@@ -1,9 +1,9 @@
-<%=provide(:title, '静态页列表')%>
+<%=provide(:title, '位置列表')%>
 <div class="main">
 	<%=render 'admin/base/left_bar'%>
     <div class="span10">
       <!--Body content-->
-          <%= render "admin/statics/tool_bar"%>
+          <%= render "admin/positions/tool_bar"%>
           <span class="blank10"></span>
           <div class="sub_operation clearfix">
              <div class="left_operation">
@@ -14,12 +14,12 @@
                 ｜
                 <a id="select_cancel" class="pointer">取消 </a>
               </div>
-			  <div class="clearfix">
-				<div class="operate_box clearfix">
-					<%=link_to('+新建', new_admin_static_path )%>
-					<%=link_to('批量删除', {action: 'destroy_more', format: 'js'}, class: "select_post")%>
-				</div>
-			  </div>
+                  <div class="clearfix">
+                    <div class="operate_box clearfix">
+                      <%=link_to('+新建', new_admin_position_path )%>
+                      <%=link_to('批量删除', {action: 'destroy_more',format: 'js'}, :class=>"select_post")%>
+                    </div>
+                  </div>
           </div>
           <span class="blank10"></span>
           <table class="admin-box">
@@ -27,25 +27,23 @@
               <tr>
                 <th></th>
                 <th>ID</th>
+                <th>名称</th>
                 <th>标识</th>
-                <th>短标题</th>
-                <th>标题</th>
-                <th>位置</th>
+                <th>类型</th>
+                <th>排序</th>
                 <th>状态</th>
-				<th>发布状态</th>
-				<th>是否推荐</th>
                 <th>管理</th>
               </tr>
             </thead>
             <tbody >
-              <%@statics.each do |b|%>
-                <%= render partial: "admin/statics/item", :locals => { :b => b } %>
+              <%@positions.each do |b|%>
+                <%= render partial: "admin/positions/item", :locals => { :b => b } %>
               <%end%>
             </tbody>
           </table>
-          <%= will_paginate @statics if @statics.present? %>
+          <%= will_paginate @positions if @positions.present? %>
         </div>
-     </div>
+      </div>
     </div>
   </div>
 </div>

@@ -92,14 +92,10 @@ Muc::Application.routes.draw do
     end
 
     #静态页分页
-    resources :static_types do
+    resources :positions do
 	  collection do
 		post :ajax_set_state
 		post :destroy_more
-        get :introduce
-        get :enrollment
-        get :student_serve
-        get :teach
 	  end
     end
 
@@ -118,23 +114,29 @@ Muc::Application.routes.draw do
   get 'post/news/:mark/:id',	to: 'posts#show'
 
   #学院概述
-  get 'introduce',				to: 'introduces#index',		  as: 'introduces'
-  get 'introduce/faculties',	to: 'introduces#faculties'
-  get 'introduce/leader',		to: 'introduces#leader'
+  get 'introduces',					to: 'introduces#index',		  as: 'introduces'
+  get 'introduce/:mark',			to: 'introduces#show'
 
   #艺术教学
-  get 'teach/index',			to: 'teaches#index',		  as: 'teaches'
-  get 'teach/teacher',			to: 'teaches#teacher'
+  get 'teaches',					to: 'teaches#index',		  as: 'teaches'
+  get 'teaches/:mark',				to: 'teaches#show'
+
+
+  #get 'teach/index',			to: 'teaches#index'
+  #get 'teach/teacher',			to: 'teaches#teacher'
   get 'teach/arts',             to: 'teaches#arts'
+
   #学院丛书
   get 'book/index',             to: 'books#index',            as: 'books'
   get 'books/list',             to: 'books#list'
 
   #招生详情
-  get 'enrollment/index',       to: 'enrollments#index',       as: 'enrollments'
+  get 'enrollments',					to: 'enrollments#index',		  as: 'enrollments'
+  get 'enrollment/:mark',			to: 'enrollments#show'
   
   #学生工作
-  get 'student_serve/index',    to: 'student_servies#index',  as: 'student_servies'
+  get 'student_servies',				to: 'student_servies#index',	  as: 'student_servies'
+  get 'student_serve/:mark',			to: 'student_servies#show'
 
   #用户路由
   resources :users,			only: [:index, :new, :create, :show] 

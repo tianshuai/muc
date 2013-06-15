@@ -1,0 +1,46 @@
+<%= form_for([:admin,@position]) do |f| %>
+  <% if @position.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @position.errors.count %>处错误提示: </h2>
+
+      <ul>
+      <% @position.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name, '名称：' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :content, '描述' %><br />
+    <%= f.text_area :content, size: '100*100' %>
+  </div>
+  <div class="field">
+    <%= f.label :mark, '标识' %><br />
+    <%= f.text_field :mark %>
+  </div>
+  <div class="field">
+    <%= f.label :order, '排序' %><br />
+    <%= f.number_field :order %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stick, '是否推荐' %><br />
+    <%= f.radio_button :stick, 0 %>否&nbsp;
+    <%= f.radio_button :stick, 1 %>是
+  </div>
+  <div class="field">
+    <%= f.label :state, '状态' %><br />
+    <%= f.radio_button :state, 0 %>关闭&nbsp;
+    <%= f.radio_button :state, 1 %>开启
+  </div>
+  <span blank20></span>
+  <div class="actions">
+    <%= f.submit %>
+	<%=link_to '返回', admin_positions_path %>
+  </div>
+<% end %>

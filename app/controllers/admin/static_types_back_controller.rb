@@ -1,5 +1,5 @@
 # encoding: utf-8
-class Admin::StaticTypesController < Admin::Common
+class Admin::StaticTypesBackController < Admin::Common
 
   #左侧导航样式
   before_filter do

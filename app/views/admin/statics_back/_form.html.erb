@@ -12,18 +12,11 @@
   <% end %>
   <input type="hidden" name="asset_ids" id="editor_ids" />
   <div class="field">
-    <%= f.label :position_id, '所属位置：' %><br />
-	<%=f.select :position_id, options: Position.select_name_options %>
-	<!--ajax显示栏目位尺寸-->
-	<span id="ads_show_size"></span>
-  </div>
-  <div class="field">
-    <%= f.label :mark, '标识：' %><br />
-    <%= f.text_field :mark %>
-  </div>
-  <div class="field">
-    <%= f.label :short_title, '短标题：' %><br />
-    <%= f.text_field :short_title %>
+    <%= f.label :type, '类型：' %><br />
+    <%= f.radio_button :type, 1 %>学院概况&nbsp;
+    <%= f.radio_button :type, 4 %>艺术教学&nbsp;
+    <%= f.radio_button :type, 2 %>招生详情&nbsp;
+    <%= f.radio_button :type, 3 %>学生工作
   </div>
   <div class="field">
     <%= f.label :title, '标题：' %><br />
