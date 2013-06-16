@@ -1,32 +1,34 @@
 <%=provide(:title, '上传作品')%>
 <% content_for :style do %>
-  <%= stylesheet_link_tag "uploadify/uploadify" %>
+
 <%end%>
+<% content_for :style do %>
+ <%= stylesheet_link_tag    "uploadify/uploadify" %>
+<%end%>
+
 <% content_for :scripts do %>
 	<%= javascript_include_tag "uploadify/jquery.uploadify.min" %>
 	<script type="text/javascript">
 
+
 	</script>
 <%end%>
 <% content_for :jquery do %>
-	$(function() {
-		$("#file_upload").uploadify({
-			'height'        : 30,
-			'swf'           : '/uploadify/uploadify.swf',
-			'uploader'      : '/upload/editor',
-			'buttonText'    : '上传图片1'
-		});
-	});
-
+$(function() {
+    $('#uploadify').uploadify({
+        'swf'      : 'uploadify.swf',
+        'uploader' : '/upload/art_upload'
+        // Put your options here
+    });
+});
 <%end%>
-<input type="file" name="file_upload" id="file_upload" />
+
+
 <div class="main">
 
     <div class="span10">
       <!--Body content-->
-
-aaaaaaaaa
-<img src="<%=asset_path('aa')%>" />
+<input type="file" name="file_upload" id="uploadify" />
 <h1>New art</h1>
 <%= form_for(@post, url: {action: :create_art}) do |f| %>
   <% if @post.errors.any? %>
