@@ -108,7 +108,7 @@ Muc::Application.routes.draw do
   match 'contact',     to: 'home#contact'
 
   #学院新闻
-  resources :posts,				except: :show
+  resources :posts,				only: [ :index ]
   get 'posts',					to: 'posts#index' 
   get 'posts/:mark',			to: 'posts#list'
   get 'post/news/:mark/:id',	to: 'posts#show'
@@ -120,10 +120,9 @@ Muc::Application.routes.draw do
   #艺术教学
   get 'teaches',					to: 'teaches#index',		  as: 'teaches'
   get 'teaches/:mark',				to: 'teaches#show'
+  get 'teach/new_art',				to: 'teaches#new_art'
+  post 'teach/create_art',			to: 'teaches#create_art'
 
-
-  #get 'teach/index',			to: 'teaches#index'
-  #get 'teach/teacher',			to: 'teaches#teacher'
   get 'teach/arts',             to: 'teaches#arts'
 
   #学院丛书
@@ -158,6 +157,7 @@ Muc::Application.routes.draw do
 
   #上传路径
   match 'upload/editor'  => 'upload#editor'
+  match 'upload/art_upload' => 'upload#art_upload'
 
   #图片路径
   match "asset/*path" => "assets#serve"

@@ -1,0 +1,73 @@
+<%=provide(:title, '上传作品')%>
+<% content_for :style do %>
+  <%= stylesheet_link_tag "uploadify/uploadify" %>
+<%end%>
+<% content_for :scripts do %>
+	<%= javascript_include_tag "uploadify/jquery.uploadify.min" %>
+	<script type="text/javascript">
+
+	</script>
+<%end%>
+<% content_for :jquery do %>
+	$(function() {
+		$("#file_upload").uploadify({
+			'height'        : 30,
+			'swf'           : '/uploadify/uploadify.swf',
+			'uploader'      : '/upload/editor',
+			'buttonText'    : '上传图片1'
+		});
+	});
+
+<%end%>
+<input type="file" name="file_upload" id="file_upload" />
+<div class="main">
+
+    <div class="span10">
+      <!--Body content-->
+
+aaaaaaaaa
+<img src="<%=asset_path('aa')%>" />
+<h1>New art</h1>
+<%= form_for(@post, url: {action: :create_art}) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :type, value: 2 %>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.number_field :state %>
+  </div>
+  <div class="actions">
+    <%= f.submit '创建'%>
+  </div>
+<% end %>
+
+<%= link_to '返回', root_path %>
+
+    </div>
+</div>
+
+

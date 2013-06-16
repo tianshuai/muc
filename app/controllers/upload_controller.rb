@@ -43,5 +43,8 @@ class UploadController < ApplicationController
 	render json: results.to_json
   end
 
+  def art_upload
+
+  end
 
 end
