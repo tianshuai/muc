@@ -14,18 +14,41 @@
 	</script>
 <%end%>
 <% content_for :jquery do %>
-$(function() {
+<% session_key = Rails.application.config.session_options[:key] %>
+  // Create an empty object to store our custom script data
+  var uploadify_script_data = {};
+
+  // Fetch the CSRF meta tag data
+  var csrf_token = $('meta[name=csrf-token]').attr('content');
+  var csrf_param = $('meta[name=csrf-param]').attr('content');
+
+  // Now associate the data in the config, encoding the data safely
+  uploadify_script_data[csrf_token] = encodeURI(csrf_param);
+
+  // Associate the session information
+  uploadify_script_data['<%= session_key %>'] = '<%= cookies[session_key] %>';
+
+  uploadify_script_data['authenticity_token'] = '<%= form_authenticity_token %>';
+
+
     $('#uploadify').uploadify({
         'swf'      : '/uploadify/uploadify.swf',
-        'uploader' : '/upload/art_upload'
-        // Put your options here
+        'uploader' : '/upload/art_upload',
+        'buttonText' : '上传作品',
+        'formData' : uploadify_script_data,
+        'onUploadSuccess' : function(file, data, response) {
+          data = new Function("return" + data)();//转换后的JSON对象
+          if(data.error==0)
+          {
+            alert('ok');
+          }else if(data.error==1)
+          {
+            alert(data.message);
+          }
+        }
     });
-});
 <%end%>
-
-
 <div class="main">
-
     <div class="span10">
       <!--Body content-->
 <input type="file" name="file_upload" id="uploadify" />

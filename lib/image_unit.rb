@@ -13,11 +13,12 @@ module ImageUnit
 	  set_format = CONF['verify_img_type']
       #整数转换为字节
       verify_size = (options[:size] || 2).to_i.megabytes
-	  return { message: "只支持JPG、JPEG、PNG、GIF文件", result: false } unless set_format.include?(format.downcase)
+	  #return { message: "只支持JPG、JPEG、PNG、GIF文件", result: false } unless set_format.include?(format.downcase)
 	  return { message: "文件大小不要超过2Mb", result: false } unless verify_size > image_io_size
 
       #用minimagick读取文件
       image_mini = MiniMagick::Image.read(image_io)
+
 
 	  grid = Mongoid::GridFS
 	  grid_o  = grid.put(image_mini.path)
