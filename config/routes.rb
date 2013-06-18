@@ -125,6 +125,7 @@ Muc::Application.routes.draw do
   put 'teach/update_art',			to: 'teaches#update_art'
   get 'teache/ajax_load_img',       to: 'teaches#ajax_load_img'
   get 'teaches/:mark',				to: 'teaches#show'
+  get 'art/:mark/:id',				to: 'teaches#art'
 
 
   get 'teach/arts',             to: 'teaches#arts'

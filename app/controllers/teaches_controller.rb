@@ -29,7 +29,7 @@ class TeachesController < ApplicationController
 	end
   end
 
-  #新闻展示页
+  #列表展示页
   def show
 	mark = params[:mark]
     @static = Static.find_by(mark: mark)
@@ -40,6 +40,28 @@ class TeachesController < ApplicationController
 	  else
 	    flash[:error] = "网页不存在!"
 		return redirect_to root_path
+	  end
+    end
+  end
+
+  #作品展示页
+  def art
+	@post = Post.find(params[:id].to_i)
+    respond_to do |format|
+	  if @post.present?
+		if @post.forbid?
+		  flash[:error] = "此作品已被管理员禁用!"
+		  format.html { redirect_to root_path }
+		end
+		unless @post.published?
+		  flash[:error] = "没有权限!"
+		  format.html { redirect_to root_path }
+		end
+        format.html # show.html.erb
+        format.json { render json: @post }
+	  else
+	    flash[:error] = "作品不存在或已删除!"
+		format.html { redirect_to root_path }
 	  end
     end
   end
@@ -59,8 +81,6 @@ class TeachesController < ApplicationController
           params[:asset_ids].split(',').each do |id|
             asset = Asset.find(id.to_i)
             asset.update_attributes(relateable_id: @post.id, relateable_type: @post.class.to_s) if asset.present?
-            p '1111111111'
-            p asset
           end
         end
         @success = true

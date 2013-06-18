@@ -83,7 +83,7 @@
                   <ul class="ul_works">
                     <% @arts.each do |d| %>
                       <% if d.asset.present? %>
-                        <li><h3><%= link_to "#{asset_m_tag(d.asset)}#{truncate(d.title, length: 10)}&nbsp; #{d.user.name if d.user.present?}".html_safe, '#' %></h3></li>
+                        <li><h3><%= link_to "#{asset_m_tag(d.asset)}#{truncate(d.title, length: 10)}&nbsp; #{d.user.name if d.user.present?}".html_safe, d.view_url, target: '_blank' %></h3></li>
                       <%end%>
                     <%end%>
                   </ul>

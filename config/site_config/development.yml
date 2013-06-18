@@ -7,7 +7,7 @@ domain_image: http://127.0.0.1:3000/asset
 #新闻最终页
 news_url: http://127.0.0.1:3000/post/%s/%s
 #作品最终页
-arts_url: http://127.0.0.1:3000/teach/%s/%s
+arts_url: http://127.0.0.1:3000/art/%s/%s
 #书籍最终页
 books_url: http://127.0.0.1:3000/book/%s/%s
 

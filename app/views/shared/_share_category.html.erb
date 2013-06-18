@@ -1,7 +1,7 @@
 <%type ||= 1%>
 <div class="share_category field">
   <label name="post[category_id]">分类:</label>
-  <input type="hidden" class="category_tag" name="post[category_id]" value="<%=current_category_id || ''%>" />
+  <input type="hidden" class="category_tag" name="post[category_id]" id="category_id" value="<%=current_category_id || ''%>" />
   <% Category.category_arr(type).each do |category| %>
     <%if category.present?%>
       <% if current_category_id.present? and current_category_id.to_s == category.id.to_s %>

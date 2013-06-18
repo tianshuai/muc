@@ -7,7 +7,7 @@ domain_image: http://muc.shijue.me/asset
 #新闻最终页
 news_url: http://muc.shijue.me/post/%s/%s
 #作品最终页
-arts_url: http://muc.shijue.me/teach/%s/%s
+arts_url: http://muc.shijue.me/art/%s/%s
 #书籍最终页
 books_url: http://muc.shijue.me/book/%s/%s
 

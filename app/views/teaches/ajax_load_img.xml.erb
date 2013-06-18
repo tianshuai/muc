@@ -39,6 +39,7 @@
 		{
 			$('#asset_id').val(asset_id);
       		$("div[name='thumb_show'][key=thumb_show_"+asset_id+"]").show();
+			$(":input[name='post[asset_id]']").parent().find('.error').hide();
 		}
       <%else%>
         alert('生成图片失败!');

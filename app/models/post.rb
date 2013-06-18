@@ -87,8 +87,12 @@ class Post
   scope :recent,			-> { desc(:_d) }
   #已发布的
   scope :published,         -> { where(publish: PUBLISH[:yes]) }
+  #未发布的
+  scope :unpublished,       -> { where(publish: PUBLISH[:no]) }
   #正常显示的
   scope :normal,            -> { where(state: STATE[:ok]) }
+  #禁用的
+  scope :forbid,            -> { where(state: STATE[:no]) }
   #是新闻
   scope :news,              -> { where(type: TYPE[:news]) }
   #是丛书
@@ -104,12 +108,24 @@ class Post
 	if self.category.present?
 	  case type
 	  when 1 then	sprintf(CONF['news_url'], self.category.mark, self.id)
-	  when 2 then	sprintf(CONF['books_url'], self.category.mark, self.id)
-	  when 3 then	sprintf(CONF['arts_url'], self.category.mark, self.id)
+	  when 2 then	sprintf(CONF['arts_url'], self.category.mark, self.id)
+	  when 3 then	sprintf(CONF['books_url'], self.category.mark, self.id)
 	  end
 	else
 	  CONF['domain_base']
 	end
+  end
+
+  # 是否发布
+  def published?
+	return false if self.publish == PUBLISH[:no]
+	return true
+  end
+
+  #是否禁用
+  def forbid?
+	return true if self.state == STATE[:no]
+	return false
   end
 
   #如果有封面图，取之，没有取所有附件第一个

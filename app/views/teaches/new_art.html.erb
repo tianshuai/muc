@@ -17,6 +17,7 @@
       $('#asset_id').val(asset_id);
       $("div[name='thumb_show']").hide();
       $("div[name='thumb_show'][key=thumb_show_"+asset_id+"]").show();
+	  $(":input[name='post[asset_id]']").parent().find('.error').hide();
     }
 
     //添加删除分类
@@ -87,6 +88,7 @@
   //刷新后清空input值
   $('#asset_id').val(0);
   $('#art_img_ids').val('');
+  $('#category_id').val('');
 
 
   //uploadify上传
@@ -184,7 +186,9 @@ $.validator.addMethod('notzero', function(value, element) {
       <input type="hidden" name="asset_ids" id="art_img_ids" />
       <%= f.hidden_field :type, value: 2 %>
       <%= f.hidden_field :user_id, value: current_user.id %>
-      <%= f.hidden_field :asset_id, value: 0, id: 'asset_id' %>
+      <div class="field">
+		<%= f.hidden_field :asset_id, value: 0, id: 'asset_id' %>
+	  </div>
       <div class="field">
         <%= f.label :title, '标题:' %>
         <%= f.text_field :title, class: "{validate:{required: true, minlength: 2, messages:{required:'请输入姓名', minlength:'请至少输入两个字符'}}}" %>
