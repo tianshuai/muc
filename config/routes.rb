@@ -111,7 +111,7 @@ Muc::Application.routes.draw do
   resources :posts,				only: [ :index ]
   get 'posts',					to: 'posts#index' 
   get 'posts/:mark',			to: 'posts#list'
-  get 'post/news/:mark/:id',	to: 'posts#show'
+  get 'post/:mark/:id',	        to: 'posts#show'
 
   #学院概述
   get 'introduces',					to: 'introduces#index',		  as: 'introduces'
@@ -119,9 +119,13 @@ Muc::Application.routes.draw do
 
   #艺术教学
   get 'teaches',					to: 'teaches#index',		  as: 'teaches'
-  get 'teaches/:mark',				to: 'teaches#show'
   get 'teach/new_art',				to: 'teaches#new_art'
   post 'teach/create_art',			to: 'teaches#create_art'
+  get 'teach/edit_art',				to: 'teaches#edit_art'
+  put 'teach/update_art',			to: 'teaches#update_art'
+  get 'teache/ajax_load_img',       to: 'teaches#ajax_load_img'
+  get 'teaches/:mark',				to: 'teaches#show'
+
 
   get 'teach/arts',             to: 'teaches#arts'
 
@@ -159,8 +163,10 @@ Muc::Application.routes.draw do
   match 'upload/editor'  => 'upload#editor'
   match 'upload/art_upload' => 'upload#art_upload'
 
-  #图片路径
-  match "asset/*path" => "assets#serve"
+  #附件处理
+  get "asset/*path" => "assets#serve"
+  delete "asset/destroy" => "assets#destroy"
+  post "asset/ajax_save_desc" => "assets#ajax_save_desc"
 
 
   # The priority is based upon order of creation:

@@ -52,7 +52,55 @@ class TeachesController < ApplicationController
 
   #创建作品
   def create_art
-	p 'aaaaaaaaaaaaaaaaaaaa'
+    @post = Post.new(params[:post])
+    respond_to do |format|
+      if @post.save
+        if params[:asset_ids]
+          params[:asset_ids].split(',').each do |id|
+            asset = Asset.find(id.to_i)
+            asset.update_attributes(relateable_id: @post.id, relateable_type: @post.class.to_s) if asset.present?
+            p '1111111111'
+            p asset
+          end
+        end
+        @success = true
+        @note = "创建成功!"
+        #format.html { redirect_to root_path, notice: '创建成功!' }
+        format.xml { render layout: false }
+      else
+        @success = false
+        @note = '创建失败!'
+        #format.html { render action: "new_art" }
+        format.xml { render layout: false }
+      end
+    end
+
+  end
+
+  #编辑作品
+  def edit_art
+    @post = Post.find(params[:id].to_i)
+
+  end
+
+  #更新作品
+  def update_art
+
+  end
+
+  #ajax加载图片队列
+  def ajax_load_img
+    @asset = Asset.find(params[:asset_id].to_i)
+
+	respond_to do |f|
+      if @asset.present?
+        @success = true
+	    f.xml { render :ajax_load_img, layout: false }
+      else
+        @success = false
+	    f.xml { render :ajax_load_img, layout: false } 
+      end
+	end
   end
 
 end

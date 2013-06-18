@@ -35,17 +35,16 @@ class Admin::BlocksController < Admin::Common
         #获得文件/格式
 		file = params[:asset_id]
         file_temp = file.tempfile
-        file_format = file.content_type
 		file_name = file.original_filename
         #上传
-        result = ImageUnit::Upload.save_asset(file_temp,file_format.split('/').last)
+        result = ImageUnit::Upload.save_asset(file_temp,3)
 		if result[:result]
 		  @block.build_asset({
 			original_file: result[:file_o_id],
 			thumb_small: result[:file_s_id],
 			filename: file_name,
 			size: result[:size],
-			format_type: file_format
+			format_type: result[:format]
 		  }).save
 		end
       end

@@ -1,0 +1,47 @@
+<taconite>
+  <% if @success %>
+    <% asset_id = @asset.id %>
+	<append select="#img_list"><![CDATA[
+        <div id="asset_<%= asset_id %>" class="box img-box" style="position:relative;">
+			<div class="w180">
+                <div class="img_outer_div">
+                    <%=asset_m_tag(@asset)%>
+                </div>
+                <div class="img_hover_box"></div>
+                                <span>文件名：<%=truncate(@asset.filename,:length=>20)%></span><br/>
+				<span>原图尺寸：<%=@asset.width%>x<%=@asset.height%>px</span><br/>
+                <div class="asset_notice hidden" name="thumb_show" key="thumb_show_<%=@asset.id%>">
+                    封面图
+                </div>
+				<span class="asset_desc"><%=truncate(@asset.desc,:length=>140)%></span>
+				<div class="desc_box hidden mb-5">
+					<textarea class="mb-5 desc_text" style="width:170px"><%=@asset.desc%></textarea>
+					<input type="button" name="save_desc_btn" onclick="ajax_save_desc(this)" asset_id="<%=asset_id%>" value="保存" class="btn-medium" />
+				</div>
+			</div>
+			<div class="w180">
+				<a href="" class="ajax-hash hidden">删除</a>
+                <a href="#mark_thumb" name="<%=asset_id%>" id="set_cover_<%=asset_id%>" class="ajax-hash btn-medium">置封面图</a>
+				<a href="#edit_desc" asset_id="<%=asset_id%>" class="ajax-hash btn-medium">描述</a>
+                <%=link_to '删除',{ controller: :assets, action: :destroy, id: asset_id, type: 1 }, remote: true, method: :delete, class: 'btn-medium closelabel'%>
+			</div>
+		</div>
+	]]></append>
+<%end%>
+  <eval>
+      <% if @success %>
+        var asset_id = <%= @asset.id %>;
+        //把上传的图片ｉｄ传给editor_ids,用于关联该作品
+        muc.record_asset_ids(asset_id,'#art_img_ids');
+
+		//如果没有指定封面图，默认第一张为封面图
+		if($('#asset_id').val() == 0)
+		{
+			$('#asset_id').val(asset_id);
+      		$("div[name='thumb_show'][key=thumb_show_"+asset_id+"]").show();
+		}
+      <%else%>
+        alert('生成图片失败!');
+      <%end%>
+  </eval>
+</taconite>

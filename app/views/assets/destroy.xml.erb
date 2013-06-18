@@ -1,0 +1,12 @@
+<taconite>
+  <% if @success %>
+	  	<remove select="#asset_<%=params[:id]%>" />
+  <%end%>
+  <eval>
+      <% if @success %>
+        //alert('删除成功!');
+      <%else%>
+        alert('删除失败!');
+      <%end%>
+  </eval>
+</taconite>

@@ -5,7 +5,7 @@ domain_base: http://muc.shijue.me
 domain_image: http://muc.shijue.me/asset
 
 #新闻最终页
-news_url: http://muc.shijue.me/news/%s/%s
+news_url: http://muc.shijue.me/post/%s/%s
 #作品最终页
 arts_url: http://muc.shijue.me/teach/%s/%s
 #书籍最终页
@@ -14,3 +14,15 @@ books_url: http://muc.shijue.me/book/%s/%s
 
 #设置图片支持的格式
 verify_img_type: ["JPG","JPEG","PJPEG","PNG","X-PNG","GIF"]
+
+#作品图规格
+image_art_format:
+  b: 740
+  m: [170,120]
+  s: [50,50]
+
+#编辑器图规格
+image_editor_format:
+  b: 740
+  m: [170,120]
+  s: [50,50]

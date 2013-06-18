@@ -1,0 +1,9 @@
+<taconite>
+  <eval>
+      <% if @success %>
+        muc.show_ok_note('<%=@note%>',2000);
+      <%else%>
+        muc.show_error_note('<%=@note%>',3000);
+      <%end%>
+  </eval>
+</taconite>

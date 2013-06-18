@@ -2,6 +2,13 @@
     <td><label><span class="btn-medium">选中</span><%=check_box_tag "content[ids][]", b.id %></label></td>
     <td><%=b.id%></td>
 	<td><%= truncate(b.title, length: 10) %></td>
+	<td>
+		<%if b.asset.present?%>
+			<%=asset_s_tag(b.asset,{ width: 50, height: 50 }) %>
+		<%else%>
+			无图
+		<%end%>
+	</td>
 	<td><%=b.category.name if b.category.present?%></td>
 	<td><%=b.user.name if b.user.present?%></td>
     <td class="show_state_<%=b.id%>"><%=b.state==0 ? '禁用' : '正常'%></td>

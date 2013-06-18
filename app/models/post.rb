@@ -59,6 +59,8 @@ class Post
   field :user_id,             type: Integer
   #类型
   field :type,                type: Integer,  default: TYPE[:news]
+  #封面图
+  field :asset_id,            type: Integer,  default: 0
   #分类
   field :category_id,         type: Integer
   #状态
@@ -97,16 +99,6 @@ class Post
   scope :sticked,			-> { where(stick: STICK[:yes]) }
 
 
-  #类型说明
-  def type_str
-	case self.type
-	when 1 then '新闻'
-	when 2 then '招生'
-	else
-	  '未定义'
-	end
-  end
-
   #地址（不同分类下的内容走不同地址）
   def view_url
 	if self.category.present?
@@ -118,6 +110,16 @@ class Post
 	else
 	  CONF['domain_base']
 	end
+  end
+
+  #如果有封面图，取之，没有取所有附件第一个
+  def asset
+    if self.asset_id == 0
+      asset =  self.assets.first if self.assets.present?
+    else
+      asset = Asset.find(self.asset_id)
+    end
+    return  asset
   end
   
 end

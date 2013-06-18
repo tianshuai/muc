@@ -30,7 +30,7 @@
                 	<li>
                     	<h3><%= link_to truncate(post.title, length: 40), post.view_url, target: "_blank" %></h3>
                         <em><%= post.created_at.strftime("%Y.%m.%d") %></em>
-                        <p><%= raw truncate(post.content, length: 80) %></p>
+                        <p><%= raw truncate(strip_tags(post.content), length: 80) %></p>
                     </li>
 					<%end%>
 				<%end%>
@@ -82,7 +82,9 @@
                 <% if @arts.present? %>
                   <ul class="ul_works">
                     <% @arts.each do |d| %>
-                      <li><h3><%= link_to "#{image_tag('7.jpg')}#{truncate(d.title, length: 10)}&nbsp; #{d.user.name if d.user.present?}".html_safe, '#' %></h3></li>
+                      <% if d.asset.present? %>
+                        <li><h3><%= link_to "#{asset_m_tag(d.asset)}#{truncate(d.title, length: 10)}&nbsp; #{d.user.name if d.user.present?}".html_safe, '#' %></h3></li>
+                      <%end%>
                     <%end%>
                   </ul>
                 <%end%>

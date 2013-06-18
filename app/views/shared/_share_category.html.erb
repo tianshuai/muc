@@ -1,6 +1,6 @@
 <%type ||= 1%>
-<label class="field-title">分类</label>
-<div class="share_category">
+<div class="share_category field">
+  <label name="post[category_id]">分类:</label>
   <input type="hidden" class="category_tag" name="post[category_id]" value="<%=current_category_id || ''%>" />
   <% Category.category_arr(type).each do |category| %>
     <%if category.present?%>

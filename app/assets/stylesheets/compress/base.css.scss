@@ -273,7 +273,7 @@ ul.ul_work{overflow:hidden;zoom:1;margin:0 0 0 -20px;padding:10px 0;color:#999}
 
 
 .operate_box{float:left;display:inline;margin-right:10px;border:1px solid #ccc;border-radius:3px;}
-.operate_box a{display:inline-block;width:75px;height:27px;line-height:27px;text-align:center;background:url(/images/operate_bg.gif) repeat-x;float:left;}
+.operate_box a{display:inline-block;width:75px;height:27px;line-height:27px;text-align:center;background: image_url('operate_bg.gif') repeat-x;float:left;}
 .operate_box a:hover{background:#000;color:#fff;text-decoration:none;}
 
 /* 14.table
@@ -321,3 +321,58 @@ input.btn-medium {border: 0 none;cursor: pointer;}
 .btn-medium:hover {background-color: #333;}
 
 
+
+/*图片列表*/
+.masonry-box {clear: both;width: auto;}
+.box{background-color: #fff;display: inline;float: left;margin: 0 20px 10px 0px;width: 170px;position:relative;}
+.img-box a{
+    color:#999;
+}
+.w180{width:170px;display:inline;float:left;}
+.w170{width:170px;display:inline;float:left;}
+.img_outer_div{
+    overflow: hidden;
+    position: relative;
+    width: 170px;
+}
+.img_hover_box{position:absolute;top:0px;left:0px;width:170px;height:170px;display:none;z-index:999;}
+.asset_notice{position:absolute;top:0;right:0;padding:2px 5px;background:#cc0000;color:#fff;}
+
+
+
+/* 16. msg
+---------------------------------------------------------------------- */
+.flash {font-family:"黑体";top:0;height:50px;line-height:50px;width:100%;background-color: #fff;font-weight:bold;text-align:center;left:0px;z-index:9999999;margin:0;font-size:18px;}
+#flash .notice {color:#529200;background-color:#fff;}
+#flash .warning {color:#f6a32c;background-color:#fff;}
+#flash .error {color:#ee0000;background-color:#fff;}
+
+.jbar,.flash{padding:35px 0;width:410px;background-color: #fff;position:fixed;text-align:center;left:50%;top:200px;z-index:9999999;margin-left:-210px;}
+.jbar span,#flash span{height:40px;line-height:40px;display:block;width:400px;text-align:center;margin:0 auto;}
+.jbar-ok,#flash .notice{border:5px solid #529200;}
+.jbar-error,#flash .error{border:5px solid #ee0000;}
+.bar_notice,#flash .warning{border:5px solid #f6a32c;}
+.jbar-bottom{bottom:0px;border-bottom:2px solid #fff;border-top: 1px solid #ebebeb;color:#777;}
+.jbar-content{line-height:46px;font-size: 20px;font-weight:bold;text-align:center;}
+.jbar span img,#flash span img{vertical-align:middle;margin-right:5px;}
+a.jbar-cross{width:15px;height:14px;background: image_url('closelabel.png') no-repeat top left;cursor:pointer;right:10px;position: absolute;top: 8px;}
+a.jbar-cross:hover{background: image_url('closelabel_ad.png') no-repeat;}
+#jbar .jbar-top a.jbar-cross{top:8px;}
+#jbar .jbar-bottom a.jbar-cross{bottom:8px;}
+
+
+
+
+
+/* validate 错误信息样式**/
+input.error { border: 1px solid red; }
+label.error {
+//background:url("./demo/images/unchecked.gif") no-repeat 0px 0px;
+padding-left: 16px;
+padding-bottom: 2px;
+font-weight: bold;
+color: #EA5200;
+}
+label.checked {
+//background:url("./demo/images/checked.gif") no-repeat 0px 0px;
+}
