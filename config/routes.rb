@@ -126,6 +126,8 @@ Muc::Application.routes.draw do
   get 'teache/ajax_load_img',       to: 'teaches#ajax_load_img'
   get 'teaches/:mark',				to: 'teaches#show'
   get 'art/:mark/:id',				to: 'teaches#art'
+  delete 'teach/del_art',			to: 'teaches#ajax_del_art'
+  post 'teach/set_art_stick',		to: 'teaches#set_art_stick'
 
 
   get 'teach/arts',             to: 'teaches#arts'

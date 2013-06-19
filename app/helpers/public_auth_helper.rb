@@ -73,6 +73,17 @@ module PublicAuthHelper
 	end
   end
 
+	#可信用户，管理员，编辑，Owner 可以
+	def can_edit?(item)
+	  return false if item.blank?
+	  return false if current_user.blank?
+	  return true if owner?(item.id)
+	  return true if editor?
+	  return true if admin?
+	  return true if system?
+	  false
+	end
+
   #test
   def test
     puts 'tttttttttttttttttttian'

@@ -1,0 +1,20 @@
+<taconite>
+	<replace select="#post_stick_btn"><![CDATA[
+		<% if @success %>
+            <%if @type == 0%>
+                <%=link_to "推荐", { action: :set_art_stick, id: @post.id, type: 1 }, method: :post, remote: true, id: "post_stick_btn", class: "btn-medium black"%>
+            <%else%>
+                <%=link_to "取消推荐", { action: :set_art_stick, id: @post.id, type: 0 }, method: :post, remote: true, id: "post_stick_btn", class: "btn-medium black"%>
+            <%end%>
+		<%end%>
+
+	]]></replace>
+	<eval>
+		<% if @success %>
+			//muc.show_ok_note('<%=@note%>');
+		<%else%>
+			muc.show_error_note('<%=@note%>');
+		<%end%>
+	</eval>
+
+</taconite>

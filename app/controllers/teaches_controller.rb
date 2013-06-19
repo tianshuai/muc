@@ -100,7 +100,7 @@ class TeachesController < ApplicationController
   #编辑作品
   def edit_art
     @post = Post.find(params[:id].to_i)
-
+	
   end
 
   #更新作品
@@ -120,6 +120,61 @@ class TeachesController < ApplicationController
         @success = false
 	    f.xml { render :ajax_load_img, layout: false } 
       end
+	end
+  end
+
+  # 删除作品
+  def ajax_del_art
+	@post = Post.find(params[:id].to_i)
+
+    if @post.present?
+	  if can_edit?(@post.user)
+	    if @post.destroy
+		  @success = true
+		  @note = "删除成功!"
+	    else
+		  @success = false
+		  @note = "删除失败!"
+	    end
+	  else
+		@success = false
+		@note = "没有权限"
+      end
+    else
+	  @success = false
+	  @note = "作品不存在!"
+	end
+
+	respond_to do |f|
+	  f.xml { render layout: false }
+	end
+  end
+
+  # ajax推荐／取消推荐作品
+  def set_art_stick
+	@post = Post.find(params[:id].to_i)
+
+    if @post.present?
+	  if can_edit?(@post.user)
+		@type = params[:type] == '0' ? 0 : 1
+	    if @post.update_attribute(:stick, @type)
+		  @success = true
+		  @note = "操作成功!"
+	    else
+		  @success = false
+		  @note = "操作失败!"
+	    end
+	  else
+		@success = false
+		@note = "没有权限"
+      end
+    else
+	  @success = false
+	  @note = "作品不存在!"
+	end
+
+	respond_to do |f|
+	  f.xml { render layout: false }
 	end
   end
 
