@@ -170,7 +170,7 @@ $.validator.addMethod('notzero', function(value, element) {
       </div>
 
 
-      <%= form_for(@post, url: {action: :create_art}, html: { id: 'check_art_form' }, remote: true) do |f| %>
+      <%= form_for(@post, url: {action: :create_art}, html: { id: 'check_art_form', class: 'form-box' }, remote: true) do |f| %>
       <% if @post.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -202,12 +202,15 @@ $.validator.addMethod('notzero', function(value, element) {
         <%= f.text_area :content, cols: "10", rows: "10" %>
       </div>
       <span class="blank20"></span>
-      <div class="actions">
-        <%= f.submit '创建', disable_with: "提交中..." %>
-      </div>
-    <% end %>
 
-<%= link_to '返回', root_path %>
+      <div class="row mr-20 clearfix">
+          <p class="btn_diy fr" style="">
+            <%= link_to "取消", root_path, :class=>'button white' %>
+            <%= f.submit '创建', class: 'submit_btn button black', style: "" %>
+          </p>
+      </div>
+
+    <% end %>
 
     </div>
 </div>
