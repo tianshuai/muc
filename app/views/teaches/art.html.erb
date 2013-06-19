@@ -16,7 +16,7 @@
               <div class="date">发布时间：<%=@post.created_at.strftime("%Y.%m.%d")%></div>
 				<div>
 					<% @post.assets.each do |asset| %>
-						<div>
+						<div class="mb-20">
 							<%= asset_b_tag(asset) if asset.present? %><br />
 							<span><%= asset.desc if asset.desc.present? %></span>
 						</div>

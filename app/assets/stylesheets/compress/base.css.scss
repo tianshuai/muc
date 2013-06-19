@@ -20,14 +20,13 @@ a:hover,a:active{text-decoration:underline}
 /*------------头部------------*/
 .header{height:187px;background: image_url('header.gif') no-repeat center top}
 .hm{width:980px;margin:0 auto;height:187px;position:relative}
-.logo{margin:44px 0 0 15px;width:338px;height:67px;float:left}
-.logo a{display:block;width:338px;height:67px;text-indent:-9999px;overflow:hidden;position:relative}
-.logo img{position:absolute;left:0;top:0;width:338px;height:67px}
+.logo{margin:44px 0 0 15px;width:338px;height:59px;float:left}
+.logo a{display:block;width:338px;height:59px;text-indent:-9999px;overflow:hidden;position:relative}
+.logo img{position:absolute;left:0;top:0;width:338px;height:59px}
 .search{width:227px;height:30px;position:absolute;top:92px;right:0;background: image_url('search.gif');overflow:hidden}
 .ipt{float:left;width:195px;height:30px}
 .ipt input{background:none;border:0;padding:5px 0 5px 6px;width:189px;height:20px;line-height:20px;color:#555}
-.btn{float:right;width:32px;height:30px}
-.btn input{float:left;background:none;cursor:pointer;width:32px;height:30px;border:0;text-indent:-9999px;overflow:hidden}
+
 /*------------导航------------*/
 .nav_diy_box{width:980px;height:40px;margin:-40px auto 0;background:#555;}
 .nav_diy{width:780px;height:40px;margin:-40px 0 0;background:#555;font:bold 14px/40px Microsoft YaHei;position:relative}
@@ -319,6 +318,59 @@ table.admin-box a.red{color:#ee0000;}
 input.btn-medium {border: 0 none;cursor: pointer;}
 .btn-medium {background-color: #000000;cursor: pointer;color: #fff;display: inline-block; height: 25px;line-height: 25px;text-align: center;vertical-align: middle;padding:0 10px;}
 .btn-medium:hover {background-color: #333;}
+.form-box .row{position:relative;z-index:2;padding:10px 0;}
+
+.form-box .btn_diy a, .btn_diy input{display:inline-block;width:80px;height:30px;line-height:30px;text-align:center;}
+
+/*-- button --*/
+.button {
+    -moz-transition-duration: 0.3s;
+    -moz-user-select: none;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    font-family: "Helvetica Neue",Helvetica Neue,Helvetica,Arial,sans-serif;
+    outline: medium none;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    vertical-align: baseline;
+    font-size: 14px;
+    cursor: pointer;
+}
+.button:hover {-moz-transition-duration: 0.3s;box-shadow:inset 0 0 1px rgba(255, 255, 255, 0.25);color: #575757;}
+
+.button.small {font-size: 11px;}
+.button.large {font-size: 18px;}
+.button.light {opacity: 0.4;}
+.button.light:hover {opacity: 0.3;}
+.button.tiny {font-size: 10px;padding: 1px 5px;}
+.button.disabled {cursor:not-allowed;opacity: 0.4;}
+.button.green {background-color: #529200;border: 1px solid #5A9F24;color: #FFFFFF;text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);}
+.button.green:hover {background-color: #339900;}
+.button.orange {background-color: #ff6600;border: 1px solid #ff6600;color: #FFFFFF;text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);}
+.button.orange:hover {background-color: #ea5e00;}
+.button.black {background-color: #333;border: 1px solid #444;color: #FFFFFF;text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);}
+.button.black:hover {background-color: #000;}
+.button.blue {background-color: #0795d6;border: 1px solid #0795d6;color: #FFFFFF;text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);}
+.button.blue:hover {background-color: #2A91B6;}
+.button.red {background-color: #cc0000;border: 1px solid #cc0000;color: #FFFFFF;text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);}
+.button.red:hover {background-color: #CF3C41;}
+.button.like {background-color: #45BB2F;border: 1px solid #249125;color: #FFFFFF;text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);}
+.button.like:hover {background-color: #249125;}
+.button.white {background-color: #FCFCFC;border: 1px solid #C6C6C6;color: #979797;}
+.button.white:hover {background-color: #EEEEEE;color:#666;}
+.button.delete:hover {background-color: #CF3C41;border: 1px solid #CF3C41;color: #FFFFFF;text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);}
+.button + .button {margin-left: 4px;}
+input.btn-medium {border: 0 none;cursor: pointer;}
+.btn-medium {background-color: #000000;cursor: pointer;color: #FFFFFF;display: inline-block; height: 25px;line-height: 25px;text-align: center;vertical-align: middle;padding:0 10px;}
+.btn-medium:hover {background-color: #333;}
+.btn-warning:hover {background-color: #EE0000;}
+.btn-disable {background-color:#999;cursor:not-allowed;}
+.btn-disable:hover {background-color:#999;}
+.btn-large{background-color:#000;height:35px;vertical-align:middle;display:inline-block;color:#fff; line-height:35px; text-align:center; font-size:16px;padding:0 15px;}
+.mbutton {border: 0 none;color: #FFFFFF;display: inline-block;height: 34px;line-height: 34px;vertical-align: middle;width: 65px;}
+.btn_submit_exc[disabled="disabled"] {cursor:"default";color:#ddd;background-color:#666;}
+.btn_submit_exc[disabled="disabled"]:hover {color:white;background-color:#666;}
 
 
 
