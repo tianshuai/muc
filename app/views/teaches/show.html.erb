@@ -10,10 +10,15 @@
             <!--主体内容 start{-->
             <%= render 'left_bar', position: @position %>
             <div class="right">
-            	<h2 class="tit"><%= @static.title %></h2>
-                <div class="content">
-					<%= raw @static.content %>
-                </div>
+				<% case params[:mark] %>
+				<% when 'student_art' %>
+					<%= render 'art_list', arts: @arts %>
+				<%else%>
+					<h2 class="tit"><%= @static.title %></h2>
+					<div class="content">
+						<%= raw @static.content %>
+					</div>
+				<%end%>
             </div>
             <!--}主体内容 end-->
         </div>

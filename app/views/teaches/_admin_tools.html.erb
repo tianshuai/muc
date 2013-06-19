@@ -11,7 +11,7 @@
             <%#=link_to "重建缩略图", '#', class: "btn-medium black"%>
         <%end%>
 
-        <%=link_to "编辑", { action: :editor_art, id: @post.id }, class: "btn-medium black"%>
+        <%=link_to "编辑", { action: :edit_art, id: @post.id }, class: "btn-medium black"%>
         <%=link_to "删除", { action: :ajax_del_art, id: @post.id, type: 1 }, remote: true, method: :delete, title: "删除", class: "btn-medium btn-warning black", confirm: "确认删除吗？"%>
     </div>
 <%end%>

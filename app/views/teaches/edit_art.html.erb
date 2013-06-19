@@ -3,7 +3,7 @@
 
 <%end%>
 <% content_for :style do %>
- <%= stylesheet_link_tag "uploadify/uploadify" %>
+ <%= stylesheet_link_tag    "uploadify/uploadify" %>
 <%end%>
 
 <% content_for :scripts do %>
@@ -63,6 +63,8 @@
 		});
 	}
 
+
+
 	</script>
 <%end%>
 <% content_for :jquery do %>
@@ -81,13 +83,6 @@
   uploadify_script_data['<%= session_key %>'] = '<%= cookies[session_key] %>';
 
   uploadify_script_data['authenticity_token'] = '<%= form_authenticity_token %>';
-
-
-  //刷新后清空input值
-  $('#asset_id').val(0);
-  $('#art_img_ids').val('');
-  $('#category_id').val('');
-
 
   //uploadify上传
   $('#uploadify').uploadify({
@@ -117,6 +112,13 @@
         }
       }
   });
+
+  <% @post.assets.each do |asset| %>
+    <% if asset.present? %>
+      //显示封面图标
+      $("div[name='thumb_show'][key='thumb_show_<%=@post.asset_id%>']").show();
+    <%end%>
+  <%end%>
 
 
 /*给validate插件增加方法filesize*/
@@ -159,34 +161,53 @@ $.validator.addMethod('notzero', function(value, element) {
 <%end%>
 <div class="main">
 
-
     <div class="span10">
       <!--Body content-->
       <div>
         <input type="file" name="file_upload" id="uploadify" />
+		<% if @post.assets.present? %>
+			<% @post.assets.each do |asset| %>
+				<div id="asset_<%= asset.id %>" class="box img-box" style="position:relative;">
+					<div class="w180">
+						<div class="img_outer_div">
+							<%=asset_m_tag(asset)%>
+						</div>
+						<div class="img_hover_box"></div>
+										<span>文件名：<%=truncate(asset.filename,:length=>20)%></span><br/>
+						<span>原图尺寸：<%=asset.width%>x<%=asset.height%>px</span><br/>
+						<div class="asset_notice hidden" name="thumb_show" key="thumb_show_<%=asset.id%>">
+							封面图
+						</div>
+						<span class="asset_desc"><%=truncate(asset.desc,:length=>140)%></span>
+						<div class="desc_box hidden mb-5">
+							<textarea class="mb-5 desc_text" style="width:170px"><%=asset.desc%></textarea>
+							<input type="button" name="save_desc_btn" onclick="ajax_save_desc(this)" asset_id="<%=asset.id%>" value="保存" class="btn-medium" />
+						</div>
+					</div>
+					<div class="w180">
+						<a href="" class="ajax-hash hidden">删除</a>
+						<a href="#mark_thumb" name="<%=asset.id%>" id="set_cover_<%=asset.id%>" class="ajax-hash btn-medium">置封面图</a>
+						<a href="#edit_desc" asset_id="<%=asset.id%>" class="ajax-hash btn-medium">描述</a>
+						<%=link_to '删除',{ controller: :assets, action: :destroy, id: asset.id, type: 1 }, remote: true, method: :delete, class: 'btn-medium closelabel'%>
+					</div>
+				</div>
+			<%end%>
+		<%end%>
         <div id="img_list"></div>
         <span class="blank20"></span>  
       </div>
 
 
-      <%= form_for(@post, url: {action: :create_art}, html: { id: 'check_art_form' }, remote: true) do |f| %>
-      <% if @post.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-          <ul>
-          <% @post.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <%= form_for(@post, url: { action: :update_art, id: @post.id }, html: { id: 'check_art_form', class: 'form-box' }, method: :put, remote: true) do |f| %>
       <input type="hidden" name="asset_ids" id="art_img_ids" />
+      <%= f.hidden_field :type, value: 2 %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
       <div class="field">
-		<%= f.hidden_field :asset_id, value: 0, id: 'asset_id' %>
+		<%= f.hidden_field :asset_id, id: 'asset_id' %>
 	  </div>
       <div class="field">
         <%= f.label :title, '标题:' %>
-        <%= f.text_field :title %>
+        <%= f.text_field :title, class: "{validate:{required: true, minlength: 2, messages:{required:'请输入姓名', minlength:'请至少输入两个字符'}}}" %>
       </div>
       <div class="row-nopos block-category clearfix">
          <!--引用分类-->
@@ -197,12 +218,15 @@ $.validator.addMethod('notzero', function(value, element) {
         <%= f.text_area :content, cols: "10", rows: "10" %>
       </div>
       <span class="blank20"></span>
-      <div class="actions">
-        <%= f.submit '更新, disable_with: "提交中..." %>
-      </div>
-    <% end %>
 
-<%= link_to '返回', root_path %>
+      <div class="row mr-20 clearfix">
+          <p class="btn_diy fr" style="">
+            <%= link_to "取消", @post.view_url, :class=>'button white' %>
+            <%= f.submit '更新', class: 'submit_btn button black', style: "" %>
+          </p>
+      </div>
+
+    <% end %>
 
     </div>
 </div>
