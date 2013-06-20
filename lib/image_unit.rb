@@ -4,7 +4,7 @@ module ImageUnit
   class Upload
   
     #保存图片
-    #type::1,编辑器图片／２.作品图片；３.栏目块图片
+    #type::1作品图片,／２.编辑器图片；３.栏目块图片
     def self.save_asset(file,type,options={})
 
 	  image_io= open(file)
