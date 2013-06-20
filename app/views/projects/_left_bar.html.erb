@@ -1,0 +1,8 @@
+<%type = params[:mark] || ''%>	
+<div class="left">
+	<ul class="ul_menu">
+		<% position.statics.published.normal.order_b.each do |c| %>
+			<li class="<%='on' if c.mark==type%>"><%=link_to c.short_title, {action: 'show', mark: c.mark} %></li>
+		<%end%>
+	</ul>
+</div>

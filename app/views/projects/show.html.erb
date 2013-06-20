@@ -1,0 +1,22 @@
+<%=provide(:title, @static.title)%>
+
+	<!--主体 start{-->
+	<div class="main">
+        <!--内容 start{-->
+        <div class="wid" style="min-height: 300px;">
+            <!--当前位置 start{-->
+            <%= render 'path', static: @static %>
+            <!--}当前位置 end-->
+            <!--主体内容 start{-->
+            <%= render 'left_bar', position: @position %>
+            <div class="right">
+            	<h2 class="tit"><%= @static.title %></h2>
+                <div class="content">
+					<%= raw @static.content %>
+                </div>
+            </div>
+            <!--}主体内容 end-->
+        </div>
+        <!--}内容 end-->
+    </div>
+	<!--}主体 end-->

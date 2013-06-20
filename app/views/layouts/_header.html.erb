@@ -3,6 +3,7 @@
 	<div class="header">
     	<div class="hm">
           <div class="logo"><%= link_to(image_tag('logo.png')+"中央民族大学美术学院", domain_base ) %></a></div>
+          <!--
             <form action="" method="get" class="search">
                 <fieldset>
                     <legend>搜索表单</legend>
@@ -10,6 +11,7 @@
                     <div class="btn"><input name="" type="button" value="搜索" /></div>
                 </fieldset>
             </form>
+            -->
             </div>
     </div>
 	<!--}头部 end-->
@@ -19,10 +21,11 @@
       <li class="<%= css_on?(@css_index_header) %>"><%= link_to '首页', root_path %></li>
       <li class="<%= css_on?(@css_introduce_header) %>"><%= link_to '学院概况', introduces_path %></li>
       <li class="<%= css_on?(@css_post_header) %>"><%= link_to '学院新闻', posts_path %></li>
-      <li class="<%= css_on?(@css_teach_header) %>"><%= link_to '艺术教学', teaches_path %></li>
-      <li class="<%= css_on?(@css_book_header) %>"><%= link_to '学院丛书', books_path %></li>
-      <li class="<%= css_on?(@css_enrollment_header) %>"><%= link_to '招生详情', enrollments_path %></li>
+      <li class="<%= css_on?(@css_teach_header) %>"><%= link_to '学院机构', teaches_path %></li>
+      <li class="<%= css_on?(@css_project_header) %>"><%= link_to '"985" 211工程', projects_path %></li>
+      <li class="<%= css_on?(@css_enrollment_header) %>"><%= link_to '招生工作', enrollments_path %></li>
       <li class="<%= css_on?(@css_student_serve_header) %>"><%= link_to '学生工作', student_servies_path %></li>
+      <li class="<%= css_on?(@css_book_header) %>"><%= link_to '中国民族美术', books_path %></li>
     </ul>
 
         <ul class="nav pull-right" style="margin:-35px 10px 0 0;">

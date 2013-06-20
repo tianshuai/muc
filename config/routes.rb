@@ -133,16 +133,20 @@ Muc::Application.routes.draw do
   get 'teach/arts',                 to: 'teaches#arts'
 
   #学院丛书
-  get 'book/index',             to: 'books#index',            as: 'books'
-  get 'books/list',             to: 'books#list'
+  get 'book/index',                 to: 'books#index',            as: 'books'
+  get 'books/list',                 to: 'books#list'
 
   #招生详情
-  get 'enrollments',					to: 'enrollments#index',		  as: 'enrollments'
+  get 'enrollments',				to: 'enrollments#index',		  as: 'enrollments'
   get 'enrollment/:mark',			to: 'enrollments#show'
   
   #学生工作
-  get 'student_servies',				to: 'student_servies#index',	  as: 'student_servies'
-  get 'student_serve/:mark',			to: 'student_servies#show'
+  get 'student_servies',			to: 'student_servies#index',	  as: 'student_servies'
+  get 'student_serve/:mark',		to: 'student_servies#show'
+
+  #学生工作
+  get 'projects',				    to: 'projects#index',	  as: 'projects'
+  get 'project/:mark',			    to: 'projects#show'
 
   #用户路由
   resources :users,			only: [:index, :new, :create, :show] 
