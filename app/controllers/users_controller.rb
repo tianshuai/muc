@@ -1,6 +1,9 @@
 # encoding: utf-8
 class UsersController < ApplicationController
 
+  #如果已登录，注册或登录页面则跳到首页
+  before_filter :forbid_login, only: [ :new, :create ]
+
   #需要登录
   before_filter :signed_in_user, only: [ :edit, :update, :edit_profile, :edit_pwd ]
 

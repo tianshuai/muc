@@ -1,6 +1,8 @@
 # encoding: utf-8
 class SessionsController < ApplicationController
 
+  #如果　已登录，则跳到首页
+  before_filter :forbid_login, only: [ :new, :create ]
 
   #登录
   def create

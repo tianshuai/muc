@@ -54,6 +54,11 @@ module PublicAuthHelper
     redirect_to signin_path, notice: "请先登录" unless signed_in?
   end
 
+  #如果　已登录，则跳到首页
+  def forbid_login
+    redirect_to root_path, notice: "已登录" if signed_in?
+  end
+
   #跳转相应页面并删除session[:return_to]
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
