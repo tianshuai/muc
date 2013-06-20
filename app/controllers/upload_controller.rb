@@ -7,7 +7,7 @@ class UploadController < ApplicationController
 	file_name = file.original_filename
 
 	#上传
-	result = ImageUnit::Upload.save_asset(file_temp,1)
+	result = ImageUnit::Upload.save_asset(file_temp,2)
 	if result[:result]
 	  item_id = params[:item_id] || ''
 	  asset = Asset.new({
@@ -58,7 +58,7 @@ class UploadController < ApplicationController
 	file_name = file.original_filename
 
 	#上传
-	result = ImageUnit::Upload.save_asset(file_temp,2)
+	result = ImageUnit::Upload.save_asset(file_temp,1)
 
 	if result[:result]
 	  item_id = params[:item_id] || ''

@@ -79,7 +79,7 @@
             <!--学院新作 start{-->
             <div class="works">
             	<h2 class="title">学院新作</h2>
-                <div class="more"><%= link_to '更多', teach_arts_path %></div>
+                <div class="more"><%= link_to '更多', { controller: :teaches, action: :show, mark: 'student_art' } %></div>
                 <% if @arts.present? %>
                   <ul class="ul_works">
                     <% @arts.each do |d| %>

@@ -35,6 +35,10 @@ class TeachesController < ApplicationController
     @static = Static.find_by(mark: mark)
     respond_to do |format|
 	  if @static.present?
+		case mark
+		when 'student_art'
+		  @arts = Post.arts.published.normal.recent.paginate(:page => params[:page], :per_page => 5)
+		end
         format.html # show.html.erb
         format.json { render json: @static }
 	  else
@@ -100,12 +104,28 @@ class TeachesController < ApplicationController
   #编辑作品
   def edit_art
     @post = Post.find(params[:id].to_i)
-
+	if @post.blank?
+	  flash[:error] = '作品不存在'
+	  redirect_to root_path
+	end
   end
 
   #更新作品
   def update_art
-
+	@post = Post.find(params[:id].to_i)
+    respond_to do |format|
+      if @post.update_attributes(params[:post])
+        @success = true
+        @note = "更新成功!"
+        #format.html { redirect_to root_path, notice: '创建成功!' }
+        format.xml { render layout: false }
+      else
+        @success = false
+        @note = '更新失败!'
+        #format.html { render action: "new_art" }
+        format.xml { render layout: false }
+      end
+    end
   end
 
   #ajax加载图片队列
@@ -120,6 +140,61 @@ class TeachesController < ApplicationController
         @success = false
 	    f.xml { render :ajax_load_img, layout: false } 
       end
+	end
+  end
+
+  # 删除作品
+  def ajax_del_art
+	@post = Post.find(params[:id].to_i)
+
+    if @post.present?
+	  if can_edit?(@post.user)
+	    if @post.destroy
+		  @success = true
+		  @note = "删除成功!"
+	    else
+		  @success = false
+		  @note = "删除失败!"
+	    end
+	  else
+		@success = false
+		@note = "没有权限"
+      end
+    else
+	  @success = false
+	  @note = "作品不存在!"
+	end
+
+	respond_to do |f|
+	  f.xml { render layout: false }
+	end
+  end
+
+  # ajax推荐／取消推荐作品
+  def set_art_stick
+	@post = Post.find(params[:id].to_i)
+
+    if @post.present?
+	  if can_edit?(@post.user)
+		@type = params[:type] == '0' ? 0 : 1
+	    if @post.update_attribute(:stick, @type)
+		  @success = true
+		  @note = "操作成功!"
+	    else
+		  @success = false
+		  @note = "操作失败!"
+	    end
+	  else
+		@success = false
+		@note = "没有权限"
+      end
+    else
+	  @success = false
+	  @note = "作品不存在!"
+	end
+
+	respond_to do |f|
+	  f.xml { render layout: false }
 	end
   end
 

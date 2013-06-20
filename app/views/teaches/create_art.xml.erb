@@ -3,7 +3,7 @@
       <% if @success %>
         muc.show_ok_note('<%= @note %>',2000);
         //防止重复提交
-        var a = $('#check_art_form').find('.submit_btn').attr('disabled',true);
+        $('#check_art_form').find('.submit_btn').attr('disabled',true);
 
 		muc.redirect('<%= @post.view_url %>',2000);
       <%else%>

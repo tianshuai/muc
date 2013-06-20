@@ -13,16 +13,29 @@ module ImageUnit
       image_mini = MiniMagick::Image.read(image_io)
 
       result = {}
-	  #判断格式/大小
+	  # 通过ｔｙｐｅ参数查找附件配置要求
+      case type
+      when 1 then resize = CONF['image_art_format']
+      when 2 then resize = CONF['image_editor_format']
+      else
+        resize = CONF['image_editor_format']
+      end
+
+	  #判断格式
 	  set_format = CONF['verify_img_type']
-      #整数转换为字节
-      verify_size = (options[:size] || 2).to_i.megabytes
-      size = result[:size] = image_mini[:size]
       format = result[:format] = image_mini[:format]
 	  return { message: "只支持JPG、JPEG、PNG、GIF文件", result: false } unless set_format.include?(format)
+
+      #整数转换为字节/ 验证附件大小
+      verify_size = (resize['max_size'] || 2).to_i.megabytes
+      size = result[:size] = image_mini[:size]
 	  return { message: "文件大小不要超过2Mb", result: false } unless verify_size > size
 
+	  # 验证宽高
+	  min_w_h = resize['min_w_h']
+	  return { message: "图片最低分辨率为#{min_w_h.first}x#{min_w_h.last}", result: false } if min_w_h.first > image_mini[:width] or min_w_h.last > image_mini[:height]
 
+	  # 读取GridFS
 	  grid = Mongoid::GridFS
       #原图
 	  grid_o  = grid.put(image_mini.path)
@@ -30,15 +43,7 @@ module ImageUnit
       result[:file_o_width]  = image_mini[:width]
       result[:file_o_height]  = image_mini[:height]
 
-      case type
-      when 1 then resize = CONF['image_art_format']
-      when 2 then resize = CONF['image_editor_format']
-      else
-        resize = CONF['image_art_format']
-      end
-
       #大图
-      #image_mini.resize "740x>!"
       resize_b = resize['b'] || 740
       image_mini.combine_options do |img|
         img.resize "#{resize_b}x>"
@@ -50,9 +55,8 @@ module ImageUnit
       result[:file_b_height]  = image_mini[:height]
 
       #中图
-      #image_mini.resize "100x85!"
       resize_m = resize['m'] || [170,120]
-      if image_mini[:width]<=image_mini[:height]
+      if (image_mini[:width]-50)<=image_mini[:height]
         image_mini.combine_options do |img|
           img.resize "#{resize_m[0]}x"
           img.quality "100"

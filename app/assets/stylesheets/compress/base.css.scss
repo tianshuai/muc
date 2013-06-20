@@ -84,7 +84,7 @@ a:hover,a:active{text-decoration:underline}
 .works{clear:both;height:390px}
 .ul_works{margin:0 0 0 -20px;padding:20px 0 0;overflow:hidden;zoom:1}
 .ul_works li{float:left;margin:0 0 0 20px;display:inline;height:162px;width:172px}
-.ul_works img{width:172px;height:120px;margin:0 0 8px}
+.ul_works img{width:170px;height:120px;margin:0 0 8px}
 .ul_works h3 a:link,.ul_works h3 a:visited{font:12px/18px simsun;color:#666}
 .ul_works h3 a:hover,.ul_works h3 a:active{color:#d2003d;text-decoration:none}
 /*------------底部------------*/
@@ -413,7 +413,7 @@ a.jbar-cross{width:15px;height:14px;background: image_url('closelabel.png') no-r
 a.jbar-cross:hover{background: image_url('closelabel_ad.png') no-repeat;}
 #jbar .jbar-top a.jbar-cross{top:8px;}
 #jbar .jbar-bottom a.jbar-cross{bottom:8px;}
-
+.tools-box{background:#666;color:#fff;}
 
 
 
@@ -430,3 +430,5 @@ color: #EA5200;
 label.checked {
 //background:url("./demo/images/checked.gif") no-repeat 0px 0px;
 }
+
+
