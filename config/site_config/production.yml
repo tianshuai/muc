@@ -17,12 +17,16 @@ verify_img_type: ["JPG","JPEG","PJPEG","PNG","X-PNG","GIF"]
 
 #作品图规格
 image_art_format:
+  max_size: 5
+  min_w_h: [170,120]
   b: 740
   m: [170,120]
   s: [50,50]
 
 #编辑器图规格
 image_editor_format:
+  max_size: 2
+  min_w_h: [50,50]
   b: 740
   m: [170,120]
   s: [50,50]
