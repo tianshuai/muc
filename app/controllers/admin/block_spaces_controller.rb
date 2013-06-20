@@ -30,10 +30,15 @@ class Admin::BlockSpacesController < Admin::Common
   def create
     @block_space = BlockSpace.new(params[:block_space])
 	@block_space.user_id = current_user.id
-    if @block_space.save
-      redirect_to action: 'index', notice: '创建成功!'
-    else
-      render 'new'
+    respond_to do |format|
+      if @block_space.save
+        format.html { redirect_to admin_block_spaces_path, notice: '创建成功!' }
+        format.json { head :no_content }
+      else
+        flash[:error] = '创建失败!'
+        format.html { render action: :new }
+        format.json { render json: @block_space.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -46,6 +51,7 @@ class Admin::BlockSpacesController < Admin::Common
         format.html { redirect_to admin_block_spaces_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
+        flash[:error] = '更新失败!'
         format.html { render action: "edit" }
         format.json { render json: @block_space.errors, status: :unprocessable_entity }
       end

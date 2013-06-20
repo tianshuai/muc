@@ -26,6 +26,11 @@
      <!--引用分类-->
      <%=render partial: "shared/share_category",:locals => { :current_category_id=>@post.category_id, :type=>3} %>
   </div>
+  <span class="blank10"></span>
+  <div class="field">
+	<label>封面图：</label>
+	<input type="file" name="asset_id" />
+  </div>
   <div class="field">
     <%= f.label :content, '内容' %>
     <%= f.text_area :content, id: 'kind_editor' %>

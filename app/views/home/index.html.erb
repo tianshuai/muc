@@ -64,12 +64,14 @@
                 <% if @books.present? %>
                   <ul class="ul_books">
                     <% @books.each do |b| %>
-                      <li>
-                          <em><a href=""><%=image_tag '11.jpg'%></a></em>
-                          <h3><%= link_to b.title, b.view_url, target: '_blank' %></h3>
-                          <p><%= truncate(b.content, length: 55) %></p>
-                          <div class="readmore"><a href="">Read More</a></div>
-                      </li>
+                      <% if b.cover.present? %>
+                        <li>
+                            <em><%= link_to asset_o_tag(b.cover), b.view_url, target: '_blank' %></em>
+                            <h3><%= link_to b.title, b.view_url, target: '_blank' %></h3>
+                            <p><%= truncate(strip_tags(b.content), length: 55) %></p>
+                            <div class="readmore"><a href="">Read More</a></div>
+                        </li>
+                      <%end%>
                     <%end%>
                   </ul>
                 <%end%>

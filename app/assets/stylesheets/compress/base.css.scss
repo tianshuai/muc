@@ -20,7 +20,9 @@ a{color:#000;text-decoration:none}
 a:hover,a:active{text-decoration:underline}
 /*-----------------------------首页-------------------------------------*/
 /*------------头部------------*/
-.header{height:187px;background: image_url('header.gif') no-repeat center top}
+.head_bg{height:187px;background: image_url('head_bg.jpg') repeat-x top}
+.header{height:187px;background: image_url('header.jpg') no-repeat center top}
+
 .hm{width:980px;margin:0 auto;height:187px;position:relative}
 .logo{margin:44px 0 0 15px;width:338px;height:59px;float:left}
 .logo a{display:block;width:338px;height:59px;text-indent:-9999px;overflow:hidden;position:relative}

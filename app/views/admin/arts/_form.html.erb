@@ -17,11 +17,11 @@
   <% end %>
   <%= f.hidden_field :type, value: 2 %>
   <div class="field">
-    <%= f.label :title, '标题：' %><br />
+    <%= f.label :title, '标题：' %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :content, '内容' %><br />
+    <%= f.label :content, '内容' %>
     <%= f.text_area :content, size: '100*100' %>
   </div>
   <span class="blank10"></span>
@@ -30,21 +30,21 @@
      <%=render partial: "shared/share_category",:locals => { :current_category_id=>@post.category_id, :type=>2} %>
   </div>
   <div class="field">
-    <%= f.label :stick, '推荐' %><br />
+    <%= f.label :stick, '推荐' %>
     <%= f.radio_button :stick, 0 %>否&nbsp;
     <%= f.radio_button :stick, 1 %>是
   </div>
   <div class="field">
-    <%= f.label :publish, '是否发布' %><br />
+    <%= f.label :publish, '是否发布' %>
     <%= f.radio_button :publish, 0 %>否&nbsp;
     <%= f.radio_button :publish, 1 %>是
   </div>
   <div class="field">
-    <%= f.label :state, '状态' %><br />
+    <%= f.label :state, '状态' %>
     <%= f.radio_button :state, 0 %>禁用&nbsp;
     <%= f.radio_button :state, 1 %>正常
   </div>
-  <span blank20></span>
+  <span class="blank20"></span>
   <div class="actions">
     <%= f.submit %>
 	<%=link_to '返回', admin_arts_path %>

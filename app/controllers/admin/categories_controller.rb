@@ -53,8 +53,9 @@ class Admin::CategoriesController < Admin::Common
   def create
     @category = Category.new(params[:category])
     if @category.save
-      redirect_to action: 'index', notice: '创建成功!'
+      redirect_to admin_categories_path, notice: '创建成功!'
     else
+      flash[:error] = '创建失败!'
       render 'new'
     end
   end
@@ -68,6 +69,7 @@ class Admin::CategoriesController < Admin::Common
         format.html { redirect_to admin_categories_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
+        flash[:error] = '更新失败!'
         format.html { render action: "edit" }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end

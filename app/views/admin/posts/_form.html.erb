@@ -1,4 +1,4 @@
-<%= form_for([:admin,@post]) do |f| %>
+<%= form_for([:admin,@post], html: { multipart: true }) do |f| %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2><%= @post.errors.count %>处错误提示: </h2>
@@ -12,7 +12,7 @@
   <% end %>
   <input type="hidden" name="asset_ids" id="editor_ids" />
   <div class="field">
-    <%= f.label :title, '标题：' %><br />
+    <%= f.label :title, '标题：' %>
     <%= f.text_field :title %>
   </div>
   <span class="blank10"></span>
@@ -21,25 +21,29 @@
      <%=render partial: "shared/share_category",:locals => { :current_category_id=>@post.category_id, :type=>1} %>
   </div>
   <div class="field">
-    <%= f.label :content, '内容' %><br />
+	<label>封面图：</label>
+	<input type="file" name="asset_id" />
+  </div>
+  <div class="field">
+    <%= f.label :content, '内容' %>
     <%= f.text_area :content, id: 'kind_editor' %>
   </div>
   <div class="field">
-    <%= f.label :stick, '推荐' %><br />
+    <%= f.label :stick, '推荐' %>
     <%= f.radio_button :stick, 0 %>否&nbsp;
     <%= f.radio_button :stick, 1 %>是
   </div>
   <div class="field">
-    <%= f.label :publish, '是否发布' %><br />
+    <%= f.label :publish, '是否发布' %>
     <%= f.radio_button :publish, 0 %>否&nbsp;
     <%= f.radio_button :publish, 1 %>是
   </div>
   <div class="field">
-    <%= f.label :state, '状态' %><br />
+    <%= f.label :state, '状态' %>
     <%= f.radio_button :state, 0 %>禁用&nbsp;
     <%= f.radio_button :state, 1 %>正常
   </div>
-  <span blank20></span>
+  <span class="blank20"></span>
   <div class="actions">
     <%= f.submit %>
 	<%=link_to '返回', admin_posts_path %>

@@ -66,7 +66,7 @@ class Admin::StaticsController < Admin::Common
           asset.update_attributes(relateable_id: @static.id, relateable_type: @static.class.to_s) if asset.present?
         end
       end
-      redirect_to action: 'index', notice: '创建成功!'
+      redirect_to admin_statics_path, notice: '创建成功!'
     else
       flash[:error] = '创建失败!'
       render 'new'
@@ -88,6 +88,7 @@ class Admin::StaticsController < Admin::Common
         format.html { redirect_to admin_statics_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
+        flash[:error] = '更新失败!'
         format.html { render action: "edit" }
         format.json { render json: @static.errors, status: :unprocessable_entity }
       end

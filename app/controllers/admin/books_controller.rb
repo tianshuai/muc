@@ -28,6 +28,26 @@ class Admin::BooksController < Admin::Common
 	@post.user_id = current_user.id
     respond_to do |f|
       if @post.save
+        #保存封面图
+        if params[:asset_id]
+          #获得文件/格式
+          file = params[:asset_id]
+          file_temp = file.tempfile
+          file_name = file.original_filename
+          #上传
+          result = ImageUnit::Upload.save_asset(file_temp,1)
+          if result[:result]
+            result[:file_name] = file_name
+            result[:relateable_id] = @post.id
+            result[:relateable_type] = 'Post'
+            hash = collect_asset(result)
+            asset = Asset.new(hash)
+            if asset.save
+              @post.update_attribute(:asset_id, asset.id )
+            end
+          end
+        end
+        #保存编辑器图片
         if params[:asset_ids]
           params[:asset_ids].split(',').each do |id|
             asset = Asset.find(id.to_i)
@@ -49,6 +69,27 @@ class Admin::BooksController < Admin::Common
     @post = Post.find(params[:id].to_i)
     respond_to do |format|
       if @post.update_attributes(params[:post])
+        #保存封面图
+        if params[:asset_id]
+          #获得文件/格式
+          file = params[:asset_id]
+          file_temp = file.tempfile
+          file_name = file.original_filename
+          #上传
+          result = ImageUnit::Upload.save_asset(file_temp,1)
+          if result[:result]
+            result[:file_name] = file_name
+            result[:relateable_id] = @post.id
+            result[:relateable_type] = 'Post'
+            hash = collect_asset(result)
+            asset = Asset.new(hash)
+            if asset.save
+              #删除原有封面图
+              @post.cover.destroy if @post.cover.present?
+              @post.update_attribute(:asset_id, asset.id )
+            end
+          end
+        end
         format.html { redirect_to admin_books_path, notice: '更新成功!' }
         format.json { head :no_content }
       else

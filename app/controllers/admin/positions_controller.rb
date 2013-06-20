@@ -28,16 +28,15 @@ class Admin::PositionsController < Admin::Common
     @position = Position.find(params[:id].to_i)
   end
 
-
   def create
     @position = Position.new(params[:position])
     if @position.save
-      redirect_to action: 'index', notice: '创建成功!'
+      redirect_to admin_positions_path, notice: '创建成功!'
     else
+      flash[:error] = '创建失败!'
       render 'new'
     end
   end
-
 
   def update
     @position = Position.find(params[:id].to_i)
@@ -47,12 +46,12 @@ class Admin::PositionsController < Admin::Common
         format.html { redirect_to admin_positions_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
+        flash[:error] = '更新失败!'
         format.html { render action: "edit" }
         format.json { render json: @position.errors, status: :unprocessable_entity }
       end
     end
   end
-
 
   def destroy
     @position = Position.find(params[:id].to_i)

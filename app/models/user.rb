@@ -70,7 +70,7 @@ class User
 
   ##验证
   validates_presence_of :name,                    message: '不能为空'
-  validates :name,                                length: { minimum: 4, maximum: 18, message: '长度大于4个字符且小于18个字符' }
+  validates :name,                                length: { minimum: 2, maximum: 18, message: '长度大于4个字符且小于18个字符' }
   validates_uniqueness_of :name,				　message: '用户名已存在'
 
 

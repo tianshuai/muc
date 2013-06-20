@@ -11,15 +11,15 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :block_space_id, '所属位置：' %><br />
+    <%= f.label :block_space_id, '所属位置：' %>
 	<%=f.select :block_space_id, options: BlockSpace.block_space_name_options %>
   </div>
   <div class="field">
-    <%= f.label :title, '标题：' %><br />
+    <%= f.label :title, '标题：' %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :url, '链接地址：' %><br />
+    <%= f.label :url, '链接地址：' %>
     <%= f.text_field :url %>
   </div>
   <div class="field">
@@ -27,21 +27,21 @@
 	<input type="file" name="asset_id" />
   </div>
   <div class="field">
-    <%= f.label :content, '内容' %><br />
+    <%= f.label :content, '内容' %>
     <%= f.text_area :content, size: '100*100' %>
   </div>
 
   <div class="field">
-    <%= f.label :order, '排序：' %><br />
+    <%= f.label :order, '排序：' %>
     <%= f.number_field :order %>
   </div>
 
   <div class="field">
-    <%= f.label :state, '是否发布' %><br />
+    <%= f.label :state, '是否发布' %>
     <%= f.radio_button :state, 0 %>否&nbsp;
     <%= f.radio_button :state, 1 %>是
   </div>
-  <span blank20></span>
+  <span class="blank20"></span>
   <div class="actions">
     <%= f.submit %>
 	<%=link_to '返回', admin_blocks_path %>

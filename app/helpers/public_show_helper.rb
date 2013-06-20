@@ -50,6 +50,29 @@ module PublicShowHelper
     return true
   end
 
+  #封装asset属性
+  def collect_asset(result={})
+    hash = {
+      relateable_id: result[:relateable_id], 
+      relateable_type: result[:relateable_type],
+      original_file: result[:file_o_id],
+      thumb_big: result[:file_b_id],
+      thumb_middle: result[:file_m_id],
+      thumb_small: result[:file_s_id],
+      filename: result[:file_name],
+      size: result[:size],
+      format_type: result[:format],
+      width: result[:file_o_width],
+      height: result[:file_o_height],
+      thumb_big_height: result[:file_b_height],
+      thumb_big_width: result[:file_b_width],
+      thumb_middle_width: result[:file_m_width],
+      thumb_middle_height: result[:file_m_height],
+      thumb_small_width: result[:file_s_width],
+      thumb_small_height: result[:file_s_height]
+    }
+  end
+
   # 网站时间显示格式
   # Time.now.to_i可转换时间为integer
   #
@@ -58,31 +81,53 @@ module PublicShowHelper
   end
 
 
-	#大图沦换排序
-	def load_block_order(mark,limit=8)
-	  block_space = BlockSpace.find_by(mark: mark)
-	  if block_space.present?
-		blocks = block_space.blocks.published.order_b.paginate(page: 1, per_page: limit)
-	  else
-		blocks = []
-	  end
-	end
+  #大图沦换排序
+  def load_block_order(mark,limit=8)
+    block_space = BlockSpace.find_by(mark: mark)
+    if block_space.present?
+      blocks = block_space.blocks.published.order_b.paginate(page: 1, per_page: limit)
+    else
+      blocks = []
+    end
+  end
 
-	#加载静态页
-	def load_page(position_tag,limit=20)
-	  page_position = PagePosition.where(:position=>position_tag,:state=>1).first
-	  if page_position.present?
-		ads = page_position.info_pages.published.order_b.page(1).per(limit)
-	  else
-		ads = []
-	  end
-	end
+  #加载静态页
+  def load_page(position_tag,limit=20)
+    page_position = PagePosition.where(:position=>position_tag,:state=>1).first
+    if page_position.present?
+      ads = page_position.info_pages.published.order_b.page(1).per(limit)
+    else
+      ads = []
+    end
+  end
 
-	#加载区块儿内容
-	def free_block(tag_id)
-	  block = FreeBlock.find(tag_id)
-	  return block.content if block.present?
-	  return ''
-	end
+  #加载区块儿内容
+  def free_block(tag_id)
+    block = FreeBlock.find(tag_id)
+    return block.content if block.present?
+    return ''
+  end
+
+  #截取中英文统一长度
+  def truncate_u(text, length = 30, truncate_string = "...")
+    l=0
+    char_array=text.unpack("U*")
+    char_array.each_with_index do |c,i|
+      l = l+ (c<127 ? 0.5 : 1)
+      if l>=length
+        return char_array[0..i].pack("U*")+(i<char_array.length-1 ? truncate_string : "")
+      end
+    end
+    return text
+  end
+
+  #用正则统一中英文长度（还不知道和上边方法哪个更准确）
+  def truncate_f(text, length = 30, truncate_string = "...")  
+      if r = Regexp.new("(?:(?:[^\xe0-\xef\x80-\xbf]{1,2})|(?:[\xe0-\xef][\x80-\xbf][\x80-\xbf])){#{length}}", true, 'n').match(text)  
+          r[0].length < text.length ? r[0] + truncate_string : r[0]  
+      else  
+          text  
+      end  
+  end 
 
 end

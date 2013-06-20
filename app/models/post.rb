@@ -128,6 +128,17 @@ class Post
 	return false
   end
 
+  #只取封面图，没有则为nil
+  def cover
+    return nil if self.asset_id == 0
+    asset = Asset.find(self.asset_id)
+    if asset.present?
+      return asset 
+    else
+      return nil
+    end
+  end
+
   #如果有封面图，取之，没有取所有附件第一个
   def asset
     if self.asset_id == 0

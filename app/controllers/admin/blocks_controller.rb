@@ -39,17 +39,17 @@ class Admin::BlocksController < Admin::Common
         #上传
         result = ImageUnit::Upload.save_asset(file_temp,3)
 		if result[:result]
-		  @block.build_asset({
-			original_file: result[:file_o_id],
-			thumb_small: result[:file_s_id],
-			filename: file_name,
-			size: result[:size],
-			format_type: result[:format]
-		  }).save
+          result[:file_name] = file_name
+          result[:relateable_id] = @block.id
+          result[:relateable_type] = 'Block'
+          hash = collect_asset(result)
+          asset = Asset.new(hash)
+          asset.save if asset.present?
 		end
       end
       redirect_to admin_blocks_path, notice: '创建成功!'
     else
+      flash[:error] = '创建失败!'
       render 'new'
     end
   end
@@ -69,19 +69,19 @@ class Admin::BlocksController < Admin::Common
           #上传
           result = ImageUnit::Upload.save_asset(file_temp,file_format.split('/').last)
           if result[:result]
-            @block.asset.destroy
-            @block.build_asset({
-              original_file: result[:file_o_id],
-              thumb_small: result[:file_s_id],
-              filename: file_name,
-              size: result[:size],
-              format_type: file_format
-            }).save
+            @block.asset.destroy if @block.asset.present?
+            result[:file_name] = file_name
+            result[:relateable_id] = @block.id
+            result[:relateable_type] = 'Block'
+            hash = collect_asset(result)
+            asset = Asset.new(hash)
+            asset.save if asset.present?
           end
         end
         format.html { redirect_to admin_blocks_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
+        flash[:error] = '更新失败!'
         format.html { render action: "edit" }
         format.json { render json: @block.errors, status: :unprocessable_entity }
       end

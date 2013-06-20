@@ -2,6 +2,13 @@
     <td><label><span class="btn-medium">选中</span><%=check_box_tag "content[ids][]", b.id %></label></td>
     <td><%=b.id%></td>
 	<td><%= link_to truncate(b.title, length: 10), b.view_url, target: '_blank' %></td>
+    <td>
+      <% if b.cover.present? %>
+        <%= asset_m_tag(b.cover, width: 120) %>
+      <%else%>
+        <span>无</span>
+      <%end%>
+    </td>
 	<td><%=b.category.name if b.category.present?%></td>
 	<td><%=b.user.name if b.user.present?%></td>
     <td class="show_state_<%=b.id%>"><%=b.state==0 ? '禁用' : '正常'%></td>

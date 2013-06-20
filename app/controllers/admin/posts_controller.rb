@@ -27,21 +27,44 @@ class Admin::PostsController < Admin::Common
     @post = Post.find(params[:id].to_i)
   end
 
-
   def create
     @post = Post.new(params[:post])
 	@post.user_id = current_user.id
-    if @post.save
-      if params[:asset_ids]
-        params[:asset_ids].split(',').each do |id|
-          asset = Asset.find(id.to_i)
-          asset.update_attributes(relateable_id: @post.id, relateable_type: @post.class.to_s) if asset.present?
+    respond_to do |format|
+      if @post.save
+        #保存封面图
+        if params[:asset_id]
+          #获得文件/格式
+          file = params[:asset_id]
+          file_temp = file.tempfile
+          file_name = file.original_filename
+          #上传
+          result = ImageUnit::Upload.save_asset(file_temp,1)
+          if result[:result]
+            result[:file_name] = file_name
+            result[:relateable_id] = @post.id
+            result[:relateable_type] = 'Post'
+            hash = collect_asset(result)
+            asset = Asset.new(hash)
+            if asset.save
+              @post.update_attribute(:asset_id, asset.id )
+            end
+          end
         end
+        #保存编辑器图片
+        if params[:asset_ids]
+          params[:asset_ids].split(',').each do |id|
+            asset = Asset.find(id.to_i)
+            asset.update_attributes(relateable_id: @post.id, relateable_type: @post.class.to_s) if asset.present?
+          end
+        end
+        format.html { redirect_to admin_posts_path, notice: '创建成功!' }
+        format.json { head :no_content }
+      else
+        flash[:error] = '创建失败!'
+        format.html { render action: "new" }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
-      redirect_to action: 'index', notice: '创建成功!'
-    else
-      flash[:error] = '创建失败!'
-      render 'new'
     end
   end
 
@@ -51,9 +74,31 @@ class Admin::PostsController < Admin::Common
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
+        #保存封面图
+        if params[:asset_id]
+          #获得文件/格式
+          file = params[:asset_id]
+          file_temp = file.tempfile
+          file_name = file.original_filename
+          #上传
+          result = ImageUnit::Upload.save_asset(file_temp,1)
+          if result[:result]
+            result[:file_name] = file_name
+            result[:relateable_id] = @post.id
+            result[:relateable_type] = 'Post'
+            hash = collect_asset(result)
+            asset = Asset.new(hash)
+            if asset.save
+              #删除原有封面图
+              @post.cover.destroy if @post.cover.present?
+              @post.update_attribute(:asset_id, asset.id )
+            end
+          end
+        end
         format.html { redirect_to admin_posts_path, notice: '更新成功!' }
         format.json { head :no_content }
       else
+        flash[:error] = '更新失败!'
         format.html { render action: "edit" }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

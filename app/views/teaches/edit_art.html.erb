@@ -1,9 +1,7 @@
 <%=provide(:title, '编辑作品')%>
-<% content_for :style do %>
 
-<%end%>
 <% content_for :style do %>
- <%= stylesheet_link_tag    "uploadify/uploadify" %>
+ <%= stylesheet_link_tag "uploadify/uploadify" %>
 <%end%>
 
 <% content_for :scripts do %>
@@ -86,9 +84,9 @@
 
   //uploadify上传
   $('#uploadify').uploadify({
-      'swf'      : '/uploadify/uploadify.swf',
+      'swf'      : '/assets/uploadify/uploadify.swf',
       'uploader' : '/upload/art_upload',
-      'cancelImg': '/uploadify/uploadify-cancel.png',
+      'cancelImg': '/assets/uploadify/uploadify-cancel.png',
       'buttonText' : '上传作品',
       'formData' : {
               '<%= session_key %>' :  '<%= cookies[session_key] %>',
