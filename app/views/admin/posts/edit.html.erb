@@ -7,11 +7,8 @@
       var options = {
         width: '800px',
         height: '500px',
-        uploadJson: '/upload/editor?item_id='+item_id+'&type='+type,
-        afterUpload : function(url) {
-          var asset_id = url.substring(url.lastIndexOf('/')+1);
-          alert(asset_id);
-        }
+        uploadJson: '/upload/editor?item_id='+item_id+'&type='+type
+
       };
       KindEditor.ready(function(K) {
         window.editor = K.create('#kind_editor', options)

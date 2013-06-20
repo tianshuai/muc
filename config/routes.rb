@@ -128,7 +128,7 @@ Muc::Application.routes.draw do
   get 'art/:mark/:id',				to: 'teaches#art'
 
 
-  get 'teach/arts',             to: 'teaches#arts'
+  get 'teach/arts',                 to: 'teaches#arts'
 
   #学院丛书
   get 'book/index',             to: 'books#index',            as: 'books'

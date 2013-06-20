@@ -28,6 +28,12 @@ class Admin::BooksController < Admin::Common
 	@post.user_id = current_user.id
     respond_to do |f|
       if @post.save
+        if params[:asset_ids]
+          params[:asset_ids].split(',').each do |id|
+            asset = Asset.find(id.to_i)
+            asset.update_attributes(relateable_id: @post.id, relateable_type: @post.class.to_s) if asset.present?
+          end
+        end
         f.html { redirect_to admin_books_path, notice: '创建成功!' }
         f.json { head :no_content }
       else

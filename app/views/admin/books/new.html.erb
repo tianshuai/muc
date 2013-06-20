@@ -1,5 +1,9 @@
 <%=provide(:title, '新建书籍')%>
+<% content_for :style do %>
+ <%= stylesheet_link_tag    "kindeditor/simple" %>
+<%end%>
 <% content_for :scripts do %>
+  <%= javascript_include_tag "kindeditor-4.1.7/kindeditor" %>
 	<script style="text/javascript">
     //添加删除分类
     function add_and_drop_category()
@@ -9,13 +13,27 @@
       obj.addClass('current').siblings('a').removeClass('current');
       obj.parent('div').find('.category_tag').val(cate_id);
     }
+      var item_id = '';
+      var type = 'Post';
+      var options = {
+        themeType: 'simple',
+        width: '800px',
+        height: '500px',
+        uploadJson: '/upload/editor?item_id='+item_id+'&type='+type,
+        afterUpload : function(url,data) {
+          //把编辑器上传的图片ｉｄ传给editor_ids,用于关联该新闻对象
+          muc.record_asset_ids(data.asset_id,'#editor_ids');
+        }
+      };
+      KindEditor.ready(function(K) {
+        window.editor = K.create('#kind_editor', options)
+      });
 
 	</script>
 <%end%>
 <% content_for :jquery do %>
   //刷新页面后清空assetID
-  $("#stuff_asset_id").attr('value',0);
-  $("#story_many_assets").attr('value','');
+  $("#editor_ids").attr('value','');
   //清空分类
   $('#category_id_box').val('');
 <%end%>
