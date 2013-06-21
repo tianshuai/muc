@@ -9,7 +9,7 @@ class Admin::ArtsController < Admin::Common
   #分类列表
   def index
     @css_list_all = true
-    @posts = Post.arts.paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.arts.order_b.recent.paginate(:page => params[:page], :per_page => 10)
     render 'list'
   end
 

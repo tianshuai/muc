@@ -73,6 +73,9 @@ class Post
   #推荐
   field :stick,				  type: Integer,  default: STICK[:no]
 
+  #排序
+  field :order,               type: Integer,  default: 0
+
   ##索引
   index({ title: 1 }, { background: true })
   index({ created_at: 1 }, { background: true })
@@ -84,7 +87,9 @@ class Post
   #过滤
   
   #最新的
-  scope :recent,			-> { desc(:_d) }
+  scope :recent,			-> { desc(:_id) }
+  #按自定义排序
+  scope :order_b,           -> { desc(:order) }
   #已发布的
   scope :published,         -> { where(publish: PUBLISH[:yes]) }
   #未发布的

@@ -9,7 +9,7 @@ class Admin::BooksController < Admin::Common
   #分类列表
   def index
     @css_list_all = true
-    @posts = Post.books.paginate(:page => params[:page], :per_page => 10)
+    @posts = Post.books.order_b.recent.paginate(:page => params[:page], :per_page => 10)
     render 'list'
   end
 

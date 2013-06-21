@@ -30,6 +30,10 @@
      <%=render partial: "shared/share_category",:locals => { :current_category_id=>@post.category_id, :type=>2} %>
   </div>
   <div class="field">
+    <%= f.label :order, '排序：' %>
+    <%= f.number_field :order %>
+  </div>
+  <div class="field">
     <%= f.label :stick, '推荐' %>
     <%= f.radio_button :stick, 0 %>否&nbsp;
     <%= f.radio_button :stick, 1 %>是

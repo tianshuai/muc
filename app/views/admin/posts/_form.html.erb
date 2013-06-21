@@ -29,6 +29,10 @@
     <%= f.text_area :content, id: 'kind_editor' %>
   </div>
   <div class="field">
+    <%= f.label :order, '排序：' %>
+    <%= f.number_field :order %>
+  </div>
+  <div class="field">
     <%= f.label :stick, '推荐' %>
     <%= f.radio_button :stick, 0 %>否&nbsp;
     <%= f.radio_button :stick, 1 %>是
