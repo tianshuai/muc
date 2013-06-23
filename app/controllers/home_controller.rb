@@ -10,7 +10,7 @@ class HomeController < ApplicationController
 
   #首页
   def index
-	@posts = Post.news.published.normal.sticked.order_b.recent.limit(5)
+	@posts = Post.news.published.normal.sticked.order_b.recent.limit(4)
     @books = Post.books.published.normal.sticked.order_b.recent.limit(3)
     @arts = Post.arts.published.normal.sticked.order_b.recent.limit(10)
 

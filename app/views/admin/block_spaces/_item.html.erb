@@ -3,6 +3,7 @@
     <td><%=b.id%></td>
 	<td><%=b.mark%></td>
 	<td><%= truncate(b.name, length: 10) %></td>
+	<td><%= "#{b.width}x#{b.height}" %></td>
 	<td><%=b.type_str%></td>
 	<td><%=b.user.name if b.user.present?%></td>
     <td class="show_state_<%=b.id%>"><%=b.state==0 ? '禁用' : '正常'%></td>
