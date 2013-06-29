@@ -5,6 +5,11 @@ module PublicImgHelper
   def asset_obj(asset_id)
 	Mongoid::GridFS.get(asset_id)
   end
+ 
+  #删除mongodb附件
+  def del_asset_obj(id)
+	Mongoid::GridFS.delete(id) if id.present?
+  end
 
   #默认头像地址
   def default_avatar(t='s')

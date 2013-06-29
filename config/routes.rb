@@ -152,14 +152,19 @@ Muc::Application.routes.draw do
   resources :users,			only: [:index, :new, :create, :show] 
 
   #用户注册登录
-  match 'signup',            to: 'users#new'
-  match 'login',             to: 'users#login'
-  match 'user/edit_info',	  to: 'users#edit_info'
-  match 'user/update_info',  to: 'users#update_info'
+  match 'signup',					to: 'users#new'
+  match 'login',					to: 'users#login'
+  match 'user/edit_info',			to: 'users#edit_info'
+  match 'user/update_info',			to: 'users#update_info'
 
   #个人资料设置
-  match 'user/edit_pwd',     to: 'users#edit_pwd'
-  match 'user/update_pwd',   to: 'users#update_pwd'
+  match 'user/edit_pwd',			to: 'users#edit_pwd'
+  match 'user/update_pwd',			to: 'users#update_pwd'
+  match 'user/ajax_avatar_form',	to: 'users#ajax_avatar_form'
+
+
+  #头像设置
+  match 'user/edit_avatar',			to: 'users#edit_avatar'
 
 
   resources :sessions, only: [:new, :create, :destroy]
@@ -169,6 +174,8 @@ Muc::Application.routes.draw do
   #上传路径
   match 'upload/editor'  => 'upload#editor'
   match 'upload/art_upload' => 'upload#art_upload'
+  match 'upload/avatar_upload' => 'upload#avatar_upload'
+  get 'upload/thumb_avatar_upload' => 'upload#thumb_avatar_upload'
 
   #附件处理
   get "asset/*path" => "assets#serve"
