@@ -293,6 +293,7 @@ table.admin-box a{color:gray;}
 table.admin-box a:hover{color:#ee0000;}
 table.admin-box .user_unaudited p{line-height:20px;}
 table.admin-box a.red{color:#ee0000;}
+table.admin-box td{text-align: center;}
 
 
 .form-box a {color:#666;}
@@ -435,5 +436,7 @@ color: #EA5200;
 label.checked {
 //background:url("./demo/images/checked.gif") no-repeat 0px 0px;
 }
-
-
+//加以下属性是解决与bootstrap冲突
+.drop_img{
+   max-width: none;
+}

@@ -81,9 +81,9 @@ $(document).ready(function() {
 <div id="clear_box" class="pt-20">
 	<h2 class="ft16">选取头像</h2>
 	<div align="center">
-	  <%=user_avatar_tag(current_user,'o', :class=>"bdr-5",:id=>"thumbnail",:alt=>"头像源文件",:style=>"float:left;margin-right:10px;")%>
+	  <%= user_avatar_tag(current_user,'o', class: "bdr-5", id: "thumbnail", alt: "头像源文件", style: "float:left;margin-right:10px;") %>
 	  <div style="border:1px #e5e5e5 solid; float:left; position:relative; overflow:hidden; width:180px; height:180px;">
-	    <%=user_avatar_tag(current_user,'o',:class=>"bdr-5",:alt=>"头像预览",:style=>"position: relative;")%>
+	    <%= user_avatar_tag(current_user,'o', class: "bdr-5 drop_img", alt: "头像预览", style: "position: relative;") %>
 	  </div>
 	  <div class="clearfix"></div>
 	  <%= form_tag upload_thumb_avatar_upload_path, method: :get do %>

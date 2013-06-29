@@ -135,6 +135,7 @@ Muc::Application.routes.draw do
   #学院丛书
   get 'book/index',                 to: 'books#index',            as: 'books'
   get 'books/list',                 to: 'books#list'
+  get 'book/:mark/:id',				to: 'books#show'
 
   #招生详情
   get 'enrollments',				to: 'enrollments#index',		  as: 'enrollments'
