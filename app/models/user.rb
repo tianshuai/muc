@@ -142,6 +142,8 @@ class User
                                                     'm'=> '', 
                                                     #大图(180*180)
                                                     'b'=> '', 
+                                                    #原图
+                                                    'o'=> '', 
                                                     #类型
                                                     'type'=> ''
                                                   },
@@ -202,9 +204,9 @@ class User
     self.img['avatar'][t] || ''
   end
 
-  #给头像赋值s
-  def avatar_s=(id)
-    self.img['avatar']['s'] = id
+  #给头像赋值(传数组，第一个为ＩＤ，第二个为图片大小)
+  def avatar_id=(p)
+    self.img['avatar'][p[1]] = p[0]
   end
 
   #给头像赋值m
@@ -215,6 +217,11 @@ class User
   #给头像赋值b
   def avatar_b=(id)
     self.img['avatar']['b'] = id
+  end
+
+  #给头像赋值o
+  def avatar_o=(id)
+    self.img['avatar']['o'] = id
   end
 
 private

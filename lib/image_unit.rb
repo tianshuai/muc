@@ -110,6 +110,92 @@ module ImageUnit
 
     end
 
+
+	# 保存头像
+	def self.save_avatar(file, options={})
+	  image_io= open(file)
+      #用minimagick读取文件
+      image_mini = MiniMagick::Image.read(image_io)
+
+      result = {}
+      resize = CONF['image_avatar_format']
+	  #判断格式
+	  set_format = CONF['verify_img_type']
+      format = result[:format] = image_mini[:format]
+	  return { message: "只支持JPG、JPEG、PNG、GIF文件", result: false } unless set_format.include?(format)
+      #整数转换为字节/ 验证附件大小
+      verify_size = (resize['max_size'] || 2).to_i.megabytes
+      size = result[:size] = image_mini[:size]
+	  return { message: "文件大小不要超过#{resize['max_size']}Mb", result: false } unless verify_size > size
+
+	  # 验证宽高
+	  min_w_h = resize['min_w_h']
+	  return { message: "图片最低分辨率为#{min_w_h.first}x#{min_w_h.last}", result: false } if min_w_h.first > image_mini[:width] or min_w_h.last > image_mini[:height]
+	  # 读取GridFS
+	  grid = Mongoid::GridFS
+      #大图
+      resize_b = resize['o'] || 180
+      image_mini.combine_options do |img|
+        img.resize "#{resize_b}x>"
+        img.quality "100"
+      end
+      grid_b = grid.put(image_mini.path)
+      result[:file_b_id]  = grid_b.id
+      result[:file_b_width]  = image_mini[:width]
+      result[:file_b_height]  = image_mini[:height]
+
+      if grid_b.present?
+        result[:result] = true
+        return  result
+      else
+        return  { message: 'failr', reslut: false }
+      end
+
+	end
+
+
+	#缩略图头像上传,返回图片的mongoid
+	def self.save_thumb_avatar(file_id,w,h,x1,y1)
+
+	  # 读取GridFS
+	  grid = Mongoid::GridFS
+
+      file = grid.get(file_id)
+	  image_mini = MiniMagick::Image.read(file.data)
+      resize = CONF['image_avatar_format']
+	  image_mini.combine_options do |img|
+	    img.quality "100"
+	    img.crop "#{w}x#{h}+#{x1}+#{y1}"   
+	  end
+
+	  #image_mini.resize Settings.avatar_b
+	  image_mini.combine_options do |img|
+	    img.resize resize['b']
+	    img.quality "100"
+	  end
+	  id1 = grid.put(image_mini.path)
+
+	  #image_mini.resize Settings.avatar_s
+	  image_mini.combine_options do |img|
+	    img.resize resize['m']
+	    img.quality "100"
+	  end
+	  id2   = grid.put(image_mini.path)
+
+	  #image_mini.resize Settings.avatar_l
+	  image_mini.combine_options do |img|
+	    img.resize resize['s']
+	    img.quality "100"
+	  end
+	  id3 = grid.put(image_mini.path)
+	  
+	  if id1.present? and id2.present? and id3.present?
+	    return [ id1.id, id2.id, id3.id,true]
+	  else
+		return [ 'false', false ]
+	  end
+	end
+
   end
 
 end

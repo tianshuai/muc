@@ -8,9 +8,18 @@
         <div class="wid">
             <!--当前位置 start{-->
             <%#= render partial: 'path', locals: { static: @post } %>
+
             <!--}当前位置 end-->
             <!--主体内容 start{-->
 			<%#=render 'left_bar', categories: @categories %>
+			<div class="left">
+				<% if @post.user.present? %>
+					<div>
+						<%= link_to user_avatar_tag(@post.user,'b'), @post.user %>
+						<%= link_to @post.user.name, @post.user %>
+					</div>
+				<%end%>
+			</div>
             <div class="right">
               <h2 class="name"><%=@post.title%></h2>
               <div class="date">发布时间：<%=@post.created_at.strftime("%Y.%m.%d")%></div>

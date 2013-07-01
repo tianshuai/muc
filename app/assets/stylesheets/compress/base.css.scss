@@ -293,6 +293,7 @@ table.admin-box a{color:gray;}
 table.admin-box a:hover{color:#ee0000;}
 table.admin-box .user_unaudited p{line-height:20px;}
 table.admin-box a.red{color:#ee0000;}
+table.admin-box td{text-align: center;}
 
 
 .form-box a {color:#666;}
@@ -377,6 +378,7 @@ input.btn-medium {border: 0 none;cursor: pointer;}
 .mbutton {border: 0 none;color: #FFFFFF;display: inline-block;height: 34px;line-height: 34px;vertical-align: middle;width: 65px;}
 .btn_submit_exc[disabled="disabled"] {cursor:"default";color:#ddd;background-color:#666;}
 .btn_submit_exc[disabled="disabled"]:hover {color:white;background-color:#666;}
+.medium-btn{padding:5px 10px;}
 
 
 
@@ -434,5 +436,7 @@ color: #EA5200;
 label.checked {
 //background:url("./demo/images/checked.gif") no-repeat 0px 0px;
 }
-
-
+//加以下属性是解决与bootstrap冲突
+.drop_img{
+   max-width: none;
+}

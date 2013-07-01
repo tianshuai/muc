@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :forbid_login, only: [ :new, :create ]
 
   #需要登录
-  before_filter :signed_in_user, only: [ :edit, :update, :edit_profile, :edit_pwd ]
+  before_filter :signed_in_user, only: [ :edit, :update, :edit_profile, :edit_pwd, :edit_avatar ]
 
   # GET /users
   # GET /users.json
@@ -90,7 +90,16 @@ class UsersController < ApplicationController
 	  flash[:error] = '更新失败!'
 	  render 'edit_pwd'
 	end
+  end
 
+  #修改头像
+  def edit_avatar
+	@css_edit_avatar = true
+  end
+
+  #ajax 切割头像
+  def ajax_avatar_form
+	render layout: false
   end
 
 end

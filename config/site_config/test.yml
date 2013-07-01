@@ -30,3 +30,12 @@ image_editor_format:
   b: 740
   m: [170,120]
   s: [50,50]
+
+#头像规格
+image_avatar_format:
+  max_size: 5
+  min_w_h: [180, 180]
+  o: 180
+  b: 180x180
+  m: 100x100
+  s: 50x50
