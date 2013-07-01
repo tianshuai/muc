@@ -108,10 +108,11 @@ Muc::Application.routes.draw do
   match 'contact',     to: 'home#contact'
 
   #学院新闻
-  resources :posts,				only: [ :index ]
-  get 'posts',					to: 'posts#index' 
-  get 'posts/:mark',			to: 'posts#list'
-  get 'post/:mark/:id',	        to: 'posts#show'
+  get 'posts',					    to: 'posts#index' 
+  get 'posts/:mark',			    to: 'posts#list'
+  get 'post/:mark/:id',	            to: 'posts#show'
+  delete 'post/del_post',			to: 'posts#ajax_del_post'
+  post 'post/set_post_stick',		to: 'posts#set_post_stick'
 
   #学院概述
   get 'introduces',					to: 'introduces#index',		  as: 'introduces'
@@ -133,8 +134,9 @@ Muc::Application.routes.draw do
   get 'teach/arts',                 to: 'teaches#arts'
 
   #学院丛书
-  get 'book/index',                 to: 'books#index',            as: 'books'
-  get 'books/list',                 to: 'books#list'
+  get 'books',                      to: 'books#index',            as: 'books'
+  get 'books/:mark',                to: 'books#list'
+  get 'book/:mark/:id',	            to: 'books#show'
 
   #招生详情
   get 'enrollments',				to: 'enrollments#index',		  as: 'enrollments'

@@ -39,9 +39,9 @@ class Post
   TYPE={
     #新闻
     news: 1,
-    #学院丛书
-    art: 2,
     #作品
+    art: 2,
+    #学院丛书
     book: 3
   }
 

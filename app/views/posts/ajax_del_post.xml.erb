@@ -1,0 +1,10 @@
+<taconite>
+  <eval>
+      <% if @success %>
+　      muc.show_ok_note('<%=@note%>');
+		muc.redirect('<%=root_path%>', 2000)
+      <%else%>
+        muc.show_error_note('<%=@note%>');
+      <%end%>
+  </eval>
+</taconite>

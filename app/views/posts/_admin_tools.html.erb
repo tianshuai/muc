@@ -1,0 +1,18 @@
+<%if can_edit?(@post.user)%>
+    <div class="mt-20">
+        <span>管理选项：</span>
+        <%if editor?%>
+            <%if @post.stick == Post::STICK[:yes]%>
+                <%=link_to "取消推荐", { action: :set_post_stick, id: @post.id, type: 0 }, method: :post, remote: true, id: "post_stick_btn", class: "btn-medium black"%>
+            <%else%>
+                <%=link_to "推荐", { action: :set_post_stick, id: @post.id, type: 1 }, method: :post, remote: true, id: "post_stick_btn", class: "btn-medium black"%>
+            <%end%>
+
+            <%#=link_to "重建缩略图", '#', class: "btn-medium black"%>
+            <%=link_to "编辑", edit_admin_post_path(@post), class: "btn-medium black"%>
+            <%=link_to "删除", { action: :ajax_del_post, id: @post.id, type: 1 }, remote: true, method: :delete, title: "删除", class: "btn-medium btn-warning black", confirm: "确认删除吗？"%>
+        <%end%>
+
+
+    </div>
+<%end%>
