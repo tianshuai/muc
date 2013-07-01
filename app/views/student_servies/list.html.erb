@@ -16,11 +16,11 @@
                   <ul class="ul_news">
                     <%@posts.each do |b|%>
 						<li>
-							<h3><%= link_to truncate(b.title, length: 35), b.view_url('serve'), target: "_blank" %></h3>
+							<h3><%= link_to truncate(b.title, length: 35), b.view_url('serve') %></h3>
 							<em><%= b.created_at.strftime("%Y.%m.%d") %></em>
 							<p>
 								<% if b.cover.present? %>
-									<%= link_to asset_m_tag(b.cover, width: 80), b.view_url('serve'), class: 'fl', target: '_blank' %>
+									<%= link_to asset_m_tag(b.cover, width: 80), b.view_url('serve'), class: 'fl' %>
 									<span><%= raw truncate(strip_tags(b.content), length: 100) %></span>
 								<%else%>
 									<%= raw truncate(strip_tags(b.content), length: 80) %>
