@@ -38,6 +38,10 @@ a:hover,a:active{text-decoration:underline}
 .nav_diy li{float:left;height:40px;margin:0 2px 0 0}
 .nav_diy a:link,.nav_diy a:visited{color:#fff;float:left;padding:0 14px;height:40px;padding-top:10px;}
 .nav_diy a:hover,.nav_diy a:active,.nav_diy li.on a:link,.nav_diy li.on a:visited{text-decoration:none;background:#feffff;color:#333}
+/*----- 导航右侧注册登录样式-----*/
+.nav_right{position:relative;}
+.nav_right li{float:left;margin:5px 10px 0 0;}
+.nav_right li a{color:#fff;font-size:14px;}
 /*------------主体------------*/
 .main{width:980px;margin:0 auto;padding:10px 0 0;background:#fff;overflow:hidden;zoom:1;margin-left:-20px;}
 /*------flash------*/

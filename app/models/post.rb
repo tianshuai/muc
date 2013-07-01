@@ -42,7 +42,9 @@ class Post
     #作品
     art: 2,
     #学院丛书
-    book: 3
+    book: 3,
+	#通用
+	common: 10
   }
 
   #推荐
@@ -104,17 +106,20 @@ class Post
   scope :books,             -> { where(type: TYPE[:book]) }
   #是作品
   scope :arts,              -> { where(type: TYPE[:art]) }
+  #是 通用
+  scope :commons,           -> { where(type: TYPE[:common]) }
   #推荐的
   scope :sticked,			-> { where(stick: STICK[:yes]) }
 
 
   #地址（不同分类下的内容走不同地址）
-  def view_url
+  def view_url(key='common')
 	if self.category.present?
 	  case type
-	  when 1 then	sprintf(CONF['news_url'], self.category.mark, self.id)
-	  when 2 then	sprintf(CONF['arts_url'], self.category.mark, self.id)
-	  when 3 then	sprintf(CONF['books_url'], self.category.mark, self.id)
+	  when 1  then	sprintf(CONF['news_url'], self.category.mark, self.id)
+	  when 2  then	sprintf(CONF['arts_url'], self.category.mark, self.id)
+	  when 3  then	sprintf(CONF['books_url'], self.category.mark, self.id)
+	  when 10 then	sprintf(CONF['commons_url'], key, self.category.mark, self.id)
 	  end
 	else
 	  CONF['domain_base']

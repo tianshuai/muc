@@ -35,6 +35,13 @@ class Admin::CategoriesController < Admin::Common
     render 'list'
   end
 
+  #通用列表(commons)
+  def commons
+	@css_common_list = true
+    @categories = Category.commons.paginate(:page => params[:page], :per_page => 10)
+    render 'list'
+  end
+
   #新的分类
   def new
     @category = Category.new

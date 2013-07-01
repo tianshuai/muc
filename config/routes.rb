@@ -48,6 +48,16 @@ Muc::Application.routes.draw do
 	  end
     end
 
+    #通用
+    resources :commons do
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+		post :ajax_set_publish
+		post :ajax_set_stick
+	  end
+    end
+
     #栏目
     resources :blocks do
 	  collection do
@@ -73,6 +83,7 @@ Muc::Application.routes.draw do
         get :news
         get :arts
         get :books
+		get :commons
 	  end
     end
 
@@ -144,9 +155,10 @@ Muc::Application.routes.draw do
   
   #学生工作
   get 'student_servies',			to: 'student_servies#index',	  as: 'student_servies'
-  get 'student_serve/:mark',		to: 'student_servies#show'
+  get 'student_serves/:mark',		to: 'student_servies#list'
+  get 'serve/:mark/:id',			to: 'student_servies#show'
 
-  #学生工作
+  #211
   get 'projects',				    to: 'projects#index',	  as: 'projects'
   get 'project/:mark',			    to: 'projects#show'
 

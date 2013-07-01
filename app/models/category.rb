@@ -14,7 +14,9 @@ class Category
     #作品
     art: 2,
     #丛书
-    book: 3
+    book: 3,
+	# 其它
+    common: 10
   }
 
   #状态
@@ -63,6 +65,7 @@ class Category
   scope :arts,                -> { where(type: TYPE[:art]) }
   #书籍
   scope :books,               -> { where(type: TYPE[:book]) }
+  scope :commons,			  -> { where(type: TYPE[:common]) }
 
   #正常
   scope :normal,              -> { where(state: STATE[:ok]) }             
@@ -89,18 +92,20 @@ class Category
   #类型
   def type_str
 	case type
-	when 1 then '新闻'
-	when 2 then '作品'
-    when 3 then '书籍'
+	when 1  then '新闻'
+	when 2  then '作品'
+    when 3  then '书籍'
+	when 10 then '通用'
 	else
 	end
   end
 
-  #分类列表数组(type:1,新闻类；2.作品;3.书籍)
+  #分类列表数组(type:1,新闻类；2.作品;3.书籍;10.通用)
   def self.category_arr(type=1)
 	return self.news.normal.order_b if type==1
 	return self.arts.normal.order_b if type==2
     return self.books.normal.order_b if type==3
+    return self.commons.normal.order_b if type==10
 	return []
   end
 

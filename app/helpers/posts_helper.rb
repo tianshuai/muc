@@ -24,4 +24,26 @@ module PostsHelper
 	return str	
   end
 
+  #当前位置判断（分类：mark）
+  def path_load(post,cate,mark)
+    case mark
+    when 'student_serve'
+      t_name = '学生工作'
+      t_url = student_servies_path
+    when ''
+
+    end
+
+    if post.present?
+	  str = "#{link_to(t_name, t_url)} > #{post.title}"
+    else
+	  if cate.present?
+	    str = "#{cate.name}"
+	  else
+	    str = t_name
+	  end
+    end
+	return str	
+  end
+
 end

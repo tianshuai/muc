@@ -1,3 +1,4 @@
 <!--当前位置 start{-->
-<div class="weizhi">当前位置：<%= link_to "首页", root_path %> > <%= static.short_title %></div>
+<% type = type || 1 %>
+<div class="weizhi">当前位置：<%= link_to "首页", root_path %> > <%= raw path_load(post,cate,mark) %></div>
 <!--}当前位置 end-->

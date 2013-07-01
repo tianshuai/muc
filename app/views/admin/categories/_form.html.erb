@@ -15,29 +15,36 @@
     <%= f.label :name, '名称：' %>
     <%= f.text_field :name %>
   </div>
+  <br />
   <div class="field">
     <%= f.label :content, '描述' %>
     <%= f.text_area :content, size: '100*100' %>
   </div>
+  <br />
   <div class="field">
-    <%= f.label :mark, '标识' %>
+    <%= f.label :mark, '标识(格式只能是字母或字母加下划线)' %>
     <%= f.text_field :mark %>
   </div>
+  <br />
   <div class="field">
     <%= f.label :order, '排序' %>
     <%= f.number_field :order %>
   </div>
+  <br />
   <div class="field">
     <%= f.label :type, '类型' %>
     <%= f.radio_button :type, 1 %>新闻&nbsp;
     <%= f.radio_button :type, 2 %>作品&nbsp;
-    <%= f.radio_button :type, 3 %>书籍
+    <%= f.radio_button :type, 3 %>书籍&nbsp;
+    <%= f.radio_button :type, 10 %>通用&nbsp;
   </div>
+  <br />
   <div class="field">
     <%= f.label :stick, '是否推荐' %>
     <%= f.radio_button :stick, 0 %>否&nbsp;
     <%= f.radio_button :stick, 1 %>是
   </div>
+  <br />
   <div class="field">
     <%= f.label :state, '状态' %>
     <%= f.radio_button :state, 0 %>关闭&nbsp;
