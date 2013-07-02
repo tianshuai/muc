@@ -22,14 +22,14 @@ class PostsController < ApplicationController
 
 	if mark == 'all'
 	  @current_cate = []
-	  @posts = Post.news.published.normal.order_b.recent.paginate(:page => params[:page], per_page: 10)
+	  @posts = Post.news.published.normal.order_b.recent.paginate(:page => params[:page], per_page: 20)
 	else
 	  @current_cate = Category.find_by(mark: mark)
 	  if @current_cate.blank?
 	    flash[:error] = "分类不存在!"
 		return redirect_to root_path
 	  end
-	  @posts = @current_cate.posts.published.normal.order_b.recent.paginate(page: params[:page], per_page: 10) 
+	  @posts = @current_cate.posts.published.normal.order_b.recent.paginate(page: params[:page], per_page: 20) 
 	end
 
   end

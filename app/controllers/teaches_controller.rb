@@ -37,7 +37,7 @@ class TeachesController < ApplicationController
 	  if @static.present?
 		case mark
 		when 'student_art'
-		  @arts = Post.arts.published.normal.recent.paginate(:page => params[:page], :per_page => 5)
+		  @arts = Post.arts.published.normal.recent.paginate(:page => params[:page], :per_page => 20)
 		end
         format.html # show.html.erb
         format.json { render json: @static }

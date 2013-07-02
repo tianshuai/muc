@@ -11,4 +11,9 @@
 		  </ul>
 		<%end%>
 	</div>
+			<!--分页 start{-->
+			<div class="page">
+			  <%=will_paginate arts if arts.present?%>
+			</div>
+			<!--}分页 end-->
 	<!--}学院新作 end-->
