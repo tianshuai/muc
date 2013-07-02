@@ -119,7 +119,15 @@ class Post
 	  when 1  then	sprintf(CONF['news_url'], self.category.mark, self.id)
 	  when 2  then	sprintf(CONF['arts_url'], self.category.mark, self.id)
 	  when 3  then	sprintf(CONF['books_url'], self.category.mark, self.id)
-	  when 10 then	sprintf(CONF['commons_url'], key, self.category.mark, self.id)
+	  # 如果是通用，需要手动指定路径（以后需要改进）
+	  when 10
+		case self.category.mark
+		# 学生工作
+		when 'student_serve' then path = 'serve'
+		else
+		  path = 'common'
+		end
+		sprintf(CONF['commons_url'], path, self.category.mark, self.id)
 	  end
 	else
 	  CONF['domain_base']
