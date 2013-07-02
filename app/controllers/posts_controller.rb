@@ -37,6 +37,11 @@ class PostsController < ApplicationController
   #新闻展示页
   def show
     @post = Post.find(params[:id].to_i)
+	unless @post.present?
+	  flash[:error] = "页面不存在!"
+      return redirect_to root_path
+	end
+	@post.inc(:view_count, 1)
 	@categories = Category.category_arr(1)
     respond_to do |format|
       format.html # show.html.erb
