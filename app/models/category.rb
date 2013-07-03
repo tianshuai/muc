@@ -15,6 +15,8 @@ class Category
     art: 2,
     #丛书
     book: 3,
+	# 师资
+	teacher: 4,
 	# 其它
     common: 10
   }
@@ -65,6 +67,8 @@ class Category
   scope :arts,                -> { where(type: TYPE[:art]) }
   #书籍
   scope :books,               -> { where(type: TYPE[:book]) }
+  # 师资
+  scope :teachers,			  -> { where(type: TYPE[:teacher]) }
   scope :commons,			  -> { where(type: TYPE[:common]) }
 
   #正常
@@ -95,16 +99,18 @@ class Category
 	when 1  then '新闻'
 	when 2  then '作品'
     when 3  then '书籍'
+	when 4	then '师资'
 	when 10 then '通用'
 	else
 	end
   end
 
-  #分类列表数组(type:1,新闻类；2.作品;3.书籍;10.通用)
+  #分类列表数组(type:1,新闻类；2.作品;3.书籍;4.师资;10.通用)
   def self.category_arr(type=1)
 	return self.news.normal.order_b if type==1
 	return self.arts.normal.order_b if type==2
     return self.books.normal.order_b if type==3
+    return self.teachers.normal.order_b if type==4
     return self.commons.normal.order_b if type==10
 	return []
   end

@@ -4,7 +4,7 @@
 	<td><%= link_to truncate(b.title, length: 10), b.view_url, target: '_blank' %></td>
     <td>
       <% if b.cover.present? %>
-        <%= asset_m_tag(b.cover) %>
+        <%= asset_s_tag(b.cover) %>
       <%else%>
         <span>无</span>
       <%end%>

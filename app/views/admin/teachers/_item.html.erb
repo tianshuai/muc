@@ -1,7 +1,7 @@
 <tr id="post_<%=b.id%>" class="user_unaudited">
     <td><label><span class="btn-medium">选中</span><%=check_box_tag "content[ids][]", b.id %></label></td>
     <td><%=b.id%></td>
-	<td><%= link_to truncate(b.title, length: 10), b.view_url, title: b.title, target: '_blank' %></td>
+	<td><%= link_to truncate(b.title, length: 10), b.view_url, target: '_blank' %></td>
     <td>
       <% if b.cover.present? %>
         <%= asset_s_tag(b.cover) %>
@@ -37,7 +37,7 @@
         <%=link_to "禁用",{ action: 'ajax_set_state', id: b.id, type: 0 }, remote: true, method: :post%> |
       <%end%>
 	</span>
-	<%=link_to "编辑", edit_admin_post_path(b)%>
+    <%=link_to "编辑", edit_admin_teacher_path(b) %>
     <%=link_to "删除", { action: 'destroy', id: b.id }, data: { confirm: "确认执行此操作?" }, remote: true, method: :delete %>
   </td>
 </tr>

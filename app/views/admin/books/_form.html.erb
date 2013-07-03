@@ -28,28 +28,32 @@
   </div>
   <span class="blank10"></span>
   <div class="field">
-	<label>封面图：</label>
+	<label>封面图(150x200)：</label>
 	<input type="file" name="asset_id" />
   </div>
+  <span class="blank10"></span>
   <div class="field">
     <%= f.label :content, '内容' %>
     <%= f.text_area :content, id: 'kind_editor' %>
   </div>
+  <span class="blank10"></span>
   <div class="field">
     <%= f.label :order, '排序：' %>
     <%= f.number_field :order %>
   </div>
-
+  <span class="blank10"></span>
   <div class="field">
     <%= f.label :stick, '推荐' %>
     <%= f.radio_button :stick, 0 %>否&nbsp;
     <%= f.radio_button :stick, 1 %>是
   </div>
+  <span class="blank10"></span>
   <div class="field">
     <%= f.label :publish, '是否发布' %>
     <%= f.radio_button :publish, 0 %>否&nbsp;
     <%= f.radio_button :publish, 1 %>是
   </div>
+  <span class="blank10"></span>
   <div class="field">
     <%= f.label :state, '状态' %>
     <%= f.radio_button :state, 0 %>禁用&nbsp;

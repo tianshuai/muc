@@ -13,6 +13,8 @@
 				<% case params[:mark] %>
 				<% when 'student_art' %>
 					<%= render 'art_list', arts: @arts %>
+				<% when 'teachers' %>
+					<%= render 'teacher_list', posts: @posts %>
 				<%else%>
 					<h2 class="tit"><%= @static.title %></h2>
 					<div class="content">

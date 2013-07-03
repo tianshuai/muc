@@ -43,6 +43,8 @@ class Post
     art: 2,
     #学院丛书
     book: 3,
+	# 师资
+	teacher: 4,
 	#通用
 	common: 10
   }
@@ -106,6 +108,8 @@ class Post
   scope :books,             -> { where(type: TYPE[:book]) }
   #是作品
   scope :arts,              -> { where(type: TYPE[:art]) }
+  #师资
+  scope :teachers,			-> { where(type: TYPE[:teacher]) }
   #是 通用
   scope :commons,           -> { where(type: TYPE[:common]) }
   #推荐的
@@ -113,12 +117,13 @@ class Post
 
 
   #地址（不同分类下的内容走不同地址）
-  def view_url(key='common')
+  def view_url()
 	if self.category.present?
 	  case type
 	  when 1  then	sprintf(CONF['news_url'], self.category.mark, self.id)
 	  when 2  then	sprintf(CONF['arts_url'], self.category.mark, self.id)
 	  when 3  then	sprintf(CONF['books_url'], self.category.mark, self.id)
+	  when 4  then	sprintf(CONF['teachers_url'], self.category.mark, self.id)
 	  # 如果是通用，需要手动指定路径（以后需要改进）
 	  when 10
 		case self.category.mark

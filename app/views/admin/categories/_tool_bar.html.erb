@@ -3,6 +3,7 @@
   <%=link_to '新闻', { action: :news }, class: "btn-medium mr-5 fl #{css_active?(@css_news_list)}"%>
   <%=link_to '作品', { action: :arts }, class: "btn-medium mr-5 fl #{css_active?(@css_art_list)}"%>
   <%=link_to '书籍', { action: :books }, class: "btn-medium mr-5 fl #{css_active?(@css_book_list)}"%>
+  <%=link_to '师资', { action: :teachers }, class: "btn-medium mr-5 fl #{css_active?(@css_teacher_list)}"%>
   <%=link_to '通用', { action: :commons }, class: "btn-medium mr-5 fl #{css_active?(@css_common_list)}"%>
 
   <%form_tag '',:class=>"form-box fr",:method=>:get do%>

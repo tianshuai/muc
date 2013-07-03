@@ -48,6 +48,16 @@ Muc::Application.routes.draw do
 	  end
     end
 
+    #书籍
+    resources :teachers do
+	  collection do
+		post :ajax_set_state
+		post :destroy_more
+		post :ajax_set_publish
+		post :ajax_set_stick
+	  end
+    end
+
     #通用
     resources :commons do
 	  collection do
@@ -83,6 +93,7 @@ Muc::Application.routes.draw do
         get :news
         get :arts
         get :books
+        get :teachers
 		get :commons
 	  end
     end

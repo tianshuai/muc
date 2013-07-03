@@ -10,6 +10,8 @@ news_url: http://127.0.0.1:3000/post/%s/%s
 arts_url: http://127.0.0.1:3000/art/%s/%s
 #书籍最终页
 books_url: http://127.0.0.1:3000/book/%s/%s
+# 师资最终页
+teachers_url: http://127.0.0.1:3000/teacher/%s/%s
 # 通用
 commons_url: http://127.0.0.1:3000/%s/%s/%s
 

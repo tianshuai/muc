@@ -18,7 +18,7 @@
   <br />
   <div class="field">
     <%= f.label :content, '描述' %>
-    <%= f.text_area :content, size: '100*100' %>
+    <%= f.text_area :content, style: "width:500px;height:100px;" %>
   </div>
   <br />
   <div class="field">
@@ -36,6 +36,7 @@
     <%= f.radio_button :type, 1 %>新闻&nbsp;
     <%= f.radio_button :type, 2 %>作品&nbsp;
     <%= f.radio_button :type, 3 %>书籍&nbsp;
+    <%= f.radio_button :type, 4 %>师资&nbsp;
     <%= f.radio_button :type, 10 %>通用&nbsp;
   </div>
   <br />

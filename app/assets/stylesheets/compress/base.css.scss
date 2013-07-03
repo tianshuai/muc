@@ -56,7 +56,8 @@ a:hover,a:active{text-decoration:underline}
 .num li{cursor:pointer;width:15px;height:11px;text-indent:-9999px;overflow:hidden;background: image_url('num.png') no-repeat 0 0;_background-image: image_url('num.gif');float:left}
 .num li.on{background-position:-15px 0}
 /*------内容------*/
-.wid{padding:0 20px 10px;overflow:hidden;zoom:1;position:relative}
+.wid{padding:0 20px 10px;zoom:1}
+//.wid{padding:0 20px 10px;overflow:hidden;zoom:1;position:relative}
 .title{background: image_url('title.gif') repeat-x;height:35px;font:bold 16px/35px Microsoft YaHei;color:#fff;text-indent:12px}
 .more{float:right;padding:0 10px 0 0;line-height:35px;margin:-35px 0 0}
 .more a{color:#fff}
@@ -89,7 +90,7 @@ a:hover,a:active{text-decoration:underline}
 .readmore a:link,.readmore a:visited{display:block;width:100px;height:30px;background: image_url('readmore.gif');text-indent:-9999px;overflow:hidden}
 .readmore a:hover,.readmore a:active{background-position:0 -30px}
 /*学院新作*/
-.works{clear:both;height:390px}
+.works{clear:both}
 .ul_works{margin:0 0 0 -20px;padding:20px 0 0;overflow:hidden;zoom:1}
 .ul_works li{float:left;margin:0 0 0 20px;display:inline;height:162px;width:172px}
 .ul_works img{width:170px;height:120px;margin:0 0 8px}
@@ -145,9 +146,9 @@ a:hover,a:active{text-decoration:underline}
 .ul_lead h3 a:link,.ul_lead h3 a:visited{color:#666;font-size:12px;font-family:simsun}
 .ul_lead h3 a:hover,.ul_lead h3 a:active{color:#d2003d;text-decoration:none}
 /*------------师资队伍------------*/
-.ul_tech{overflow:hidden;zoom:1;font:normal 14px/33px Microsoft YaHei;color:#666}
+.ul_tech{overflow:hidden;zoom:1;font:normal 14px/33px Microsoft YaHei;color:#666;}
 //.ul_tech li{float:left;margin:0 10px 8px 0;border:#ddd 1px solid;width:100px;height:35px;text-align:center;cursor:pointer}
-.ul_tech li{float:left;margin:0 10px 8px 0;border:#ddd 1px solid;width:100px;height:35px;text-align:center;cursor:pointer}
+.ul_tech li{float:left;margin:0 10px 8px 0;padding-top:5px;border:#ddd 1px solid;width:100px;height:30px;text-align:center;cursor:pointer}
 .ul_tech li.on{color:#d2003d}
 .ul_tech li.hover{background:#f2f0f0}
 .zm{font:bold 21px/25px Arial;color:#222}

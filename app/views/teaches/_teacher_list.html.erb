@@ -1,0 +1,53 @@
+	<!--师资队伍 start{-->
+	<div class="works">
+		<% cate = Category.teachers.normal.order_b %>
+
+		<ul class="ul_tech">
+			<% cate.each_with_index do |d,index| %>
+				<li>
+					<%= d.name %>
+				</li>
+			<%end%>
+		</ul>
+		<!--教授begin-->
+
+		<% cate.each_with_index do |d,index| %>
+			<% teachers = d.posts.published.normal.order_b %>
+			<div class="tab_div show">
+				<h2 class="title"><%= d.name %></h2>
+				<h3 class="">
+				   	
+				</h3>
+				<ul class="ul_teacher">
+					<% teachers.each do |d| %>
+						<li><%= link_to d.title, "#anchor_#{d.id}" %></li>
+					<%end%>
+				</ul>
+			<span class="blank20"></span>
+
+			<% teachers.each do |d| %>
+				<span id="anchor_<%=d.id%>" class="blank20"></span>
+				<div>
+					<% if d.cover.present? %>
+						<%= asset_b_tag(d.cover, width: 200) %>
+					<%end%>
+					<span class="blank10"></span>
+					<p>
+						<h2><%= d.title %></h2>
+					</p>
+					<br />
+					<%= raw d.content %>
+				</div>
+				<span class="blank10"></span>
+				<div style="border-top:1px dotted #ddd"></div>
+				<span class="blank20"></span>
+			<%end%>
+
+			</div>
+
+		<%end%>
+		<!--教授end-->
+
+	</div>
+
+	<!--}师资队伍 end-->
