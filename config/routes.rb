@@ -186,11 +186,10 @@ Muc::Application.routes.draw do
   match 'user/edit_pwd',			to: 'users#edit_pwd'
   match 'user/update_pwd',			to: 'users#update_pwd'
   match 'user/ajax_avatar_form',	to: 'users#ajax_avatar_form'
-
+  post 'user/ajax_validate_only',	to: 'users#ajax_validate_only'
 
   #头像设置
   match 'user/edit_avatar',			to: 'users#edit_avatar'
-
 
   resources :sessions, only: [:new, :create, :destroy]
   match 'signin', to: 'sessions#new'

@@ -102,4 +102,31 @@ class UsersController < ApplicationController
 	render layout: false
   end
 
+  #ajax验证是否唯一
+  def ajax_validate_only
+	val = params[:val] || ''
+	type = params[:type] || '1'
+	if val.present?
+	  case type
+	  when '1'
+	    user = User.find_by(name: val)
+		if user.present?
+	      result = false
+		else
+	  	  result = true
+		end
+	  when '2'
+	    user = User.find_by(email: val.downcase)
+		if user.present?
+	      result = false
+		else
+	  	  result = true
+		end
+	  end
+	else
+	  result = false
+	end
+	render json: result.to_json
+  end
+
 end
