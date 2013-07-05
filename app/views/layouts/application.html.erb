@@ -9,7 +9,7 @@
   <%= yield :style %>
   <!--压缩后已引用进来-->
   <!--[if IE 6]>
-    <%#= javascript_include_tag "compress/ie6png" %>
+    <%= javascript_include_tag "ie6png" %>
     <script>
         DD_belatedPNG.fix('img,a,form,div');
     </script>
@@ -49,6 +49,8 @@
 
 
     </div>
+	<!--返回顶部-->
+	<a href="javascript:void(0);" class="gotop_btn hidden" id="goTopButton">&nbsp;</a>
   </body>
 </html>
 
@@ -58,7 +60,9 @@
     $(function(){
       //初始化
       muc.initial();
-      <%=yield :jquery %>
+	  <%=yield :jquery %>
+	  //返回顶部
+	  muc.go_top();
   });
   //-->
   </script>

@@ -84,7 +84,6 @@ class UploadController < ApplicationController
   def avatar_upload
     #获得文件/格式
     file = params[:jUploaderFile].tempfile
-
 	#上传
 	result = ImageUnit::Upload.save_avatar(file)
 
@@ -117,7 +116,7 @@ class UploadController < ApplicationController
 	  }
 	end
 
-	render json: results.to_json
+	render text: results.to_json
 
   end
 

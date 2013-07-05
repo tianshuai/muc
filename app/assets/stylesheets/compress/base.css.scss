@@ -6,6 +6,30 @@
  * @ Official Website: http://www.mycssweb.com; Taobao Shop: http://divcss.taobao.com; QQ: 15524261
  * ==========================================================================================================
 */
+
+
+/*----------返回顶部样式-----------*/
+.gotop_btn {
+background: image_url('totop.png') no-repeat scroll 0 0 transparent;
+    bottom: 60px;
+    display: block;
+    height: 40px;
+    width: 40px;
+    left: 50%;
+    margin-left: 500px;
+    position: fixed;
+}
+a {
+    color: #02449A;
+    cursor: pointer;
+    outline: medium none;
+    text-decoration: none;
+}
+.gotop_btn:hover {
+//background: image_url('totop.jpg') no-repeat scroll 0 0 transparent;
+    text-decoration: none;
+}
+
 /*-----------------------------全局样式-------------------------------------*/
 dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0}
 h1,h2,h3,h4,h5,h6{font:normal 14px/18px Microsoft YaHei}

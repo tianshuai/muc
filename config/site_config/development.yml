@@ -1,19 +1,19 @@
 ##路径
-domain: 127.0.0.1
-domain_base: http://127.0.0.1:3000
+domain: 192.168.5.78
+domain_base: http://192.168.5.78:3000
 
-domain_image: http://127.0.0.1:3000/asset
+domain_image: http://192.168.5.78:3000/asset
 
 #新闻最终页
-news_url: http://127.0.0.1:3000/post/%s/%s
+news_url: http://192.168.5.78:3000/post/%s/%s
 #作品最终页
-arts_url: http://127.0.0.1:3000/art/%s/%s
+arts_url: http://192.168.5.78:3000/art/%s/%s
 #书籍最终页
-books_url: http://127.0.0.1:3000/book/%s/%s
+books_url: http://192.168.5.78:3000/book/%s/%s
 # 师资最终页
-teachers_url: http://127.0.0.1:3000/teacher/%s/%s
+teachers_url: http://192.168.5.78:3000/teacher/%s/%s
 # 通用
-commons_url: http://127.0.0.1:3000/%s/%s/%s
+commons_url: http://192.168.5.78:3000/%s/%s/%s
 
 
 #设置图片支持的格式

@@ -166,4 +166,29 @@ muc.in_array = function(arr, val) {
     return -1;
 }; // 返回-1表示没找到，返回其他值表示找到的索引
 
+//返回顶部
+muc.go_top = function(){
+	$('#goTopButton').click(function(event){
+		$('html, body').animate({scrollTop:0}, 800);
+	});
+	$(window).scroll(function(event){
+		if($(this).scrollTop() > 0){
+			if($.browser.ie6){
+				$('#goTopButton').css('top', $(this).scrollTop() + $(this).height() - 170);
+			}
+			if($('#goTopButton').css('display') == 'none'){
+				$('#goTopButton').fadeIn();
+			}
+		}else{
+			$('#goTopButton').fadeOut();
+		}
 
+		//顶部消息框位置
+		var dis = 10 - $(this).scrollTop();
+		if( 0<dis && dis<=10 ){
+			$("#header-noti").css("top",dis+"px");
+		}else{
+			$("#header-noti").css("top","0");
+		}
+	});
+}

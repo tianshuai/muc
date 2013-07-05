@@ -30,4 +30,12 @@ module PublicSessionsHelper
     !current_user.nil?
   end
 
+  #不需要执行session,token的controller
+  #网络爬虫,是true否false.爬虫没有浏览器
+  def request_spidr?
+    agent=request.user_agent
+    agent='no' if agent.blank?
+    agent.match(/(MSIE|Firefox|Chrome|Opera|Safari|Gecko)/).blank?
+  end
+
 end
