@@ -22,7 +22,7 @@ class User
   before_save { |user| user.email = email.downcase }
 
   #创建用户登录标识(唯一随机数)
-  before_save :create_remember_token
+  before_create :create_remember_token
 
   #保护字段
   attr_protected :role_id
@@ -130,6 +130,12 @@ class User
   #是否初次登录、
   field :first_login,           type: Integer,  default: 0
 
+  #count
+  #新闻数量
+  field :news_count,			type: Integer,	default: 0
+  #作品数量
+  field :arts_count,			type: Integer,	default: 0
+
   #记忆权标
   field :remember_token,        type: String
 
@@ -204,25 +210,17 @@ class User
     self.img['avatar'][t] || ''
   end
 
-  #给头像赋值(传数组，第一个为ＩＤ，第二个为图片大小)
+  #给头像赋值(传数组，第一个为ＩＤ，第二个为头像尺寸)
   def avatar_id=(p)
     self.img['avatar'][p[1]] = p[0]
   end
 
-  #给头像赋值m
-  def avatar_m=(id)
-    self.img['avatar']['m'] = id
+  #账户是否被禁用?
+  def forbid?
+	return true if self.state==STATE[:no]
+	return false
   end
 
-  #给头像赋值b
-  def avatar_b=(id)
-    self.img['avatar']['b'] = id
-  end
-
-  #给头像赋值o
-  def avatar_o=(id)
-    self.img['avatar']['o'] = id
-  end
 
 private
 

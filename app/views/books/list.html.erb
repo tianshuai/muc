@@ -18,7 +18,7 @@
                     <%@posts.each do |b|%>
                       <% if b.cover.present? %>
                           <li style="margin-bottom:20px;">
-                              <em><%= link_to asset_o_tag(b.cover), b.view_url %></em>
+                              <em><%= link_to asset_b_tag(b.cover), b.view_url %></em>
                               <h3><%= link_to truncate(b.title, length: 20), b.view_url, title: b.title %></h3>
                               <p><%= truncate(strip_tags(b.content), length: 50) %></p>
                               <div class="readmore"><%= link_to 'Read More', b.view_url %></div>

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :forbid_login, only: [ :new, :create ]
 
   #需要登录
-  before_filter :signed_in_user, only: [ :edit, :update, :edit_profile, :edit_pwd, :edit_avatar ]
+  before_filter :signed_in_user, only: [ :edit, :update, :edit_profile, :edit_info, :edit_pwd, :edit_avatar ]
 
   # GET /users
   # GET /users.json
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 	#params.delete(params[:user][:email])
 	if @user.update_attributes(params[:user])
 	  flash[:success] = '更新成功!'
-	  sign_in @user
+	  #sign_in @user
 	  redirect_to @user
 	else
 	  flash[:error] = '更新失败!'
@@ -79,7 +79,7 @@ class UsersController < ApplicationController
 	  params[:user].delete :current_password
 	  if current_user.update_attributes(params[:user])
 		flash[:success] = "更新成功!"
-		sign_in @user
+		#sign_in @user
 	    redirect_to @user
 	  else
 		flash[:error] = '更新失败!'

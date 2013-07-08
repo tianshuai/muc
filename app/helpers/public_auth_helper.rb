@@ -12,18 +12,24 @@ module PublicAuthHelper
   #是否管理员
   def admin?
     return false if current_user.blank?      
+	#用户已禁用?
+	return false if current_user.forbid?
     return true if current_user.role_id == User::ROLE_ID[:admin]
     return false
   end
   #是否超级用户
   def system?
     return false if current_user.blank?      
+	#用户已禁用?
+	return false if current_user.forbid?
     return true if current_user.role_id == User::ROLE_ID[:system]
     return false      
   end
   #是否编辑
   def editor?
     return false if current_user.blank?
+	#用户已禁用?
+	return false if current_user.forbid?
     return true if current_user.role_id == User::ROLE_ID[:editor]
     return true if admin?
     return true if system?
@@ -34,6 +40,8 @@ module PublicAuthHelper
   #是否超级用户或管理员
   def admin_system?
     return false if current_user.blank?
+	#用户已禁用?
+	return false if current_user.forbid?
     return true if admin?
     return true if system?    
     return false 
@@ -51,7 +59,12 @@ module PublicAuthHelper
   #如果未登录，跳到登录页面
   def signed_in_user
     store_location
-    redirect_to signin_path, notice: "请先登录" unless signed_in?
+	unless signed_in?
+      redirect_to signin_path, notice: "请先登录"
+	else
+	  redirect_to root_path, notice: '账户被冻结,请与管理员联系...' if current_user.forbid? 
+	end
+
   end
 
   #如果　已登录，则跳到首页

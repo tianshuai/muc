@@ -138,7 +138,7 @@ class UploadController < ApplicationController
 	  current_user.avatar_id = [ result.second, 'm' ]
 	  current_user.avatar_id = [ result.third, 's' ]
 	  if current_user.save
-		sign_in(current_user)
+		#sign_in(current_user)
 	    flash[:success] = '头像上传成功!'
 	    redirect_to user_edit_avatar_path
 	  else

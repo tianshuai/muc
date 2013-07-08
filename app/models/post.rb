@@ -2,6 +2,7 @@
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::CounterCache
 
   #ＩＤ自增
   auto_increment :id, seed: 1
@@ -11,6 +12,9 @@ class Post
   belongs_to :user
   belongs_to :category
 
+  #更新user表中对应的数量
+  counter_cache name: 'user', field: 'arts_count',	if: :art?
+  counter_cache name: 'user', field: 'news_count',	if: :news?
 
   ##验证
   validates_presence_of :title
@@ -170,6 +174,22 @@ class Post
       asset = Asset.find(self.asset_id)
     end
     return  asset
+  end
+
+  #判断类型?(未应用)
+  def is_type?(str)
+	return true if self.type==TYPE[str.to_sym]
+	return false
+  end
+
+  def art?
+	return true if self.type==TYPE[:art]
+	return false
+  end
+
+  def news?
+	return true if self.type==TYPE[:news]
+	return false
   end
   
 end
