@@ -31,7 +31,10 @@ class UsersController < ApplicationController
   #创建用户
   def create
     @user = User.new(params[:user])
-
+	#记录当前ip
+	@user.ip = current_ip
+	#记录最后登录时间
+	@user.last_time = Time.now.to_i
     if @user.save
       flash[:success] = '注册成功!'
       sign_in @user

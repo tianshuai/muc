@@ -38,4 +38,10 @@ module PublicSessionsHelper
     agent.match(/(MSIE|Firefox|Chrome|Opera|Safari|Gecko)/).blank?
   end
 
+  #获取当前访问者ip
+  def current_ip
+    #@env['REMOTE_ADDR'] || ''
+    request.ip || ''
+  end
+
 end

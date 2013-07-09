@@ -129,7 +129,10 @@ class User
 
   #是否初次登录、
   field :first_login,           type: Integer,  default: 0
-
+  #最后一次登录时间(存时间戳)
+  field :last_time,				type: Integer
+  #最后一次登录ip
+  field :ip,					type: String
   #count
   #新闻数量
   field :news_count,			type: Integer,	default: 0
@@ -163,15 +166,16 @@ class User
   index({ name: 1 }, { unique: true, background: true })
   index({ email: 1 }, { unique: true, background: true })
   index({ remember_token: 1 }, { unique: true, background: true })
-  index({ name: 1 }, { unique: true, background: true })
+  index({ last_time: 1 }, { background: true })
 
 
   ##过滤
   #用户排序
-  scope :recent,      -> { desc(:_id) }
+  scope :recent,      	-> { desc(:_id) }
   #学生
-  scope :students,    -> { where(type: TYPE[:student]) }
-
+  scope :students,    	-> { where(type: TYPE[:student]) }
+  #最近登录排序
+  scope :last_order,	-> { desc(:last_time) }
 
   ##
   #方法

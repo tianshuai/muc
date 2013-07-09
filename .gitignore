@@ -24,3 +24,4 @@ public/sphinx/*
 public/rss/*
 *.pid
 tags
+source
