@@ -34,4 +34,16 @@ Muc::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = false
+
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.163.com",
+    :port => 25,
+    :domain => "127.0.0.1",
+    :authentication => "plain",
+    :user_name => "test_ts",
+    :password => "tianshuai",
+    :enable_starttls_auto => true
+  }
+
+
 end
