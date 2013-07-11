@@ -187,6 +187,10 @@ Muc::Application.routes.draw do
   match 'user/update_pwd',			to: 'users#update_pwd'
   match 'user/ajax_avatar_form',	to: 'users#ajax_avatar_form'
   post 'user/ajax_validate_only',	to: 'users#ajax_validate_only'
+  get 'user/find_pwd',				to: 'users#find_pwd'
+  post 'user/send_mail',			to: 'users#send_mail'
+  get 'user/go_mail',				to: 'users#go_mail'
+  get 'user/reset_pwd',				to: 'users#reset_pwd'
 
   #头像设置
   match 'user/edit_avatar',			to: 'users#edit_avatar'

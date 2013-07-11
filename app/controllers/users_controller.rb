@@ -125,11 +125,83 @@ class UsersController < ApplicationController
 		else
 	  	  result = true
 		end
+	  when '3'
+	    user = User.find_by(email: val.downcase)
+		if user.present?
+	      result = true
+		else
+	  	  result = false
+		end
 	  end
 	else
 	  result = false
 	end
 	render json: result.to_json
+  end
+
+  #找回密码(发送邮件)
+  def find_pwd
+	
+  end
+
+  #发送邮件
+  def send_mail
+	@user = User.find_by(email: params[:email].downcase)
+    respond_to do |f|
+		if @user.present?
+		  mark = pwd_md5("#{@user.email+Time.now.to_s}")
+		  MailRecord.create(
+			mail: @user.email,
+			mark: mark,
+			type: MailRecord::TYPE[:find_pwd],
+			state: 1
+		  )
+		  UserMailer.find_pwd(@user, mark: mark).deliver 
+
+		  f.html { redirect_to user_go_mail_path, notice: '发送成功!' }
+		  f.json { head :no_content }
+		else
+		  flash[:error] = '发送失败,邮箱不存在!'
+		  f.html { render action: 'find_pwd' }
+		  #f.json { render json:  status: :unprocessable_entity }
+		end
+	end
+  end
+
+  #去邮箱查看邮件
+  def go_mail
+
+  end
+
+  #重置密码
+  def reset_pwd
+	mark = params[:mark]
+	respond_to do |f|
+	  if mark.present?
+	    mail_record = MailRecord.find_by(mark: mark)
+		if mail_record.present?
+		  if (mail_record.created_at.to_i + 1.hour.to_i) > Time.now.to_i
+			@user = User.find_by(email: mail_record.mail)
+			if @user.present?
+		      f.html { render action: 'reset_pwd' }
+			else
+		      flash[:error] = '用户不存在,请重新注册或尝试登录其它已有账号!'
+		  	  f.html { redirect_to signup_path }
+			end
+
+		  else
+		    flash[:error] = '邮件已过期,请重新发送邮件!'
+		  	f.html { redirect_to user_find_pwd_path }
+		  end
+		else
+		  flash[:error] = '记录不存在,请重新发送邮件!'
+		  f.html { redirect_to user_find_pwd_path }
+		end
+	  else
+		flash[:error] = '参数错误,请重新发送邮件!'
+		f.html { redirect_to user_find_pwd_path }
+	  end
+	end
   end
 
 end

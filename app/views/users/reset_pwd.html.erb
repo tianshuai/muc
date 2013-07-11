@@ -1,0 +1,19 @@
+<% provide(:title, '重置密码') %>
+<div class="row main">
+  <div class="span6 offset3">
+			<%= form_for(@user, url: user_update_pwd_path, :html=>{:method=> :put}) do |f| %>
+			  <%= render 'shared/error_messages' %>
+			  <%= f.label :password, "新密码" %>
+			  <%= f.password_field :password %>
+
+			  <%= f.label :password_confirmation, "确认密码" %>
+			  <%= f.password_field :password_confirmation %>
+
+			  <%= f.submit "保存", class: "btn btn-large btn-primary" %>
+			<% end %>
+
+	</div><!--/row-->
+</div>
+
+
+
