@@ -95,6 +95,28 @@ class UsersController < ApplicationController
 	end
   end
 
+  #重置密码(跳过输入原密码,用于找回密码)
+  def update_r_pwd
+	@user = User.find_by(email: params[:email])
+	if @user.present?
+	  if @user.update_attributes(params[:user])
+		#删除mail_record表的记录
+		mails = MailRecord.where(mail: @user.email)
+		mails.each do |m|
+		  m.destroy if m.present?
+		end
+		flash[:success] = "重置成功,请用新密码登录!"
+	    redirect_to signin_path
+	  else
+	    flash[:error] = '更新失败!'
+	    render 'edit_pwd'
+	  end
+    else
+	  flash[:error] = '用户不存在!'
+	    redirect_to signup_path
+	end
+  end
+
   #修改头像
   def edit_avatar
 	@css_edit_avatar = true
@@ -146,10 +168,16 @@ class UsersController < ApplicationController
 
   #发送邮件
   def send_mail
-	@user = User.find_by(email: params[:email].downcase)
+	mail = params[:email] || ''
+	@user = User.find_by(email: mail.downcase)
     respond_to do |f|
 		if @user.present?
 		  mark = pwd_md5("#{@user.email+Time.now.to_s}")
+		  #删除原有记录,不能重复
+		  mails = MailRecord.where(mail: @user.email)
+		  mails.each do |m|
+			m.destroy if m.present?
+		  end
 		  MailRecord.create(
 			mail: @user.email,
 			mark: mark,
@@ -158,7 +186,7 @@ class UsersController < ApplicationController
 		  )
 		  UserMailer.find_pwd(@user, mark: mark).deliver 
 
-		  f.html { redirect_to user_go_mail_path, notice: '发送成功!' }
+		  f.html { redirect_to user_go_mail_path(mark: mark), notice: '发送成功!' }
 		  f.json { head :no_content }
 		else
 		  flash[:error] = '发送失败,邮箱不存在!'
@@ -170,7 +198,15 @@ class UsersController < ApplicationController
 
   #去邮箱查看邮件
   def go_mail
-
+	@mail = MailRecord.find_by(mark: params[:mark])
+    respond_to do |f|
+	  if @mail.present?
+		f.html { render action: 'go_mail' }
+	  else
+		flash[:error] = '邮件记录不存在!'
+		f.html { redirect_to user_send_mail_path }
+	  end
+	end
   end
 
   #重置密码

@@ -192,3 +192,25 @@ muc.go_top = function(){
 		}
 	});
 }
+
+/*邮箱地址跳转*/
+muc.open_email=function(){
+	var email = $(this).attr('email');
+    var domain = email.substr(email.indexOf('@') + 1);
+    var url = '';
+    switch(domain){
+        case "gmail.com":{
+            url = "http://mail.google.com";
+            break;
+        }
+        case "hotmail.com":{
+            url = "http://www.hotmail.com";
+            break;
+        }
+        default:{
+            url = 'http://mail.' + domain + '/';
+        }
+    }
+    //新窗口
+    window.open(url);
+};
