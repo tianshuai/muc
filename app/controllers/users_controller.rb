@@ -154,6 +154,19 @@ class UsersController < ApplicationController
 		else
 	  	  result = false
 		end
+	  when '4'
+		users = User.where(name: val)
+		if users.present?
+		  names = users.map{ |user| user.name }
+		  users.each do |user|
+			if user.name.eql?(current_user.name)
+			  result = true
+			  break
+			end
+		  end
+		else
+		  result = true
+		end
 	  end
 	else
 	  result = false

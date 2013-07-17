@@ -67,11 +67,17 @@ class User
   }
   #验证邮箱格式
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  #验证用户名是否合法(只含有汉字、数字、字母、下划线不能以下划线开头和结尾)
+  VALID_USER_REGEX = /^(?!_)(?!.*?_$)[a-zA-Z0-9_\u4e00-\u9fa5]+$/
+  #验证用户名长度,(汉字算2两字符)
+  VALID_USER_LENGTH = /^[\u4e00-\u9fa5]{2,9}$|^[\dA-Za-z_]{4,18}$/
 
   ##验证
   validates_presence_of :name,                    message: '不能为空'
-  validates :name,                                length: { minimum: 2, maximum: 18, message: '长度大于2个字符且小于18个字符' }
+  #validates :name,                                length: { minimum: 2, maximum: 18, message: '长度大于2个字符且小于18个字符' }
   validates_uniqueness_of :name,				　message: '用户名已存在'
+  validates	:name,								  format: { with: VALID_USER_REGEX, message: '只含有汉字、数字、字母、下划线不能以下划线开头和结尾' }
+  validates :name,								  format: { with: VALID_USER_LENGTH, message: '长度不小于4个字符且不大于18个字符,一个字符占两个字符' }
 
 
   validates_presence_of :email,                   message: '不能为空'

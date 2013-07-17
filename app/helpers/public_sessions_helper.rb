@@ -41,7 +41,7 @@ module PublicSessionsHelper
   #获取当前访问者ip
   def current_ip
     #@env['REMOTE_ADDR'] || ''
-    request.ip || ''
+    request.remote_ip || ''
   end
 
 end
