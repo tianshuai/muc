@@ -1,4 +1,5 @@
 ## 基本信息
+  * web: 中央民族大学美术学院
   * auther_by: tianshuai
 
   * Ruby 1.9.3+, Rails 3.2.13
