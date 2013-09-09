@@ -95,7 +95,7 @@ class Post
   #过滤
   
   #最新的
-  scope :recent,			-> { desc(:_id) }
+  scope :recent,			-> { desc(:created_at) }
   #按自定义排序
   scope :order_b,           -> { desc(:order) }
   #已发布的
