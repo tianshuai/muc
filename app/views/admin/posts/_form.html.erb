@@ -30,14 +30,7 @@
     <%= f.label :content, '内容:' %>
     <%= f.text_area :content, id: 'kind_editor' %>
   </div>
-  <!--临时加的功能：修改创建时间（以后需要删除此方法）-->
-  <% unless @post.new_record? %>
-  <span class="blank10"></span>
-  <div>
-    <span>修改创建时间:(临时添加功能)</span>
-	<input type="text" name="created_at" value="<%=@post.created_at.strftime('%Y-%m-%d %H:%M')%>" />
-  </div>
-  <%end%>
+
   <span class="blank10"></span>
   <div class="field">
     <%= f.label :order, '排序：' %>

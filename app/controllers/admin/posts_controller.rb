@@ -74,11 +74,6 @@ class Admin::PostsController < Admin::Common
 
     respond_to do |format|
       if @post.update_attributes(params[:post])
-		#临时加的功能：修改创建时间（以后需要删除此方法）
-		if params[:created_at].present?
-		  created_at = Time.parse(params[:created_at]).to_time
-		  @post.set(:created_at, created_at)
-		end
         #保存封面图
         if params[:asset_id]
           #获得文件/格式
