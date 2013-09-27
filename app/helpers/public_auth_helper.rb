@@ -80,7 +80,7 @@ module PublicAuthHelper
 
   #跳转到：如登录页面前记录链接地址
   def store_location
-    session[:return_to] = request.fullpath
+    session[:return_to] = request.fullpath if request.get?
   end
 
   #管理员权限
